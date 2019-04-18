@@ -1,0 +1,422 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="MediaCenter, Template, eCommerce">
+    <meta name="robots" content="all">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/style.css" rel="stylesheet" />
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <!-- Bootstrap Core CSS -->
+
+
+    <link rel="stylesheet" href="@Url.Content("~/template/assets/css/bootstrap.min.css")">
+
+    <!-- Customizable CSS -->
+    <link rel="stylesheet" href="@Url.Content("~/template/assets/css/main.css")">
+    <link rel="stylesheet" href="@Url.Content("~/template/assets/css/owl.carousel.css")">
+    <link rel="stylesheet" href="@Url.Content("~/template/assets/css/owl.transitions.css")">
+    <link rel="stylesheet" href="@Url.Content("~/template/assets/css/animate.min.css")">
+    <!-- Demo Purpose Only. Should be removed in production -->
+    <link rel="stylesheet" href="@Url.Content("~/template/assets/css/config.css")">
+    <link href="@Url.Content("~/template/assets/css/navy.css")" rel="alternate stylesheet" title="Navy color">
+    <!-- Demo Purpose Only. Should be removed in production : END -->
+    <!-- Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- Icons/Glyphs -->
+    <link rel="stylesheet" href="@Url.Content("~/template/assets/css/font-awesome.min.css")">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="~/images/favicon.png" />
+    <!-- HTML5 elements and media queries Support for IE8 : HTML5 shim and Respond.js -->
+    <!--[if lt IE 9]>
+        <script src="~/template/assets/js/html5shiv.js"></script>
+        <script src="~/template/assets/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    @using Microsoft.AspNet.Identity
+    <div class="wrapper">
+        <!-- ============================================================= TOP NAVIGATION ============================================================= -->
+        <nav class="top-bar animate-dropdown">
+            <div class="container">
+                <div class="col-xs-12 col-sm-6 no-margin">
+                    <ul>
+                        <li><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#change-colors">Giao diện</a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li role="presentation"><a role="menuitem" class="changecolor navy-text" tabindex="-1" href="#" title="Navy color">Chàm</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="index.php?page=faq">Hương dẫn</a></li>
+                    </ul>
+                </div><!-- /.col -->
+                <div class="col-xs-12 col-sm-6 no-margin">
+                    <ul class="right">
+                        @if (User.IsInRole("Nhân viên") || User.IsInRole("Quản trị viên"))
+                        {
+                            <li><a href="@Url.Action("Index", "Admin")">Trang quản trị</a></li>
+                        }
+                        @if (!Request.IsAuthenticated)
+                        {
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#user-cp">Đăng ký</a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Authentication", "Account")">Đăng kí làm khách hàng </a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("RegisterB2B", "Account")">Đăng ký làm nhà cung cấp</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="@Url.Action("Authentication", "Account")">Đăng nhập</a></li>
+                        }
+                        else
+                        {
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#user-cp">@User.Identity.Name</a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Manage", "Account")">Cài đặt mật khẩu</a></li>
+                                    @if (User.IsInRole("Khách hàng") || User.IsInRole("Quản trị viên") || User.IsInRole("Nhân viên"))
+                                    {
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("EditInfo", "Account")">Thông tin cá nhân</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Xemdonhang", "Home", new { maKH = User.Identity.GetUserId() })">Xem đơn hàng</a></li>
+                                    }
+                                    @if (User.IsInRole("Nhà cung cấp"))
+                                    {
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Index", "Auction")">Đăng ký cung cấp sản phẩm</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("EditNCCInfo", "Account")">Sưa thông tin</a></li>
+                                    }
+
+                                </ul>
+                            </li>
+                            <li><a href="@Url.Action("LogOut", "Account")">Đăng xuất</a></li>
+                        }
+                    </ul>
+                </div><!-- /.col -->
+            </div><!-- /.container -->
+        </nav><!-- /.top-bar -->
+        <!-- ============================================================= TOP NAVIGATION : END ============================================================= -->
+        <!-- ============================================================= HEADER ============================================================= -->
+        <header class="no-padding-bottom header-alt">
+            @Html.Action("Header", "GiaoDien")
+            <!-- ========================================= NAVIGATION ========================================= -->
+            @Html.Action("MainMenu", "Home")
+            <!-- ========================================= NAVIGATION : END ========================================= -->
+            <!--Danh dau duong di-->
+            <div class="animate-dropdown">
+                <!-- ========================================= BREADCRUMB ========================================= -->
+                <div id="breadcrumb-alt">
+                    <div class="container">
+                        <div class="breadcrumb-nav-holder minimal">
+                            <ul>
+                                
+                                <li class="breadcrumb-item">
+                                    <a href="#">Trang chủ</a>
+                                </li>
+                                @*@<li class="breadcrumb-item current">
+                                        <a href="#">@ViewBag.Title</a>
+                                    </li>*@
+                                <li class="breadcrumb-item current">
+                                    <a href="#">@ViewBag.Title</a>
+                                </li>
+                            </ul>
+                        </div><!-- .breadcrumb-nav-holder -->
+                    </div><!-- /.container -->
+                </div><!-- /#breadcrumb-alt -->
+                <!-- ========================================= BREADCRUMB : END ========================================= -->
+            </div>
+        </header>
+        <!-- ============================================================= HEADER : END ============================================================= -->
+        <div>
+            @RenderBody()
+        </div>
+
+        <!-- ============================================================= FOOTER ============================================================= -->
+        <footer id="footer" class="color-bg">
+
+            <div class="container">
+                <div class="row no-margin widgets-row">
+                    <div class="col-xs-12  col-sm-4 no-margin-left">
+                        <!-- ============================================================= FEATURED PRODUCTS ============================================================= -->
+                        <div class="widget">
+                            <h2>Sản phẩm nổi bật</h2>
+                            <div class="body">
+                                <ul>
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-9 no-margin">
+                                                <a href="single-product.html">G-shock Gba-800-9aer Yellow Watches G-shock</a>
+                                                <div class="price">
+                                                    <div class="price-prev">$2000</div>
+                                                    <div class="price-current">$1873</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-3 no-margin">
+                                                <a href="#" class="thumb-holder">
+                                                    <img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/template/assets/images/products/product-small-01.jpg")" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-9 no-margin">
+                                                <a href="single-product.html">G-shock Gba-800-9aer Yellow Watches G-shock</a>
+                                                <div class="price">
+                                                    <div class="price-prev">$2000</div>
+                                                    <div class="price-current">$1873</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-3 no-margin">
+                                                <a href="#" class="thumb-holder">
+                                                    <img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/template/assets/images/products/product-small-02.jpg")" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-9 no-margin">
+                                                <a href="single-product.html">G-shock Gba-800-9aer Yellow Watches G-shock</a>
+                                                <div class="price">
+                                                    <div class="price-prev">$2000</div>
+                                                    <div class="price-current">$1873</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-3 no-margin">
+                                                <a href="#" class="thumb-holder">
+                                                    <img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/template/assets/images/products/product-small-03.jpg")" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div><!-- /.body -->
+                        </div> <!-- /.widget -->
+                        <!-- ============================================================= FEATURED PRODUCTS : END ============================================================= -->
+                    </div><!-- /.col -->
+                    <div class="col-xs-12 col-sm-4 ">
+                        <!-- ============================================================= ON SALE PRODUCTS ============================================================= -->
+                        <div class="widget">
+                            <h2>Sản phẩm bán chạy</h2>
+                            <div class="body">
+                                <ul>
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-9 no-margin">
+                                                <a href="single-product.html">G-shock Gba-800-9aer Yellow Watches G-shock</a>
+                                                <div class="price">
+                                                    <div class="price-prev">$2000</div>
+                                                    <div class="price-current">$1873</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-3 no-margin">
+                                                <a href="#" class="thumb-holder">
+                                                    <img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/template/assets/images/products/product-small-04.jpg")" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-9 no-margin">
+                                                <a href="single-product.html">G-shock Gba-800-9aer Yellow Watches G-shock</a>
+                                                <div class="price">
+                                                    <div class="price-prev">$2000</div>
+                                                    <div class="price-current">$1873</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-3 no-margin">
+                                                <a href="#" class="thumb-holder">
+                                                    <img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/template/assets/images/products/product-small-05.jpg")" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-9 no-margin">
+                                                <a href="single-product.html">G-shock Gba-800-9aer Yellow Watches G-shock</a>
+                                                <div class="price">
+                                                    <div class="price-prev">$2000</div>
+                                                    <div class="price-current">$1873</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-3 no-margin">
+                                                <a href="#" class="thumb-holder">
+                                                    <img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/template/assets/images/products/product-small-06.jpg")" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div><!-- /.body -->
+                        </div> <!-- /.widget -->
+                        <!-- ============================================================= ON SALE PRODUCTS : END ============================================================= -->
+                    </div><!-- /.col -->
+                    <div class="col-xs-12 col-sm-4 ">
+                        <!-- ============================================================= TOP RATED PRODUCTS ============================================================= -->
+                        <div class="widget">
+                            <h2>Sản phẩm đánh giá cao</h2>
+                            <div class="body">
+                                <ul>
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-9 no-margin">
+                                                <a href="single-product.html">
+                                                    G-shock Gba-800-9aer Yellow Watches G-shock
+                                                </a>
+                                                <div class="price">
+                                                    <div class="price-prev">$2000</div>
+                                                    <div class="price-current">$1873</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-3 no-margin">
+                                                <a href="#" class="thumb-holder">
+                                                    <img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/template/assets/images/products/product-small-07.jpg")" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-9 no-margin">
+                                                <a href="single-product.html">
+                                                    G-shock Gba-800-9aer Yellow Watches G-shock
+                                                </a>
+                                                <div class="price">
+                                                    <div class="price-prev">$2000</div>
+                                                    <div class="price-current">$1873</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-3 no-margin">
+                                                <a href="#" class="thumb-holder">
+                                                    <img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/template/assets/images/products/product-small-08.jpg")" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-9 no-margin">
+                                                <a href="single-product.html">
+                                                    G-shock Gba-800-9aer Yellow Watches G-shock
+                                                </a>
+                                                <div class="price">
+                                                    <div class="price-prev">$2000</div>
+                                                    <div class="price-current">$1873</div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-3 no-margin">
+                                                <a href="#" class="thumb-holder">
+                                                    <img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/template/assets/images/products/product-small-09.jpg")" />
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div><!-- /.body -->
+                        </div><!-- /.widget -->
+                        <!-- ============================================================= TOP RATED PRODUCTS : END ============================================================= -->
+                    </div><!-- /.col -->
+                </div><!-- /.widgets-row-->
+            </div><!-- /.container -->
+            <div class="sub-form-row">
+                <div class="container">
+                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 no-padding">
+                        <form role="form">
+                            <input placeholder="Đăng ký email nhận thông tin khuyến mãi">
+                            <button class="le-button">Đăng ký</button>
+                        </form>
+                    </div>
+                </div><!-- /.container -->
+            </div><!-- /.sub-form-row -->
+            <div class="copyright-bar">
+                <div class="container">
+                    <div class="col-xs-12 col-sm-6 no-margin">
+                        <div class="copyright">
+                            &copy; <a href="home">Media Center</a> - all rights reserved
+                        </div><!-- /.copyright -->
+                    </div>
+                    <div class="col-xs-12 col-sm-6 no-margin">
+                        <div class="payment-methods ">
+                            <ul>
+                                <li><img alt="" src="@Url.Content("~/template/assets/images/payments/payment-visa.png")"></li>
+                                <li><img alt="" src="@Url.Content("~/template/assets/images/payments/payment-master.png")"></li>
+                                <li><img alt="" src="@Url.Content("~/template/assets/images/payments/payment-paypal.png")"></li>
+                                <li><img alt="" src="@Url.Content("~/template/assets/images/payments/payment-skrill.png")"></li>
+                            </ul>
+                        </div><!-- /.payment-methods -->
+                    </div>
+                </div><!-- /.container -->
+            </div><!-- /.copyright-bar -->
+        </footer><!-- /#footer -->
+        <!-- ============================================================= FOOTER : END ============================================================= -->
+    </div><!-- /.wrapper -->
+   
+
+
+    <script src="@Url.Content("~/template/assets/js/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("~/template/assets/js/jquery-migrate-1.2.1.js")"></script>
+    @*<script src="@Url.Content("~/template/assets/js/bootstrap.min.js")"></script>*@
+    <script src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
+    <script src="@Url.Content("~/template/assets/js/gmap3.min.js")"></script>
+    <script src="@Url.Content("~/template/assets/js/bootstrap-hover-dropdown.min.js")"></script>
+    <script src="@Url.Content("~/template/assets/js/owl.carousel.min.js")"></script>
+    <script src="@Url.Content("~/template/assets/js/css_browser_selector.min.js")"></script>
+    <script src="@Url.Content("~/template/assets/js/echo.min.js")"></script>
+    <script src="@Url.Content("~/template/assets/js/jquery.easing-1.3.min.js")"></script>
+    <script src="@Url.Content("~/template/assets/js/bootstrap-slider.min.js")"></script>
+    <script src="@Url.Content("~/template/assets/js/jquery.raty.min.js")"></script>
+    <script src="@Url.Content("~/template/assets/js/jquery.prettyPhoto.min.js")"></script>
+    <script src="@Url.Content("~/template/assets/js/jquery.customSelect.min.js")"></script>
+    <script src="@Url.Content("~/template/assets/js/wow.min.js")"></script>
+    <script src="@Url.Content("~/template/assets/js/scripts.js")"></script>
+    <script src="@Url.Content("~/js/xuliscript.js")"></script>
+    <!-- For demo purposes – can be removed on production -->
+
+    <script type="text/javascript" src="@Url.Content("~/template/switchstylesheet/switchstylesheet.js")">
+    </script>
+    
+    <script>
+        $(document).ready(function () {
+            $(".changecolor").switchstylesheet({ seperator: "color" });
+            $('.show-theme-options').click(function () {
+                $(this).parent().toggleClass('open');
+                return false;
+            });
+        });
+
+        $(window).bind("load", function () {
+            $('.show-theme-options').delay(0).trigger('click');
+        });
+    </script>
+    <!-- script change color -->
+    <script src="http://w.sharethis.com/button/buttons.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var url = "Xuligiohang/Addcart";
+            $.ajax({
+                url: url,
+                type: 'Get',
+                cache: false,
+                data: { sp: value, quantity: sl },
+                success: function (result) {
+                    $('.basket').html(result);
+                },
+            });
+        });
+    </script>
+</body>
+</html>
