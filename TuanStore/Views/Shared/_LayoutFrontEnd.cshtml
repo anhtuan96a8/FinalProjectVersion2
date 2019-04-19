@@ -11,16 +11,12 @@
     <meta name="robots" content="all">
     <title>@ViewBag.Title</title>
     <link href="~/Content/style.css" rel="stylesheet" />
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jqueryval")
-
     <!-- Bootstrap Core CSS -->
 
-
     <link rel="stylesheet" href="@Url.Content("~/template/assets/css/bootstrap.min.css")">
-
     <!-- Customizable CSS -->
     <link rel="stylesheet" href="@Url.Content("~/template/assets/css/main.css")">
     <link rel="stylesheet" href="@Url.Content("~/template/assets/css/owl.carousel.css")">
@@ -35,7 +31,6 @@
 
     <!-- Icons/Glyphs -->
     <link rel="stylesheet" href="@Url.Content("~/template/assets/css/font-awesome.min.css")">
-
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="~/images/favicon.png" />
     <!-- HTML5 elements and media queries Support for IE8 : HTML5 shim and Respond.js -->
@@ -51,16 +46,7 @@
         <nav class="top-bar animate-dropdown">
             <div class="container">
                 <div class="col-xs-12 col-sm-6 no-margin">
-                    <ul>
-                        <li><a href="@Url.Action("Index","Home")">Trang chủ</a></li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#change-colors">Giao diện</a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li role="presentation"><a role="menuitem" class="changecolor navy-text" tabindex="-1" href="#" title="Navy color">Chàm</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="index.php?page=faq">Hương dẫn</a></li>
-                    </ul>
+                    <h4>Chào mừng bạn đến với TuanStore</h4>
                 </div><!-- /.col -->
                 <div class="col-xs-12 col-sm-6 no-margin">
                     <ul class="right">
@@ -106,7 +92,7 @@
         </nav><!-- /.top-bar -->
         <!-- ============================================================= TOP NAVIGATION : END ============================================================= -->
         <!-- ============================================================= HEADER ============================================================= -->
-        <header class="no-padding-bottom header-alt">
+        <header class="no-padding-bottom header-alt" @*style="background-image:url('/images/background-header.jpg');  background-size: cover; background-position: center center;"*@>
             @Html.Action("Header", "GiaoDien")
             <!-- ========================================= NAVIGATION ========================================= -->
             @Html.Action("MainMenu", "Home")
@@ -120,7 +106,7 @@
                             <ul>
                                 
                                 <li class="breadcrumb-item">
-                                    <a href="#">Trang chủ</a>
+                                    <a href="@Url.Action("Index","Home")">Trang chủ</a>
                                 </li>
                                 @*@<li class="breadcrumb-item current">
                                         <a href="#">@ViewBag.Title</a>

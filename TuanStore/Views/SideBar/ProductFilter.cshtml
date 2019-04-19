@@ -34,7 +34,7 @@
                 <h2>Loại</h2>
                 <hr>
                 <h5>Loại sản phẩm</h5>
-                <ul>
+                @*<ul>
                     @{
                         CategoryModel cat = new CategoryModel();
                         IQueryable<LoaiSP> catlist = cat.GetCategory();
@@ -43,9 +43,16 @@
                             <li><input name="loai" class="le-checkbox" type="radio" value="@item.MaLoai" /> <label>@item.TenLoai</label></li>
                         }
                     }
-                </ul>
+                </ul>*@
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="@Url.Action("Index", "Category", new { MaLoai = "" })">Tât cả các loại</a>
+                    <ul class="dropdown-menu" role="menu">
+                        @Html.Action("CategoryList", "Search")
+                    </ul>
+                </li>
+
                 <h5>Hãng sản xuất</h5>
-                <ul>
+                @*<ul>
                     @{
                         HangSanXuatModel han = new HangSanXuatModel();
                         IQueryable<HangSanXuat> hanlist = han.GetHangSX();
@@ -54,7 +61,13 @@
                             <li><input name="hangsx" class="le-checkbox" type="radio" value="@item.HangSX" /> <label>@item.TenHang</label></li>
                         }
                     }
-                </ul>
+                </ul>*@
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="@Url.Action("Index", "Category", new { MaLoai = "" })">Tât cả các loại</a>
+                    <ul class="dropdown-menu" role="menu">
+                        @Html.Action("GetHangSanXuat", "Search")
+                    </ul>
+                </li>
             </div><!-- /.category-filter -->
 
             <div class="price-filter">

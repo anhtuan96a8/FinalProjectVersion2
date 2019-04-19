@@ -21,6 +21,12 @@ namespace TuanStore.Controllers
             var lst = cat.GetCategory().ToList();
             return PartialView("_CategoryListPartial", lst);
         }
+        public ActionResult GetHangSanXuat()
+        {
+            CategoryModel cat = new CategoryModel();
+            var lst = cat.GetHangSanXuats().ToList();
+            return PartialView("_GetHangSanXuatPartial", lst);
+        }
 
         [HttpPost]
         public ActionResult SearchByName(string term)

@@ -1,0 +1,5 @@
+﻿@model List<TuanStore.Models.HangSanXuat>
+@foreach (var item in Model)
+{
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("AdvancedSearchView", "Search", new { loai = item.TenHang })">@item.TenHang</a></li>
+}

@@ -83,5 +83,6 @@ namespace TuanStore.Models
                 return db.HangSanXuats;
             return db.HangSanXuats.Where(u => u.TenHang.Contains(key));
         }
+
     }
 }

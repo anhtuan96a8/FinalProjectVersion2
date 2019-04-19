@@ -657,6 +657,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="images\avatars\3a92095d-9524-4310-91db-e4b33f34d077.jpg" />
+    <Content Include="images\background-header.jpg" />
     <Content Include="images\banners\1.jpg" />
     <Content Include="images\cartphieu.jpg" />
     <Content Include="images\circuit-lock.jpg" />
@@ -2234,6 +2235,7 @@
     <Content Include="Views\ThongKe\ThongKeDoanhThu.cshtml" />
     <Content Include="Views\ThongKe\TheoTime.cshtml" />
     <Content Include="Views\ThongKe\TheoTiTrong.cshtml" />
+    <Content Include="Views\Search\_GetHangSanXuatPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

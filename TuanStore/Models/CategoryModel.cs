@@ -18,7 +18,11 @@ namespace TuanStore.Models
             IQueryable<LoaiSP> lst = db.LoaiSPs;
             return lst;
         }
-
+        public IQueryable<HangSanXuat> GetHangSanXuats()
+        {
+            IQueryable<HangSanXuat> lst = db.HangSanXuats;
+            return lst;
+        }
         internal LoaiSP FindById(string id)
         {
             return db.LoaiSPs.Find(id);

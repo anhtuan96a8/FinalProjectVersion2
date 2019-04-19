@@ -161,6 +161,13 @@ namespace TuanStore.Controllers
             ViewBag.maloai = maloai;
             return PhanTrangSP(spm.AdvancedSearch(key, maloai, null, null, null),page,null);
         }
+        //public ActionResult TimHSX(string key, string maloai, int? page)
+        //{
+        //    HangSanXuatModel spm = new HangSanXuatModel();
+        //    ViewBag.key = key;
+        //    ViewBag.maloai = maloai;
+        //    return PhanTrangSP(spm.AdvancedSearch(key, maloai, null, null, null), page, null);
+        //}
 
         [AuthLog(Roles = "Quản trị viên,Nhân viên")]
         public ActionResult PhanTrangSP(IQueryable<SanPham> lst,int? page, int? pagesize)

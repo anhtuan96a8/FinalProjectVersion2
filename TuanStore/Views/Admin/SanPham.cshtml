@@ -23,7 +23,8 @@
                 <div class="form-inline" style="text-align: right; padding: 10px">
 
                     <div class="input-group">
-                        @Html.DropDownList("maloai", (SelectList)@ViewBag.LoaiSP, String.Empty , new { @class = "form-control", id = "maloaisearch", onchange = "timkiemajax()" })
+                        @Html.DropDownList("maloai", (SelectList)@ViewBag.LoaiSP, "Tất cả các loại", new { @class = "form-control", id = "maloaisearch", onchange = "timkiemajax()" })
+                        @*@Html.DropDownList("maloai", (SelectList)@ViewBag.LoaiSP, "Tất cả các loại", new { @class = "form-control", id = "maloaisearch", onchange = "timkiemajaxhangsx()" })*@
                     </div>
 
                     <div class="input-group">

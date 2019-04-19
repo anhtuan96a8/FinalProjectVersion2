@@ -322,6 +322,18 @@ function timkiemajax() {
         },
     });
 }
+function timkiemajaxhangsx() {
+    var key = $('#inputIcon').val();
+    var maloai = $('#maloaisearch').val();
+    $.ajax({
+        url: "/Admin/TimSP",
+        type: 'GET',
+        data: { key: key, maloai: maloai },
+        success: function (result) {
+            $('.Ajax-Table').html(result);
+        },
+    });
+}
 
 function timkiemkhachhang() {
     var key = $('#tendangnhaps').val();
