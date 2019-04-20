@@ -32,16 +32,24 @@
                             <img class="img-responsive" style="width:433px; height: 433px;" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhDaiDien" width="353" />
                         </a>
                     </div><!-- /.single-product-gallery-item -->
-                    <div class="single-product-gallery-item" id="slide2">
-                        <a data-rel="prettyphoto" @*href="@Url.Content("~/images/products/")@Model.AnhNen"*@>
-                            <img class="img-responsive" style="width:433px; height: 433px;" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhNen" />
-                        </a>
-                    </div><!-- /.single-product-gallery-item -->
-                    <div class="single-product-gallery-item" id="slide3">
-                        <a data-rel="prettyphoto" @*href="@Url.Content("~/images/products/")@Model.AnhKhac"*@>
-                            <img class="img-responsive" style="width:433px; height: 433px;" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhKhac" />
-                        </a>
-                    </div><!-- /.single-product-gallery-item -->
+                    @if (Model.AnhNen != null && Model.AnhNen.ToString() != "")
+                    {
+                        <div class="single-product-gallery-item" id="slide2">
+                            <a data-rel="prettyphoto" @*href="@Url.Content("~/images/products/")@Model.AnhNen"*@>
+                                <img class="img-responsive" style="width:433px; height: 433px;" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhNen" />
+                            </a>
+                        </div><!-- /.single-product-gallery-item -->
+                    }
+
+                    @if (Model.AnhNen != null && Model.AnhNen.ToString() != "")
+                    {
+                        <div class="single-product-gallery-item" id="slide3">
+                            <a data-rel="prettyphoto" @*href="@Url.Content("~/images/products/")@Model.AnhKhac"*@>
+                                <img class="img-responsive" style="width:433px; height: 433px;" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhKhac" />
+                            </a>
+                        </div><!-- /.single-product-gallery-item -->
+                    }
+
                 </div><!-- /.single-product-slider -->
 
                 <div class="single-product-gallery-thumbs gallery-thumbs">
@@ -49,20 +57,21 @@
                         <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="0" href="#slide1">
                             <img width="67" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhDaiDien" />
                         </a>
-                        <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="1" href="#slide2">
-                            <img width="67" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhNen" />
-                        </a>
-                        <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="2" href="#slide3">
-                            <img width="67" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhKhac" />
-                        </a>
-                    </div><!-- /#owl-single-product-thumbnails -->
-                    @*<div class="nav-holder left hidden-xs">
-                            <a class="prev-btn slider-prev" data-target="#owl-single-product-thumbnails" href="#prev"></a>
-                        </div><!-- /.nav-holder -->
+                        @if (Model.AnhNen != null && Model.AnhNen.ToString() != "")
+                        {
+                            <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="1" href="#slide2">
+                                <img width="67" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhNen" />
+                            </a>
+                        }
 
-                        <div class="nav-holder right hidden-xs">
-                            <a class="next-btn slider-next" data-target="#owl-single-product-thumbnails" href="#next"></a>
-                        </div><!-- /.nav-holder -->*@
+                        @if (Model.AnhKhac != null && Model.AnhNen.ToString() != "")
+                        {
+                            <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="2" href="#slide3">
+                                <img width="67" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhKhac" />
+                            </a>
+                        }
+
+                    </div>
                 </div><!-- /.gallery-thumbs -->
             </div><!-- /.single-product-gallery -->
         </div><!-- /.gallery-holder -->

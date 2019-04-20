@@ -208,3 +208,5 @@ C:\Users\tuan.na144898\Documents\FinalProject\TuanStore\bin\TuanStore.dll
 C:\Users\tuan.na144898\Documents\FinalProject\TuanStore\bin\TuanStore.pdb
 C:\Users\tuan.na144898\Documents\FinalProject\TuanStore\obj\Debug\TuanStore.dll
 C:\Users\tuan.na144898\Documents\FinalProject\TuanStore\obj\Debug\TuanStore.pdb
+C:\Users\tuan.na144898\Documents\FinalProject\TuanStore\bin\Facebook.dll
+C:\Users\tuan.na144898\Documents\FinalProject\TuanStore\bin\Facebook.xml

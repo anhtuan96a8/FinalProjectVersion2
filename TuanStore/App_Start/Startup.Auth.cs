@@ -50,8 +50,8 @@ namespace TuanStore
             //   consumerSecret: "");
 
             app.UseFacebookAuthentication(
-               appId: "738842609579767",
-               appSecret: "d1f23d525fa592f744872111a4265989");
+               appId: "462203391189369",
+               appSecret: "8ba8144fa1135a5b952d7f07f00fc9d3");
 
             //app.UseGoogleAuthentication();
         }

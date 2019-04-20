@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Web;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Meta -->
@@ -9,12 +10,13 @@
     <meta name="author" content="">
     <meta name="keywords" content="MediaCenter, Template, eCommerce">
     <meta name="robots" content="all">
-    <title>@ViewBag.Title</title>
+    <title>@ViewBag.Title - TuanStore</title>
     <link href="~/Content/style.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jqueryval")
     <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="@Url.Content("~/Content/fonts/bootstrap.min.css")">
 
     <link rel="stylesheet" href="@Url.Content("~/template/assets/css/bootstrap.min.css")">
     <!-- Customizable CSS -->
@@ -43,48 +45,66 @@
     @using Microsoft.AspNet.Identity
     <div class="wrapper">
         <!-- ============================================================= TOP NAVIGATION ============================================================= -->
-        <nav class="top-bar animate-dropdown">
+        <nav class="top-bar animate-dropdown" style="padding:5px 0px 5px 0px">
             <div class="container">
-                <div class="col-xs-12 col-sm-6 no-margin">
-                    <h4>Chào mừng bạn đến với TuanStore</h4>
+                <div class="col-xs-12 col-sm-9 no-margin">
+                    @if (Request.IsAuthenticated)
+                    {
+                        <span class="h4" style="padding: 2px 20px 0px 0px">Chào mừng <span style="color:blue">@User.Identity.Name</span> đến với TuanStore</span>
+                    }
+                    else
+                    {
+                        <span class="h4" style="padding: 2px 20px 0px 0px">Chào mừng bạn đến với TuanStore</span>
+                    }
+                    <span class="fa fa-envelope-o h4 no-margin" aria-hidden="true" style="padding-right: 10px"> anhtuan96a8@gmail.com </span>
+                    <span class="fa fa-phone h4 no-margin" aria-hidden="true"> 0982114043</span>
                 </div><!-- /.col -->
-                <div class="col-xs-12 col-sm-6 no-margin">
+                <div class="col-xs-12 col-sm-3 no-margin">
                     <ul class="right">
                         @if (User.IsInRole("Nhân viên") || User.IsInRole("Quản trị viên"))
                         {
-                            <li><a href="@Url.Action("Index", "Admin")">Trang quản trị</a></li>
+                            <li><a href="@Url.Action("Index", "Admin")"  class="badge" style="padding: 4px 12px 4px 12px">Trang quản trị</a></li>
                         }
                         @if (!Request.IsAuthenticated)
                         {
                             <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#user-cp">Đăng ký</a>
+                                <a class="dropdown-toggle badge" data-toggle="dropdown" href="#user-cp" style="padding: 4px 12px 4px 12px" >Đăng ký</a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Authentication", "Account")">Đăng kí làm khách hàng </a></li>
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("RegisterB2B", "Account")">Đăng ký làm nhà cung cấp</a></li>
                                 </ul>
                             </li>
-                            <li><a href="@Url.Action("Authentication", "Account")">Đăng nhập</a></li>
+                            <li><a href="@Url.Action("Authentication", "Account")" class="badge" style="padding: 5px 12px 5px 12px">Đăng nhập</a></li>
                         }
                         else
                         {
                             <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#user-cp">@User.Identity.Name</a>
+                                <a class="dropdown-toggle badge" data-toggle="dropdown" href="#user-cp" style="padding: 4px 12px 4px 12px">
+                                    @if (System.Web.HttpContext.Current.Request.Cookies["Avatar"] != null)
+                                    {
+                                        <img src="@Url.Content("~/image/avatars/")@Request.Cookies["Avatar"].Value.ToString()" alt="avatar" style="border-radius:50%;width:20px;" />
+
+                                    }
+                                    @User.Identity.Name
+                                </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Manage", "Account")">Cài đặt mật khẩu</a></li>
                                     @if (User.IsInRole("Khách hàng") || User.IsInRole("Quản trị viên") || User.IsInRole("Nhân viên"))
                                     {
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("EditInfo", "Account")">Thông tin cá nhân</a></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Xemdonhang", "Home", new { maKH = User.Identity.GetUserId() })">Xem đơn hàng</a></li>
+                                        <li><a href="@Url.Action("LogOut", "Account")" style="color: crimson">Đăng xuất</a></li>
+
                                     }
                                     @if (User.IsInRole("Nhà cung cấp"))
                                     {
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Index", "Auction")">Đăng ký cung cấp sản phẩm</a></li>
                                         <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("EditNCCInfo", "Account")">Sưa thông tin</a></li>
-                                    }
+                                        <li><a href="@Url.Action("LogOut", "Account")" style="color: crimson">Đăng xuất</a></li>
 
+                                    }
                                 </ul>
                             </li>
-                            <li><a href="@Url.Action("LogOut", "Account")">Đăng xuất</a></li>
                         }
                     </ul>
                 </div><!-- /.col -->
@@ -130,192 +150,7 @@
         <footer id="footer" class="color-bg">
 
             <div class="container">
-                <div class="row no-margin widgets-row">
-                    <div class="col-xs-12  col-sm-4 no-margin-left">
-                        <!-- ============================================================= FEATURED PRODUCTS ============================================================= -->
-                        <div class="widget">
-                            <h2>Sản phẩm nổi bật</h2>
-                            <div class="body">
-                                <ul>
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-xs-12 col-sm-9 no-margin">
-                                                <a href="single-product.html">G-shock Gba-800-9aer Yellow Watches G-shock</a>
-                                                <div class="price">
-                                                    <div class="price-prev">$2000</div>
-                                                    <div class="price-current">$1873</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-3 no-margin">
-                                                <a href="#" class="thumb-holder">
-                                                    <img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/template/assets/images/products/product-small-01.jpg")" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-xs-12 col-sm-9 no-margin">
-                                                <a href="single-product.html">G-shock Gba-800-9aer Yellow Watches G-shock</a>
-                                                <div class="price">
-                                                    <div class="price-prev">$2000</div>
-                                                    <div class="price-current">$1873</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-3 no-margin">
-                                                <a href="#" class="thumb-holder">
-                                                    <img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/template/assets/images/products/product-small-02.jpg")" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </li>
-
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-xs-12 col-sm-9 no-margin">
-                                                <a href="single-product.html">G-shock Gba-800-9aer Yellow Watches G-shock</a>
-                                                <div class="price">
-                                                    <div class="price-prev">$2000</div>
-                                                    <div class="price-current">$1873</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-3 no-margin">
-                                                <a href="#" class="thumb-holder">
-                                                    <img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/template/assets/images/products/product-small-03.jpg")" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div><!-- /.body -->
-                        </div> <!-- /.widget -->
-                        <!-- ============================================================= FEATURED PRODUCTS : END ============================================================= -->
-                    </div><!-- /.col -->
-                    <div class="col-xs-12 col-sm-4 ">
-                        <!-- ============================================================= ON SALE PRODUCTS ============================================================= -->
-                        <div class="widget">
-                            <h2>Sản phẩm bán chạy</h2>
-                            <div class="body">
-                                <ul>
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-xs-12 col-sm-9 no-margin">
-                                                <a href="single-product.html">G-shock Gba-800-9aer Yellow Watches G-shock</a>
-                                                <div class="price">
-                                                    <div class="price-prev">$2000</div>
-                                                    <div class="price-current">$1873</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-3 no-margin">
-                                                <a href="#" class="thumb-holder">
-                                                    <img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/template/assets/images/products/product-small-04.jpg")" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-xs-12 col-sm-9 no-margin">
-                                                <a href="single-product.html">G-shock Gba-800-9aer Yellow Watches G-shock</a>
-                                                <div class="price">
-                                                    <div class="price-prev">$2000</div>
-                                                    <div class="price-current">$1873</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-3 no-margin">
-                                                <a href="#" class="thumb-holder">
-                                                    <img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/template/assets/images/products/product-small-05.jpg")" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-xs-12 col-sm-9 no-margin">
-                                                <a href="single-product.html">G-shock Gba-800-9aer Yellow Watches G-shock</a>
-                                                <div class="price">
-                                                    <div class="price-prev">$2000</div>
-                                                    <div class="price-current">$1873</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-3 no-margin">
-                                                <a href="#" class="thumb-holder">
-                                                    <img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/template/assets/images/products/product-small-06.jpg")" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div><!-- /.body -->
-                        </div> <!-- /.widget -->
-                        <!-- ============================================================= ON SALE PRODUCTS : END ============================================================= -->
-                    </div><!-- /.col -->
-                    <div class="col-xs-12 col-sm-4 ">
-                        <!-- ============================================================= TOP RATED PRODUCTS ============================================================= -->
-                        <div class="widget">
-                            <h2>Sản phẩm đánh giá cao</h2>
-                            <div class="body">
-                                <ul>
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-xs-12 col-sm-9 no-margin">
-                                                <a href="single-product.html">
-                                                    G-shock Gba-800-9aer Yellow Watches G-shock
-                                                </a>
-                                                <div class="price">
-                                                    <div class="price-prev">$2000</div>
-                                                    <div class="price-current">$1873</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-3 no-margin">
-                                                <a href="#" class="thumb-holder">
-                                                    <img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/template/assets/images/products/product-small-07.jpg")" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-xs-12 col-sm-9 no-margin">
-                                                <a href="single-product.html">
-                                                    G-shock Gba-800-9aer Yellow Watches G-shock
-                                                </a>
-                                                <div class="price">
-                                                    <div class="price-prev">$2000</div>
-                                                    <div class="price-current">$1873</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-3 no-margin">
-                                                <a href="#" class="thumb-holder">
-                                                    <img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/template/assets/images/products/product-small-08.jpg")" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-xs-12 col-sm-9 no-margin">
-                                                <a href="single-product.html">
-                                                    G-shock Gba-800-9aer Yellow Watches G-shock
-                                                </a>
-                                                <div class="price">
-                                                    <div class="price-prev">$2000</div>
-                                                    <div class="price-current">$1873</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-12 col-sm-3 no-margin">
-                                                <a href="#" class="thumb-holder">
-                                                    <img alt="" src="@Url.Content("~/template/assets/images/blank.gif")" data-echo="@Url.Content("~/template/assets/images/products/product-small-09.jpg")" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div><!-- /.body -->
-                        </div><!-- /.widget -->
-                        <!-- ============================================================= TOP RATED PRODUCTS : END ============================================================= -->
-                    </div><!-- /.col -->
-                </div><!-- /.widgets-row-->
+                
             </div><!-- /.container -->
             <div class="sub-form-row">
                 <div class="container">

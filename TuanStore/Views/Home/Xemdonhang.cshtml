@@ -18,16 +18,14 @@
                         <div class="itemnamemua">
                             <i>Tên người Mua :</i> @Model[i].nguoiMua.HoTen
                         </div>
-                        <div class="itemnamemua">
-                            <i>Tên người nhan :</i> @Model[i].nguoiNhan
-                        </div>
+                       
                         <div class="itemnamghichu">
                             <i>Ghi chú :</i> @Model[i].donHang.Ghichu
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="itemnamemua">
-                            Tổng tiền : @Model[i].donHang.Tongtien VND
+                            Tổng tiền : <span style="color:red">@string.Format("{0:0,0}", Model[i].donHang.Tongtien) VND</span>
                         </div>
                         <div class="itemnamemua">
                             Ngày mua : @Model[i].donHang.NgayDatMua
@@ -44,7 +42,7 @@
                                     <i>Trạng thái : @Model[i].tinhTrangDH .</i>
                                 </div>
                                 <div class="itemnamghichu">
-                                    <a href="javascript:;" onclick="Huydonhang('@Model[i].donHang.MaDH')">Hủy đơn đặt hàng</a>
+                                    <a href="javascript:;" onclick="Huydonhang('@Model[i].donHang.MaDH')" class="btn-info badge" style="padding: 8px 10px 8px 10px; background-color:blueviolet;">Hủy đơn đặt hàng</a>
                                 </div>
                             }
                             else

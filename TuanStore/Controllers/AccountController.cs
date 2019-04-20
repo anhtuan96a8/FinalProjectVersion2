@@ -29,7 +29,7 @@ namespace TuanStore.Controllers
         {
             UserManager = userManager;
         }
-
+        public string avatar = "";
         public UserManager<ApplicationUser> UserManager { get; private set; }
 
         public bool Kiemtrataikhoan(string username, string pass)
@@ -37,8 +37,11 @@ namespace TuanStore.Controllers
             var user = UserManager.Find(username, pass);
             if (user == null)
                 return false;
-            else
+            else {
+                
                 return true;
+            }
+                
         }
         //
         // GET: /Account/Login
@@ -64,7 +67,17 @@ namespace TuanStore.Controllers
                 {
                     await SignInAsync(user, model.RememberMe);
                     ManagerObiect.getIntance().userName = model.UserName;
-                    if(UserManager.GetRoles(user.Id).FirstOrDefault() == "Nhà cung cấp")
+                    Entities db = new Entities();
+                    avatar = (from p in db.AspNetUsers where p.UserName == model.UserName select p.Avatar).Single().ToString();
+                    HttpCookie httpCookie = new HttpCookie("Avatar");
+                    httpCookie["Avatar"] = avatar;
+                    httpCookie.Expires = DateTime.Now.AddDays(10);
+                    Request.Cookies.Add(httpCookie);
+                    if(Request.Cookies["Avatar"] != null)
+                    {
+                        string b = Request.Cookies["Avatar"].Value.ToString();
+                    }
+                    if (UserManager.GetRoles(user.Id).FirstOrDefault() == "Nhà cung cấp")
                     {
                         return RedirectToLocal("/Auction/index");
                     }
