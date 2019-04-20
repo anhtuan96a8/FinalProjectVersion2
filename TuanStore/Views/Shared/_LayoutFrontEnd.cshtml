@@ -1,5 +1,4 @@
-﻿@using System.Web;
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Meta -->
@@ -80,7 +79,7 @@
                         {
                             <li class="dropdown">
                                 <a class="dropdown-toggle badge" data-toggle="dropdown" href="#user-cp" style="padding: 4px 12px 4px 12px">
-                                    @if (System.Web.HttpContext.Current.Request.Cookies["Avatar"] != null)
+                                    @if (Request.Cookies["Avatar"] != null)
                                     {
                                         <img src="@Url.Content("~/image/avatars/")@Request.Cookies["Avatar"].Value.ToString()" alt="avatar" style="border-radius:50%;width:20px;" />
 
@@ -120,7 +119,7 @@
             <!--Danh dau duong di-->
             <div class="animate-dropdown">
                 <!-- ========================================= BREADCRUMB ========================================= -->
-                <div id="breadcrumb-alt">
+                <div id="breadcrumb-alt" style="margin-bottom:0px">
                     <div class="container">
                         <div class="breadcrumb-nav-holder minimal">
                             <ul>
@@ -128,9 +127,7 @@
                                 <li class="breadcrumb-item">
                                     <a href="@Url.Action("Index","Home")">Trang chủ</a>
                                 </li>
-                                @*@<li class="breadcrumb-item current">
-                                        <a href="#">@ViewBag.Title</a>
-                                    </li>*@
+                                
                                 <li class="breadcrumb-item current">
                                     <a href="#">@ViewBag.Title</a>
                                 </li>
