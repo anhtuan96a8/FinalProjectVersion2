@@ -46,45 +46,49 @@
         <!-- ============================================================= TOP NAVIGATION ============================================================= -->
         <nav class="top-bar animate-dropdown" style="padding:5px 0px 5px 0px">
             <div class="container">
-                <div class="col-xs-12 col-sm-9 no-margin">
+                <div class="col-xs-12 col-sm-6 no-margin" style="padding-top:6px;">
                     @if (Request.IsAuthenticated)
                     {
-                        <span class="h4" style="padding: 2px 20px 0px 0px">Chào mừng <span style="color:blue">@User.Identity.Name</span> đến với TuanStore</span>
+                        <marquee class="h4" style="padding: 2px 20px 0px 0px;margin: 0 0 0 0">Chào mừng <span style="color:blue">@User.Identity.Name</span> đến với TuanStore</marquee>
                     }
                     else
                     {
-                        <span class="h4" style="padding: 2px 20px 0px 0px">Chào mừng bạn đến với TuanStore</span>
+                        <marquee class="h4" style="padding: 2px 20px 0px 0px;margin:0 0 0 0">Chào mừng bạn đến với TuanStore</marquee>
                     }
-                    <span class="fa fa-envelope-o h4 no-margin" aria-hidden="true" style="padding-right: 10px"> anhtuan96a8@gmail.com </span>
-                    <span class="fa fa-phone h4 no-margin" aria-hidden="true"> 0982114043</span>
+                    
                 </div><!-- /.col -->
-                <div class="col-xs-12 col-sm-3 no-margin">
+                <div class="col-xs-12 col-sm-6 no-margin">
                     <ul class="right">
                         @if (User.IsInRole("Nhân viên") || User.IsInRole("Quản trị viên"))
                         {
-                            <li><a href="@Url.Action("Index", "Admin")"  class="badge" style="padding: 4px 12px 4px 12px">Trang quản trị</a></li>
+                            <li><a href="@Url.Action("Index", "Admin")"  class="btn doimau" style="padding: 9px 22px 9px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold">Trang quản trị</a></li>
                         }
                         @if (!Request.IsAuthenticated)
                         {
                             <li class="dropdown">
-                                <a class="dropdown-toggle badge" data-toggle="dropdown" href="#user-cp" style="padding: 4px 12px 4px 12px" >Đăng ký</a>
+                                <a class="dropdown-toggle btn doimau" data-toggle="dropdown" href="#user-cp" style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold">
+                                    Đăng ký
+                                </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Authentication", "Account")">Đăng kí làm khách hàng </a></li>
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("RegisterB2B", "Account")">Đăng ký làm nhà cung cấp</a></li>
                                 </ul>
                             </li>
-                            <li><a href="@Url.Action("Authentication", "Account")" class="badge" style="padding: 5px 12px 5px 12px">Đăng nhập</a></li>
+                            <li><a href="@Url.Action("Authentication", "Account")" class="btn doimau" style="padding: 10px 22px 10px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold">
+                                    Đăng nhập
+                                </a>
+                            </li>
                         }
                         else
                         {
                             <li class="dropdown">
-                                <a class="dropdown-toggle badge" data-toggle="dropdown" href="#user-cp" style="padding: 4px 12px 4px 12px">
-                                    @if (Request.Cookies["Avatar"] != null)
+                                <a class="dropdown-toggle btn doimau" data-toggle="dropdown" href="#user-cp" style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold">
+                                    @if (Session["Avatar"] != null)
                                     {
-                                        <img src="@Url.Content("~/image/avatars/")@Request.Cookies["Avatar"].Value.ToString()" alt="avatar" style="border-radius:50%;width:20px;" />
-
+                                        <img src="@Url.Content("~/images/avatars/")@Session["Avatar"].ToString()" alt="avatar" style="border-radius:50%;width:20px;" /> 
+                                        @Session["Name"]
                                     }
-                                    @User.Identity.Name
+                                    else { @User.Identity.Name}
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Manage", "Account")">Cài đặt mật khẩu</a></li>
@@ -111,7 +115,7 @@
         </nav><!-- /.top-bar -->
         <!-- ============================================================= TOP NAVIGATION : END ============================================================= -->
         <!-- ============================================================= HEADER ============================================================= -->
-        <header class="no-padding-bottom header-alt" @*style="background-image:url('/images/background-header.jpg');  background-size: cover; background-position: center center;"*@>
+        <header class="no-padding-bottom header-alt" style="padding-top:15px" @*style="background-image:url('/images/background-header.jpg');  background-size: cover; background-position: center center;"*@>
             @Html.Action("Header", "GiaoDien")
             <!-- ========================================= NAVIGATION ========================================= -->
             @Html.Action("MainMenu", "Home")
@@ -142,28 +146,43 @@
         <div>
             @RenderBody()
         </div>
-
+        
         <!-- ============================================================= FOOTER ============================================================= -->
-        <footer id="footer" class="color-bg">
-
-            <div class="container">
-                
-            </div><!-- /.container -->
-            <div class="sub-form-row">
+        <footer id="footer" class="color-bg" style="padding-top:10px">
+            <div class="sub-form-row" style="">
                 <div class="container">
-                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 no-padding">
-                        <form role="form">
-                            <input placeholder="Đăng ký email nhận thông tin khuyến mãi">
-                            <button class="le-button">Đăng ký</button>
-                        </form>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <span class="fa fa-envelope-o h4 no-margin" aria-hidden="true" style="padding-right: 10px"> anhtuan96a8@gmail.com </span>
+                            <span class="fa fa-phone h4 no-margin" aria-hidden="true"> 0982114043</span>
+                        </div>
+                        <div class="mapouter col-sm-6">
+                            <div class="gmap_canvas"><iframe width="570" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=university%20of%20san%20francisco&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div>
+                            <style>
+                                .mapouter {
+                                    position: relative;
+                                    text-align: right;
+                                    height: 300px;
+                                    width: 570px;
+                                }
+
+                                .gmap_canvas {
+                                    overflow: hidden;
+                                    background: none !important;
+                                    height: 300px;
+                                    width: 570px;
+                                }
+                            </style>
+                        </div>
                     </div>
+                    
                 </div><!-- /.container -->
             </div><!-- /.sub-form-row -->
             <div class="copyright-bar">
                 <div class="container">
                     <div class="col-xs-12 col-sm-6 no-margin">
                         <div class="copyright">
-                            &copy; <a href="home">Media Center</a> - all rights reserved
+                            &copy; <a href="home">TuanStore</a> - Tất cả vì sự hài hòng của khách hàng
                         </div><!-- /.copyright -->
                     </div>
                     <div class="col-xs-12 col-sm-6 no-margin">
@@ -236,5 +255,6 @@
             });
         });
     </script>
+   
 </body>
 </html>

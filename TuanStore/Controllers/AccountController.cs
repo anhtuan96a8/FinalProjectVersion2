@@ -69,13 +69,11 @@ namespace TuanStore.Controllers
                     ManagerObiect.getIntance().userName = model.UserName;
                     Entities db = new Entities();
                     avatar = (from p in db.AspNetUsers where p.UserName == model.UserName select p.Avatar).Single().ToString();
-                    HttpCookie httpCookie = new HttpCookie("Avatar");
-                    httpCookie["Avatar"] = avatar;
-                    httpCookie.Expires = DateTime.Now.AddDays(10);
-                    Request.Cookies.Add(httpCookie);
-                    if(Request.Cookies["Avatar"] != null)
+                    Session["Avatar"] = avatar;
+                    Session["Name"]=(from p in db.AspNetUsers where p.UserName == model.UserName select p.HoTen).Single().ToString();
+                    if (Session["Avatar"] != null)
                     {
-                        string b = Request.Cookies["Avatar"].Value.ToString();
+                        string b = Session["Avatar"].ToString();
                     }
                     if (UserManager.GetRoles(user.Id).FirstOrDefault() == "Nhà cung cấp")
                     {

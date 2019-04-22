@@ -12,8 +12,8 @@
         <!-- ============================================================= LOGO : END ============================================================= -->
     </div><!-- /.logo-holder -->
     <div class="col-xs-12 col-md-6 top-search-holder no-margin">
-        <div class="contact-row">
-            <div class="social-icons">
+        <div class="contact-row row" style="padding-left:15px;padding-right:5px;">
+            <div class="social-icons col-sm-3" >
                 <ul>
                     @if (!string.IsNullOrEmpty(Model[3].GiaTri))
                     {
@@ -24,17 +24,34 @@
                     @if (!string.IsNullOrEmpty(Model[5].GiaTri))
                     {
                         <li><a href="@Model[5].GiaTri" class="fa fa-twitter"></a></li>}
+                    
                 </ul>
                 
             </div><!-- /.social-icons -->
+            <div class="social-icons col-sm-9 text-right">
+                <ul>
+                    <li>
+                        <a href="#" class="btn doimau" style="border-radius: 40px;background-color:#34495E">
+                            <i class="fa fa-phone" aria-hidden="true" style="color:white;margin-right:0px"></i>
+                            <span class="h5" style="color:white">0982114043</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#footer" class="btn doimau" style="border-radius: 40px;background-color:#34495E;">
+                            <i class="fa fa-map-marker" aria-hidden="true" style="color:white;margin-right:5px"></i>
+                            <span class="h5" style="color:white">Địa chỉ</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div><!-- /.contact-row -->
         <!-- ============================================================= SEARCH AREA ============================================================= -->
-        <div class="search-area">
+        <div class="search-area" style="margin-top:5px">
             @Html.Action("SearchForm", "Search")
         </div><!-- /.search-area -->
         <!-- ============================================================= SEARCH AREA : END ============================================================= -->
     </div><!-- /.top-search-holder -->
-    <div class="col-xs-12 col-md-3 top-cart-row no-margin">
+    <div class="col-xs-12 col-md-3 top-cart-row no-margin" style="padding-top:42px">
         <div class="top-cart-row-container">
             @*<div class="wishlist-compare-holder">
                     <div class="wishlist ">
@@ -45,11 +62,12 @@
                     </div>
                 </div>*@
             <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
-            <div class="top-cart-holder dropdown animate-dropdown">
-                <div class="basket">
+            <div class="top-cart-holder dropdown animate-dropdown row">
+                <div class="basket col-sm-11">
                     @Html.Action("CartTitle", "Xuligiohang")
                 </div><!-- /.basket -->
-                
+                <div class="col-sm-1">
+                </div>
             </div><!-- /.top-cart-holder -->
         </div><!-- /.top-cart-row-container -->
         <!-- ============================================================= SHOPPING CART DROPDOWN : END ============================================================= -->

@@ -254,6 +254,7 @@
       <DependentUpon>ECModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CategoryModel.cs" />
+    <Compile Include="Models\Chatbot.cs" />
     <Compile Include="Models\ChiTietDonHang.cs">
       <DependentUpon>ECModel.tt</DependentUpon>
     </Compile>
@@ -671,6 +672,7 @@
     <Content Include="images\icon-telephone.png" />
     <Content Include="images\logo.png" />
     <Content Include="images\logo.svg" />
+    <Content Include="images\map.jpg" />
     <Content Include="images\products\016131.jpg" />
     <Content Include="images\products\021151.jpg" />
     <Content Include="images\products\148841.jpg" />

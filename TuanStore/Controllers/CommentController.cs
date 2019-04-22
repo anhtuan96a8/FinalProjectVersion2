@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using TuanStore.Controllers;
 
 namespace TuanStore.Controllers
 {
@@ -55,7 +56,7 @@ namespace TuanStore.Controllers
         public ActionResult ChilComment(int mabl)
         {
             CommentModel cm = new CommentModel();
-            return PartialView("_ChilComment",cm.FindChild(mabl));
+            return PartialView("_ChilComment", cm.FindChild(mabl));
         }
 
         [AllowAnonymous]
@@ -69,6 +70,10 @@ namespace TuanStore.Controllers
             Comment.DaTraLoi = "C";
             CommentModel cm = new CommentModel();
             cm.AddComment(Comment);
+
+            //Chatbot rep
+            Chatbot bot = new Chatbot();
+            bot.ChatbotRep(Comment);
             return RedirectToAction("LoadComment", new { masp = Comment.MaSP });
         }
 

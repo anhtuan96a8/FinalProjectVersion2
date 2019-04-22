@@ -11,10 +11,10 @@
             @for (int i = 0; i < @Model.Count; i++)
             {
                 <div class="itemphieu">
-                    <div class="col-md-1 itemthumbphieu">
-                        <a href="javascript:;" onclick="ChiTietItem('@Url.Action("Chitietdonhang","Donhang")','@Model[i].donHang.MaDH')"><img src="~/images/cartphieu.jpg" alt="img" title="xem chi tiết" /></a>
+                    <div class="col-md-2 itemthumbphieu">
+                        <a href="javascript:;" onclick="ChiTietItem('@Url.Action("Chitietdonhang","Donhang")','@Model[i].donHang.MaDH')"><img src="~/images/cartphieu.jpg" style="width:150px;" alt="img" title="xem chi tiết" /></a>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-3">
                         <div class="itemnamemua">
                             <i>Tên người Mua :</i> @Model[i].nguoiMua.HoTen
                         </div>
@@ -23,7 +23,7 @@
                             <i>Ghi chú :</i> @Model[i].donHang.Ghichu
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                         <div class="itemnamemua">
                             Tổng tiền : <span style="color:red">@string.Format("{0:0,0}", Model[i].donHang.Tongtien) VND</span>
                         </div>

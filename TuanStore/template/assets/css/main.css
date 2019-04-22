@@ -410,10 +410,10 @@ h5 {
   margin-right: 10px;
 }
 .social-icons li a {
-  color: #fff;
+  color: white;
   display: inline-block;
   padding: 6px;
-  background-color: #3d3d3d;
+  background-color: #34495e;
   border-radius: 100px;
 }
 .social-icons li a:before {
