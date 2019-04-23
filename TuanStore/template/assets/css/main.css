@@ -2472,7 +2472,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
   margin: 10px 0 0 0;
 }
 .product-grid-holder .product-item-holder.size-big .prices {
-  padding: 11px 0 18px 0;
+  padding: 25px 0 20px 0 !important;
 }
 .product-grid-holder .product-item-holder.size-big .prices .le-button {
   margin-left: 10px;
@@ -2939,7 +2939,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
   margin: 23px 0;
 }
 #products-tab {
-  margin: 50px 0 20px 0;
+  margin: 30px 0 70px 0;
 }
 #products-tab .image {
   min-height: 215px;

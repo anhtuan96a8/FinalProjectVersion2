@@ -35,23 +35,26 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                        
-                            @if (@Model[i].donHang.TinhTrangDH <= 1)
-                            {
-                                <div id="itemtrangthai">
-                                    <i>Trạng thái : @Model[i].tinhTrangDH .</i>
-                                </div>
-                                <div class="itemnamghichu">
-                                    <a href="javascript:;" onclick="Huydonhang('@Model[i].donHang.MaDH')" class="btn-info badge" style="padding: 8px 10px 8px 10px; background-color:blueviolet;">Hủy đơn đặt hàng</a>
-                                </div>
-                            }
-                            else
-                            {
-                                <div id="itemtrangthai">
-                                    <i>Trạng thái : @Model[i].tinhTrangDH .</i>
-                                </div>
-                            }
-                        
+
+                        @if (@Model[i].donHang.TinhTrangDH <= 1)
+                        {
+                            <div id="itemtrangthai">
+                                <i>Trạng thái : @Model[i].tinhTrangDH .</i>
+                            </div>
+                            <div class="itemnamghichu">
+                                <a href="javascript:;" onclick="Huydonhang('@Model[i].donHang.MaDH')" class="btn-info badge" style="padding: 8px 10px 8px 10px; background-color:blueviolet;">Hủy đơn đặt hàng</a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div id="itemtrangthai">
+                                <i>Trạng thái : @Model[i].tinhTrangDH .</i>
+                            </div>
+                        }
+                        <div class="itemnamghichu">
+                            <a href="javascript:;" onclick="ChiTietItem('@Url.Action("Chitietdonhang","Donhang")','@Model[i].donHang.MaDH')" class="btn-info badge" style="padding: 8px 10px 8px 10px; background-color:saddlebrown;">Xem chi tiết đơn hàng</a>
+                        </div>
+
                     </div>
                       
                 </div>

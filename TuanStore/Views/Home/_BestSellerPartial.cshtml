@@ -1,13 +1,13 @@
 ﻿@using TuanStore.Models;
 @model List<SanPham>
 
-<div class="product-grid-holder medium">
+<div class="product-grid-holder medium row">
 
-    <div class="col-xs-12 col-md-7 no-margin">
+    <div class="col-xs-12 col-md-7 no-margin ">
         <div class="row no-margin">
             @for (int i = 1; i < Model.Count; ++i)
             {
-                <div class="col-xs-12 col-sm-4 no-margin product-item-holder size-medium hover">
+                <div class="col-xs-12 col-sm-4 no-margin product-item-holder hover ">
                     @Html.Partial("_ProductGridShowPartal", Model[i])
                 </div><!-- /.product-item-holder -->
             }
@@ -15,7 +15,7 @@
     </div><!-- /.col -->
 
     <div class="col-xs-12 col-md-5 no-margin">
-        <div class="product-item-holder size-big single-product-gallery small-gallery">
+        <div class="product-item-holder size-big single-product-gallery small-gallery" style="">
 
             <div id="best-seller-single-product-slider" class="single-product-slider owl-carousel">
                 <div class="single-product-gallery-item" id="slide1">
@@ -47,12 +47,12 @@
 
             <div class="body">
                 <div class="label-discount clear"></div>
-                <div class="title">
-                    <a href="single-product.html">@Model[0].TenSP</a>
+                <div class="title" style="min-height:70px !important">
+                    <a href="">@Model[0].TenSP</a>
                 </div>
                 <div class="brand">@Model[0].HangSanXuat.TenHang</div>
             </div>
-            <div class="prices text-right">
+            <div class="prices text-right" style="padding: 25px 0px 25px 0 !important">
                 <div class="price-current inline">@string.Format("{0:0,0}", Model[0].GiaTien) VNĐ</div>
                 <a href="javascript:;" class="le-button big inline" onclick="Addcart('@Model[0].MaSP',1)">Thêm vào giỏ</a>
             </div>

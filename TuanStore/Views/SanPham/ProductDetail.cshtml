@@ -1,6 +1,12 @@
 ﻿@{
     ViewBag.Title = "ProductDetail";
     Layout = "~/Views/Shared/_LayoutFrontEnd.cshtml";
+    if (Model.GiaTien < Model.GiaGoc)
+    {
+        decimal b = (Model.GiaTien.Value / Model.GiaGoc.Value) * 100;
+        int a = 100 - decimal.ToInt16(b);
+        ViewBag.giamGia = a.ToString();
+    }
 }
 @model TuanStore.Models.SanPham
 <script language="javascript" type="text/javascript">
@@ -55,19 +61,19 @@
                 <div class="single-product-gallery-thumbs gallery-thumbs">
                     <div id="owl-single-product-thumbnails">
                         <a class="horizontal-thumb active" data-target="#owl-single-product" data-slide="0" href="#slide1">
-                            <img width="67" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhDaiDien" />
+                            <img width="67" height="80" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhDaiDien" />
                         </a>
                         @if (Model.AnhNen != null && Model.AnhNen.ToString() != "")
                         {
                             <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="1" href="#slide2">
-                                <img width="67" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhNen" />
+                                <img width="67" height="80" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhNen" />
                             </a>
                         }
 
                         @if (Model.AnhKhac != null && Model.AnhNen.ToString() != "")
                         {
                             <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="2" href="#slide3">
-                                <img width="67" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhKhac" />
+                                <img width="67" height="80" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhKhac" />
                             </a>
                         }
 
@@ -77,7 +83,6 @@
         </div><!-- /.gallery-holder -->
         <div class="no-margin col-xs-12 col-sm-7 body-holder" style="padding-top:20px">
             <div class="body">
-                @*<div class="star-holder inline"><div class="star" data-score="4"></div></div>*@
                 <div class="availability" style="margin-left: 0px; font-size:larger">
                     <label>Tình trạng:</label> @if (@Model.SoLuong > 0)
                     {<span class="available"> Còn hàng (@Model.SoLuong Sản Phẩm) </span> }
@@ -86,19 +91,12 @@
                 </div>
                 <div class="title"><a href="#">@Model.TenSP</a></div>
                 <div class="brand"></div>
-                @*<div class="social-row">
-            <span class="st_facebook_hcount"></span>
-            <span class="st_twitter_hcount"></span>
-            <span class="st_pinterest_hcount"></span>
-        </div>
-        <div class="buttons-holder">
-            <label>Chia sẻ với bạn bè</label>
-        </div>*@
+            
                 <div class="text-capitalize" style="font-size: large ">@Html.Raw(@Model.GioiThieu)</div>
                 <div class="brand"></div>
 
                 <div class="excerpt">
-                    <label>Khuyến mãi:</label>
+                    <h3 class="text-center " style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#67B824;color:white;font-weight:bold; width:250px">Giảm giá @ViewBag.Giamgia%</h3>
                     @if (Model.SanPhamKhuyenMais.Any())
                     {
                         <div class="text-capitalize" style="background-color: #efefef">@Html.Raw(Model.SanPhamKhuyenMais.FirstOrDefault().MoTa)</div>

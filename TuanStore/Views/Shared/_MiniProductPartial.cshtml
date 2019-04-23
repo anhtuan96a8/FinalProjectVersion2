@@ -8,7 +8,7 @@
             </a>
         </div>
         <div class="col-xs-8 col-sm-8 no-margin">
-            <a href="#">@Model.TenSP </a>
+            <a href="@Url.Action("Index", "SanPham", new { id = @Model.MaSP })">@Model.TenSP </a>
             <div class="price">
                 @if (Model.GiaTien < Model.GiaGoc)
                 {  <div class="price-prev">@string.Format("{0:0,0}", Model.GiaGoc)  VNĐ</div> }

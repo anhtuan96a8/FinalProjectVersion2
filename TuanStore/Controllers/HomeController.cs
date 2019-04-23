@@ -115,10 +115,14 @@ namespace TuanStore.Controllers
         public ActionResult SPNoiBat(int? skip)
         {
             SanPhamModel sp = new SanPhamModel();
-            int skipnum = (skip ?? 0);
+            int skipnum = (skip+4 ?? 0);
             IQueryable<SanPham> splist = sp.SPHot();
-            splist = splist.OrderBy(r => r.MaSP).Skip(skipnum).Take(4);
-            if (splist.Any())
+            if (skipnum == 0)
+            {
+                splist = splist.OrderBy(r => r.MaSP).Skip(skipnum).Take(8);
+
+            }
+            else splist = splist.OrderBy(r => r.MaSP).Skip(skipnum).Take(4); if (splist.Any())
                 return PartialView("_ProductTabLoadMorePartial", splist);
             else
                 return null;
@@ -127,9 +131,14 @@ namespace TuanStore.Controllers
         public ActionResult SPMoiNhap(int? skip)
         {
             SanPhamModel sp = new SanPhamModel();
-            int skipnum = (skip ?? 0);
+            int skipnum = (skip+4 ?? 0);
             IQueryable<SanPham> splist = sp.SPMoiNhap();
-            splist = splist.OrderBy(r => r.MaSP).Skip(skipnum).Take(4);
+            if(skipnum == 0)
+            {
+                splist = splist.OrderBy(r => r.MaSP).Skip(skipnum).Take(8);
+
+            }
+            else splist = splist.OrderBy(r => r.MaSP).Skip(skipnum).Take(4);
             if (splist.Any())
                 return PartialView("_ProductTabLoadMorePartial", splist);
             else
@@ -139,9 +148,14 @@ namespace TuanStore.Controllers
         public ActionResult SPKhuyenMai(int? skip)
         {
             SanPhamModel sp = new SanPhamModel();
-            int skipnum = (skip ?? 0);
+            int skipnum = (skip+4 ?? 0);
             IQueryable<SanPham> splist = sp.SPKhuyenMai();
-            splist = splist.OrderBy(r => r.MaSP).Skip(skipnum).Take(4);
+            if (skipnum == 0)
+            {
+                splist = splist.OrderBy(r => r.MaSP).Skip(skipnum).Take(8);
+
+            }
+            else splist = splist.OrderBy(r => r.MaSP).Skip(skipnum).Take(4);
             if (splist.Any())
                 return PartialView("_ProductTabLoadMorePartial", splist);
             else

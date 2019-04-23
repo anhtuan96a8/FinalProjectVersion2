@@ -54,14 +54,16 @@ namespace TuanStore.Models
             return splist;
         }
 
-        internal IQueryable<SanPham> SPBanChay(int takenum)
+        internal IQueryable<SanPham> SPBanChay(int? takenum)
         {
             var s = from p in db.ChiTietDonHangs
                     where p.DonHangKH.TinhTrangDH == 3
                     group p by p.MaSP into gro
                     select new {MaSP = gro.Key,sl = gro.Sum(r => r.SoLuong)};
             var splist = from p in db.SanPhams join ca in s on p.MaSP equals ca.MaSP orderby ca.sl descending select p;
-            return splist.Take(takenum);
+            int numbertake = (takenum ?? 0);
+            if (numbertake == 0) return splist;
+            else return splist.Take(numbertake);
         }
 
         internal IQueryable<SanPham> GetAll()
@@ -93,7 +95,7 @@ namespace TuanStore.Models
             sp.HangSX = sanpham.HangSX;
             sp.XuatXu = sanpham.XuatXu;
             sp.GiaGoc = sanpham.GiaGoc;
-            sp.GiaTien = tinhgiatien(sp.MaSP, sp.GiaGoc);
+            sp.GiaTien = Tinhgiatien(sp.MaSP, sp.GiaGoc);
             sp.MoTa = sanpham.MoTa;
             sp.GioiThieu = sanpham.GioiThieu;
             sp.ThongSoKyThuat = sanpham.ThongSoKyThuat;
@@ -104,7 +106,7 @@ namespace TuanStore.Models
             db.SaveChanges();
         }
 
-        private decimal? tinhgiatien(string masp,decimal? giagoc)
+        private decimal? Tinhgiatien(string masp,decimal? giagoc)
         {
             IQueryable<SanPhamKhuyenMai> s = db.SanPhamKhuyenMais.Where(m => m.MaSP.Equals(masp)).OrderByDescending(m => m.GiamGia);
             if (s.Any())
@@ -173,7 +175,7 @@ namespace TuanStore.Models
         internal void UpdateGiaBan(string p)
         {
             var s = db.SanPhams.Find(p);
-            s.GiaTien = tinhgiatien(p, s.GiaGoc);
+            s.GiaTien = Tinhgiatien(p, s.GiaGoc);
             db.Entry(s).State = EntityState.Modified;
             db.SaveChanges();
         }
@@ -182,7 +184,7 @@ namespace TuanStore.Models
         {
             using (var db = new Entities())
             {
-                lst.ForEach(m => m.GiaTien = tinhgiatien(m.MaSP, m.GiaGoc));
+                lst.ForEach(m => m.GiaTien = Tinhgiatien(m.MaSP, m.GiaGoc));
                 db.SaveChanges();
             }
         }

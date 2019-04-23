@@ -24,7 +24,7 @@ namespace TuanStore.Controllers
         {
             SanPhamModel sp = new SanPhamModel();
             IQueryable<SanPham> splist = sp.SPKhuyenMai();
-            splist = splist.Take(5);
+            splist = splist.Take(9);
             return PartialView("_GiamGiaNhieuPartial", splist);
         }
 

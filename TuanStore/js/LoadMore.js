@@ -14,7 +14,7 @@
             {
                 $(id1).append(result);
                 skipnum += 4;
-                var fixa = "<a class=\"btn-loadmore\" href=\'javascript:LoadMorePro(" + skipnum.toString() + ",\"" + action + "\",\"" + id + "\",\"" + id1 + "\")\'>";
+                var fixa = "<a class=\"btn-loadmore btn\" style=\"padding: 8px 22px 8px 22px;margin:70px 0 0 0; border-radius: 50px; background-color: #34495E; color: white; font-weight: bold\" href=\'javascript:LoadMorePro(" + skipnum.toString() + ",\"" + action + "\",\"" + id + "\",\"" + id1 + "\")\'>";
                 fixa += "<i class=\"fa fa-plus\"></i>Tải thêm</a>";
                 $(id).html(fixa);
             }

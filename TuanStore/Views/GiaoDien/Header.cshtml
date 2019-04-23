@@ -12,15 +12,15 @@
         <!-- ============================================================= LOGO : END ============================================================= -->
     </div><!-- /.logo-holder -->
     <div class="col-xs-12 col-md-6 top-search-holder no-margin">
-        <div class="contact-row row" style="padding-left:15px;padding-right:5px;">
-            <div class="social-icons col-sm-3" >
+        <div class="contact-row row" style="padding-left:15px;">
+            <div class="social-icons col-sm-3" style="padding-top:5px;" >
                 <ul>
                     @if (!string.IsNullOrEmpty(Model[3].GiaTri))
                     {
                         <li><a href="@Model[3].GiaTri" class="fa fa-facebook"></a></li>}
                     @if (!string.IsNullOrEmpty(Model[4].GiaTri))
                     {
-                        <li><a href="@Model[4].GiaTri" class="fa fa-pinterest"></a></li>}
+                        <li><a href="@Model[4].GiaTri" class="fa fa-instagram"></a></li>}
                     @if (!string.IsNullOrEmpty(Model[5].GiaTri))
                     {
                         <li><a href="@Model[5].GiaTri" class="fa fa-twitter"></a></li>}
@@ -46,12 +46,12 @@
             </div>
         </div><!-- /.contact-row -->
         <!-- ============================================================= SEARCH AREA ============================================================= -->
-        <div class="search-area" style="margin-top:5px">
+        <div class="search-area" style="margin-top:5px;">
             @Html.Action("SearchForm", "Search")
         </div><!-- /.search-area -->
         <!-- ============================================================= SEARCH AREA : END ============================================================= -->
     </div><!-- /.top-search-holder -->
-    <div class="col-xs-12 col-md-3 top-cart-row no-margin" style="padding-top:42px">
+    <div class="col-xs-12 col-md-3 top-cart-row no-margin" style="padding-top:42px;margin-left:6px">
         <div class="top-cart-row-container">
             @*<div class="wishlist-compare-holder">
                     <div class="wishlist ">
@@ -60,14 +60,11 @@
                     <div class="compare">
                         <a href="#"><i class="fa fa-exchange"></i> so sánh <span class="value">(2)</span> </a>
                     </div>
-                </div>*@
-            <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
+             </div>*@
             <div class="top-cart-holder dropdown animate-dropdown row">
-                <div class="basket col-sm-11">
+                <div class="basket">
                     @Html.Action("CartTitle", "Xuligiohang")
                 </div><!-- /.basket -->
-                <div class="col-sm-1">
-                </div>
             </div><!-- /.top-cart-holder -->
         </div><!-- /.top-cart-row-container -->
         <!-- ============================================================= SHOPPING CART DROPDOWN : END ============================================================= -->

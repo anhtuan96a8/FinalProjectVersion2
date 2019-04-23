@@ -62,7 +62,7 @@ namespace TuanStore.Controllers
 
         private ActionResult PhanTrangAdvanced(IQueryable<SanPham> lst, int? page)
         {
-            int pageSize = 6;
+            int pageSize = 9;
             int pageNumber = (page ?? 1);
             lst = lst.OrderByDescending(m => m.MaSP);
             return View("_AdvancedSearchPartial", lst.ToPagedList(pageNumber, pageSize));
