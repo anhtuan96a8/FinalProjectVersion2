@@ -20,9 +20,11 @@ namespace TuanStore.Controllers
         [AuthLog(Roles = "Quản trị viên,Nhân viên")]
         // GET: Admin
         public ActionResult Index()
-        {
-            //UserModel user = new UserModel();
-            //ViewBag.TotalUser = user.
+        {   
+            
+            //Entities db = new Entities();
+            //ViewBag.SoNguoiDangKy = (from p in db.AspNetUsers 
+            //                         join q in db.AspNetRoles on p.Id equals q. )
             return View();
         }
 
@@ -161,12 +163,12 @@ namespace TuanStore.Controllers
             ViewBag.maloai = maloai;
             return PhanTrangSP(spm.AdvancedSearch(key, maloai, null, null, null),page,null);
         }
-        //public ActionResult TimHSX(string key, string maloai, int? page)
+        //public actionresult timhsx(string key, string maloai, int? page)
         //{
-        //    HangSanXuatModel spm = new HangSanXuatModel();
-        //    ViewBag.key = key;
-        //    ViewBag.maloai = maloai;
-        //    return PhanTrangSP(spm.AdvancedSearch(key, maloai, null, null, null), page, null);
+        //    hangsanxuatmodel spm = new hangsanxuatmodel();
+        //    viewbag.key = key;
+        //    viewbag.maloai = maloai;
+        //    return phantrangsp(spm.advancedsearch(key, maloai, null, null, null), page, null);
         //}
 
         [AuthLog(Roles = "Quản trị viên,Nhân viên")]

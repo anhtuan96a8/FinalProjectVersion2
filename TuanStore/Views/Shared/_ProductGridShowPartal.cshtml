@@ -30,7 +30,8 @@
         <div class="title" style="min-height:40px">
             <a href="@Url.Action("Index", "SanPham", new { id = @Model.MaSP })">@Model.TenSP</a>
         </div>
-        <div class="brand">@Model.HangSanXuat.TenHang</div>
+        @if (Model.HangSanXuat.HangSX != "NOTTT")
+        {<div class="brand">@Model.HangSanXuat.TenHang</div>}
     </div>
     <div class="prices">
         @if (Model.GiaTien < Model.GiaGoc)

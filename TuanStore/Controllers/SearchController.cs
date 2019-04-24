@@ -46,7 +46,45 @@ namespace TuanStore.Controllers
             ViewBag.maxprice = maxprice;
             return View("AdvancedSearchView");
         }
-
+        public ActionResult AjaxSearchDiscountProduct(int? page)
+        {
+            SanPhamModel sp = new SanPhamModel();
+            IQueryable<SanPham> splist = sp.SPKhuyenMai();
+            ViewBag.type = "grid";
+            int pageNumber = (page ?? 1);
+            return PhanTrangAdvanced(splist,pageNumber);
+        }
+        public ActionResult AjaxSearchSellest(int? page)
+        {
+            SanPhamModel sp = new SanPhamModel();
+            IQueryable<SanPham> splist = sp.SPBanChay(0);
+            ViewBag.type = "grid";
+            int pageNumber = (page ?? 1);
+            return PhanTrangAdvanced(splist, pageNumber);
+        }
+        public ActionResult AjaxSearchNewProduct(int? page)
+        {
+            SanPhamModel sp = new SanPhamModel();
+            IQueryable<SanPham> splist = sp.SPMoiNhap();
+            ViewBag.type = "grid";
+            int pageNumber = (page ?? 1);
+            return PhanTrangAdvanced(splist, pageNumber);
+        }
+        public ActionResult AjaxSearchHotProduct(int? page)
+        {
+            SanPhamModel sp = new SanPhamModel();
+            IQueryable<SanPham> splist = sp.SPHot();
+            ViewBag.type = "grid";
+            int pageNumber = (page ?? 1);
+            return PhanTrangAdvanced(splist, pageNumber);
+        }
+        public ActionResult AjaxSearchSeenProduct(int? page)
+        {
+            IQueryable<SanPham> splist = ManagerObiect.getIntance().Laydanhsachsanphammoixem().AsQueryable();
+            ViewBag.type = "grid";
+            int pageNumber = (page ?? 1);
+            return PhanTrangAdvanced(splist, pageNumber);
+        }
         public ActionResult AdvancedSearchP(string term, string loai, string hangsx, string typeview, int? page, int? minprice, int? maxprice)
         {
             ViewBag.Name = term;
@@ -59,7 +97,7 @@ namespace TuanStore.Controllers
             IQueryable<SanPham> lst = sp.AdvancedSearch(term, loai, hangsx, minprice, maxprice);
             return PhanTrangAdvanced(lst, page);
         }
-
+        
         private ActionResult PhanTrangAdvanced(IQueryable<SanPham> lst, int? page)
         {
             int pageSize = 9;

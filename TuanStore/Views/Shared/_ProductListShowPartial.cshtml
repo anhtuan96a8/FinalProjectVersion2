@@ -34,13 +34,14 @@
                 <div class="title">
                     <a href="@Url.Action("Index", "SanPham", new { id = @Model.MaSP })">@Model.TenSP</a>
                 </div>
-                <div class="brand">@Model.HangSanXuat.TenHang</div>
+                @if (Model.HangSanXuat.HangSX != "NOTTT")
+                {<div class="brand">@Model.HangSanXuat.TenHang</div>}
                 <div class="excerpt" style="min-height: 50px">
                     <p>@Html.Raw(@Model.GioiThieu)</p>
                 </div>
                 @*<div class="addto-compare">
-                    <a class="btn-add-to-compare" href="#">So sánh</a>
-                </div>*@
+            <a class="btn-add-to-compare" href="#">So sánh</a>
+        </div>*@
             </div>
         </div><!-- /.body-holder -->
         <div class="no-margin col-xs-12 col-sm-3 price-area">

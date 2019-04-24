@@ -1,20 +1,5 @@
 ﻿<script>
-    //$(document).ready(function () {
-    //    $(document).on("click", "#nav_grid a[href]", function () {
-    //        $.ajax({
-    //            url: $(this).attr("href"),
-    //            type: 'GET',
-    //            cache: false,
-    //            success: function (result) {
-    //                $('#grid-view').html(result);
-    //                $('html, body').animate({
-    //                    scrollTop: $("#grid-view").offset().top
-    //                }, 500);
-    //            }
-    //        });
-    //        return false;
-    //    });
-    //});
+    
 
     function summitfilter()
     {
@@ -22,6 +7,63 @@
         form.submit();
     }
 
+    // START ajax search
+    $(document).ready(function () {
+        $(document).on("click", "#search_discount_product", function () {
+            $.ajax({
+                url: "/Search/AjaxSearchDiscountProduct",
+                type: 'GET',
+                success: function (result) {
+                    $("#insert-ajax").html(result);
+                },
+            });
+        });
+    });
+    $(document).ready(function () {
+        $(document).on("click", "#search_sellest", function () {
+            $.ajax({
+                url: "/Search/AjaxSearchSellest",
+                type: 'GET',
+                success: function (result) {
+                    $("#insert-ajax").html(result);
+                },
+            });
+        });
+    });
+    $(document).ready(function () {
+        $(document).on("click", "#search_hot_product", function () {
+            $.ajax({
+                url: "/Search/AjaxSearchHotProduct",
+                type: 'GET',
+                success: function (result) {
+                    $("#insert-ajax").html(result);
+                },
+            });
+        });
+    });
+    $(document).ready(function () {
+        $(document).on("click", "#search_new_product", function () {
+            $.ajax({
+                url: "/Search/AjaxSearchNewProduct",
+                type: 'GET',
+                success: function (result) {
+                    $("#insert-ajax").html(result);
+                },
+            });
+        });
+    });
+    $(document).ready(function () {
+        $(document).on("click", "#search_seen_product", function () {
+            $.ajax({
+                url: "/Search/AjaxSearchSeenProduct",
+                type: 'GET',
+                success: function (result) {
+                    $("#insert-ajax").html(result);
+                },
+            });
+        });
+    });
+    // End Ajax            
 </script>
 
 <!-- ========================================= PRODUCT FILTER ========================================= -->
@@ -31,10 +73,31 @@
     <form id="productfilterfrm" action="@Url.Action("AdvancedSearchView", "Search")" autocomplete="off">
         <div class="body bordered">
             <div class="category-filter">
-                <h2>Loại</h2>
-                <hr>
-                <h5>Loại sản phẩm</h5>
-                @*<ul>
+                <h4>Tìm kiếm theo hạng mục</h4>
+                <hr />
+                <p id="search_discount_product" class="block no-margin">
+                    <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                    <label>Sản phẩm giảm giá nhiều</label>
+                </p>
+                <p class="block no-margin" id="search_sellest">
+                    <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                    <label>Sản phẩm bán chạy nhất</label>
+                </p>
+                <p class="block no-margin" id="search_hot_product">
+                    <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                    <label>Sản phẩm nổi bật nhất</label>
+                </p>
+                <p class="block no-margin" id="search_new_product">
+                    <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                    <label>Sản phẩm mới nhập</label>
+                </p>
+                <p href="" class="block no-margin" id="search_seen_product">
+                    <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                    <label>Sản phẩm vừa xem</label>
+                </p>
+                <hr />
+                <h4>Loại sản phẩm</h4>
+                <ul>
                     @{
                         CategoryModel cat = new CategoryModel();
                         IQueryable<LoaiSP> catlist = cat.GetCategory();
@@ -43,68 +106,42 @@
                             <li><input name="loai" class="le-checkbox" type="radio" value="@item.MaLoai" /> <label>@item.TenLoai</label></li>
                         }
                     }
-                </ul>*@
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="@Url.Action("Index", "Category", new { MaLoai = "" })">Tât cả các loại</a>
-                    <ul class="dropdown-menu" role="menu">
-                        @Html.Action("CategoryList", "Search")
-                    </ul>
-                </li>
-
-                <h5>Hãng sản xuất</h5>
-                @*<ul>
+                </ul>
+                <hr>
+                <h4>Hãng sản xuất</h4>
+                <ul>
                     @{
                         HangSanXuatModel han = new HangSanXuatModel();
                         IQueryable<HangSanXuat> hanlist = han.GetHangSX();
                         foreach (var item in hanlist)
                         {
-                            <li><input name="hangsx" class="le-checkbox" type="radio" value="@item.HangSX" /> <label>@item.TenHang</label></li>
+                            if (item.HangSX != "NOTTT")
+                            {
+                                <li><input name="hangsx" class="le-checkbox" type="radio" value="@item.HangSX" /> <label>@item.TenHang</label></li>
+                            }
                         }
                     }
-                </ul>*@
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="@Url.Action("Index", "Category", new { MaLoai = "" })">Tât cả các loại</a>
-                    <ul class="dropdown-menu" role="menu">
-                        @Html.Action("GetHangSanXuat", "Search")
-                    </ul>
-                </li>
+                </ul>
+                @*<li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="@Url.Action("Index", "Category", new { MaLoai = "" })">Tât cả các loại</a>
+            <ul class="dropdown-menu" role="menu">
+                @Html.Action("GetHangSanXuat", "Search")
+            </ul>
+        </li>*@
             </div><!-- /.category-filter -->
 
             <div class="price-filter">
-                <h2>Giá</h2>
-                <hr>
-                @*<div class="price-range-holder">
-
-                    <div class="slider slider-horizontal" style="width: 182px;">
-                        <div class="slider-track">
-                            <div class="slider-selection" style="left: 0%; width: 0%;"></div>
-                            <div class="slider-handle" style="left: 0%;"></div>
-                        </div>
-                        <div class="tooltip bottom top" style="top: -30px; left: -2.5px;">
-                             <div class="tooltip-arrow"></div>
-                             <div class="tooltip-inner">0 : 9500000</div>
-                        </div>
-                        <input type="text" class="price-slider" value="" style="">
-                    </div>
-
-                    <span class="min-max">
-                        Price: 0-20triệu
-                    </span>
-                    <span class="filter-button">
-                        <a href="#">Tìm ki</a>
-                    </span>
-                </div>*@
+                <h4 class="no-margin">Giá</h4>
                 <div class="price-range-holder">
-                    <input type="text" class="price-slider" value="">
                     <h5>Từ</h5>
-                    <input class="le-input" type="number" name="minprice" step="500000" />
+                    <input class="le-input" type="number" name="minprice" step="200000" min="0" max="30000000" placeholder="Giá min"/>
                     <h5>Đến</h5>
-                    <input class="le-input" type="number" name="maxprice" step="500000" />
+                    <input class="le-input" type="number" name="maxprice" step="500000" min="0" max="30000000" placeholder="Giá max"/>
                     <span class="min-max">
                         Giá: 0 VNĐ - 30,000,000 VNĐ
                     </span>
                     <span class="filter-button">
-                        <a style="border: 2px solid #ececec; background-color:#ececec; border-radius:10px" href='javascript:summitfilter()'>Tìm kiếm</a>
+                        <a style="padding: 10px 22px 10px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold" href='javascript:summitfilter()'>Tìm kiếm</a>
                     </span>
                 </div>
             </div><!-- /.price-filter -->

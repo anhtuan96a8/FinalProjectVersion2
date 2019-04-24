@@ -2684,7 +2684,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
   display: inline-block;
 }
 .grid-list-products .section-title {
-  margin: 32px 0 11px;
+  margin: 10px 0 11px;
   font-size: 27px;
 }
 .grid-list-products .control-bar {
@@ -4239,7 +4239,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
   padding: 10px 0 0 0;
 }
 .sidebar .price-range-holder {
-  padding: 18px 0px 47px 0px;
+  padding: 0px 0px 47px 0px;
   position: relative;
 }
 .sidebar .price-range-holder .filter-button a {
@@ -4335,6 +4335,9 @@ header .top-cart-row .top-cart-holder .total-price-basket {
   padding: 0 3px;
   margin: 10px 0 0 0;
 }
+.sidebar .widget .category-filter a {
+
+}
 .sidebar .widget .category-filter ul li {
   position: relative;
 }
@@ -4351,6 +4354,10 @@ header .top-cart-row .top-cart-holder .total-price-basket {
   font-size: 12px;
   margin: 0 0 3px;
   line-height: 20px;
+}
+.sidebar .widget .category-filter p label{
+    color : #8b4513;
+    cursor :pointer;
 }
 /*===================================================================================*/
 /*  Footer
