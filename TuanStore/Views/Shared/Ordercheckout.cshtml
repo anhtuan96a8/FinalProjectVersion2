@@ -1,48 +1,56 @@
 ﻿@model TuanStore.Models.Giohang
-<section id="your-order">
-    <h2 class="border h1">Đơn hàng của bạn</h2>
-    <form>
-        @for (int i = 0; i < Model.getGiohang().Count; i++)
-        {
+ 
+<div class="row">
+    <section id="your-order" class="col-xs-12 col-sm-8">
+        <h2 class="border h1">Đơn hàng của bạn</h2>
+        <form>
+            @for (int i = 0; i < Model.getGiohang().Count; i++)
+            {
             <div class="row no-margin order-item">
                 <div class="col-xs-12 col-sm-1 no-margin">
-                    <a href="#" class="qty">@Model.getGiohang()[i].Soluong x</a>
+                    <a href="@Url.Action("Index", "SanPham", new { ID = @Model.getGiohang()[i].sanPham.MaSP })" class="qty">@Model.getGiohang()[i].Soluong x</a>
                 </div>
-                <div class="col-xs-12 col-sm-9 ">
-                    <div class="title"><a href="#"> @Model.getGiohang()[i].sanPham.TenSP</a></div>
-                    <div class="brand">sony</div>
+                <div class="col-xs-12 col-sm-7 ">
+                    <div class="title"><a href="@Url.Action("Index", "SanPham", new { ID = @Model.getGiohang()[i].sanPham.MaSP })"> @Model.getGiohang()[i].sanPham.TenSP</a></div>
+                    <div class="brand">@Model.getGiohang()[i].sanPham.HangSX</div>
                 </div>
-                <div class="col-xs-12 col-sm-2 no-margin">
+                <div class="col-xs-12 col-sm-1 no-margin">
+                    <a href="@Url.Action("Index", "SanPham", new { ID = @Model.getGiohang()[i].sanPham.MaSP })" class="thumb-holder" style="border:none">
+                        <img class="no-border" width="50" height="50" alt="" src="~/images/products/@Model.getGiohang()[i].sanPham.AnhDaiDien" />
+                    </a>
+                </div>
+                <div class="col-xs-12 col-sm-3">
                     <div class="price">@string.Format("{0:0,0}", @Model.getGiohang()[i].Thanhtien)  Đồng</div>
                 </div>
             </div><!-- /.order-item -->
-        }
-    </form>
-</section><!-- /#your-order -->
-<div id="total-area" class="row no-margin">
-    <div class="col-xs-12 col-lg-4 col-lg-offset-8 no-margin-right">
-        <div id="subtotal-holder">
-            <ul class="tabled-data inverse-bold no-border">
-                <li>
-                    <label>Giá sản phẩm</label>
-                    <div class="value ">@string.Format("{0:0,0}",@Model.Tinhtongtiensanpham()) Đồng</div>
-                </li>
-                <li>
-                    <label>Phí ship</label>
-                    <div class="value">
-                        <div class="radio-group">
-                            <input class="le-radio" type="radio" name="group1" value="free"> <div class="radio-label bold">Miễn phí  giao hàng</div><br>
-                            <input class="le-radio" type="radio" name="group1" value="local" checked>  <div class="radio-label">Giao hàng nhanh<br><span class="bold">30000 VNĐ</span></div>
-                        </div>
-                    </div>
-                </li>
-            </ul><!-- /.tabled-data -->
-            <ul id="total-field" class="tabled-data inverse-bold ">
-                <li>
-                    <label>Tổng tiền</label>
-                    <div class="value">@string.Format("{0:0,0}",@Model.TinhtongtienCart()) Đồng</div>
-                </li>
-            </ul><!-- /.tabled-data -->
-        </div><!-- /#subtotal-holder -->
-    </div><!-- /.col -->
-</div><!-- /#total-area -->
+            }
+        </form>
+    </section><!-- /#your-order -->
+    <div id="total-area" class="col-xs-12 col-sm-4 no-margin" style="padding-left:15px ;margin-top:100px;border:3px solid orange;border-radius:20px">
+            <div class="no-margin-right">
+                <div id="subtotal-holder">
+                    <ul class="tabled-data inverse-bold no-border">
+                        <li>
+                            <label>Giá các sản phẩm</label>
+                            <div class="value">@string.Format("{0:0,0}", @Model.Tinhtongtiensanpham()) Đồng</div>
+                        </li>
+                        <li>
+                            <label>Phí ship</label>
+                            @if (Model.Tinhtongtiensanpham() > 500000 || Model.Tinhtongtiensanpham() == 0)
+                            {
+                                <div class="value">Miễn phí</div>
+                            }
+                            else
+                            {<div class="value">@string.Format("{0:0,0}", 30000) VND</div>}
+                        </li>
+                    </ul><!-- /.tabled-data -->
+                    <ul id="total-field" class="tabled-data inverse-bold ">
+                        <li>
+                            <label>Tổng tiền</label>
+                            <div class="value" style="color:red">@string.Format("{0:0,0}", @Model.TinhtongtienCart()) VNĐ</div>
+                        </li>
+                    </ul><!-- /.tabled-data -->
+                </div><!-- /#subtotal-holder -->
+            </div><!-- /.col -->
+    </div><!-- /#total-area -->
+</div>

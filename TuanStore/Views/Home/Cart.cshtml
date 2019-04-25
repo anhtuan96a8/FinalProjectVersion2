@@ -11,8 +11,8 @@
             {
                 <div class="row no-margin cart-item">
                     <div class="col-xs-12 col-sm-2 no-margin">
-                        <a href="#" class="thumb-holder">
-                            <img class="lazy" alt="" src="~/images/products/@Model.getGiohang()[i].sanPham.AnhDaiDien" />
+                        <a href="@Url.Action("Index", "SanPham", new { ID = @Model.getGiohang()[i].sanPham.MaSP })" class="thumb-holder" style="border:none">
+                            <img class="lazy no-border" alt="" src="~/images/products/@Model.getGiohang()[i].sanPham.AnhDaiDien" />
                         </a>
                     </div>
                     <div class="col-xs-12 col-sm-5 ">
@@ -21,7 +21,7 @@
                         </div>
                         <div class="brand">@Model.getGiohang()[i].sanPham.HangSX</div>
                     </div>
-                    <div class="col-xs-12 col-sm-3 no-margin">
+                    <div class="col-xs-12 col-sm-2 no-margin">
                         <div class="quantity">
                             <div class="le-quantity">
                                 <form>
@@ -32,7 +32,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-2 no-margin">
+                    <div class="col-xs-12 col-sm-3 no-margin">
                         <div class="price" style="padding-right:15px;">
                             @string.Format("{0:0,0}", @Model.getGiohang()[i].Thanhtien) VNĐ
                         </div>
@@ -58,32 +58,27 @@
                         </li>
                         <li>
                             <label>Phí vận chuyển :</label>
-                            <div class="value pull-right">Miễn phí</div>
+                            @if (Model.Tinhtongtiensanpham() > 500000 || Model.Tinhtongtiensanpham() == 0)
+                            {
+                                <div class="value pull-right">Miễn phí</div>
+                            }
+                            else
+                            {<div class="value pull-right">@string.Format("{0:0,0}", 30000) VND</div>}
                         </li>
                     </ul>
                     <ul id="total-price" class="tabled-data inverse-bold no-border">
                         <li>
                             <label>Tổng tiền :</label>
-                            <div class="value pull-right">@string.Format("{0:0,0}",@Model.TinhtongtienCart()) VNĐ</div>
+                            <div class="value pull-right" style="color:red;margin:10px 0 20px 0;">@string.Format("{0:0,0}",@Model.TinhtongtienCart()) VNĐ</div>
                         </li>
                     </ul>
                     <div class="buttons-holder">
                         <a class="le-button big" href='@Url.Action("Checkout", "Home")'>Chấp thuận</a>
-                        <a class="simple-link block" href='@Url.Action("Index","Home")'>Tiếp tục mua hàng</a>
+                        <a class="simple-link block" style="color:brown" href='@Url.Action("Index","Home")'>Quay lại mua hàng</a>
                     </div>
                 </div>
             </div><!-- /.widget -->
-            <div id="cupon-widget" class="widget">
-                <h1 class="border">Mã khuyến mãi</h1>
-                <div class="body">
-                    <form>
-                        <div class="inline-input">
-                            <input data-placeholder="enter coupon code" type="text" style="height:70px" />
-                            <button class="le-button" type="submit">Áp dụng</button>
-                        </div>
-                    </form>
-                </div>
-            </div><!-- /.widget -->
+            
         </div><!-- /.sidebar -->
         <!-- ========================================= SIDEBAR : END ========================================= -->
     </div>

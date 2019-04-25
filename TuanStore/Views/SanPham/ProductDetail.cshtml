@@ -93,10 +93,13 @@
                 <div class="brand"></div>
             
                 <div class="text-capitalize" style="font-size: large ">@Html.Raw(@Model.GioiThieu)</div>
-                <div class="brand"></div>
 
                 <div class="excerpt">
-                    <h3 class="text-center " style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#67B824;color:white;font-weight:bold; width:250px">Giảm giá @ViewBag.Giamgia%</h3>
+                    @if (Model.GiaGoc != Model.GiaTien)
+                    {
+                        <div class="brand"></div>
+                        <h3 class="text-center " style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#67B824;color:white;font-weight:bold; width:250px">Giảm giá @ViewBag.Giamgia%</h3>
+                    }
                     @if (Model.SanPhamKhuyenMais.Any())
                     {
                         <div class="text-capitalize" style="background-color: #efefef">@Html.Raw(Model.SanPhamKhuyenMais.FirstOrDefault().MoTa)</div>

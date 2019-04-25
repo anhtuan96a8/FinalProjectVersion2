@@ -669,6 +669,7 @@
     <Content Include="images\circuit-lock.jpg" />
     <Content Include="images\favicon.png" />
     <Content Include="images\faviconadmin.png" />
+    <Content Include="images\icon-cart.jpg" />
     <Content Include="images\icon-telephone.png" />
     <Content Include="images\logo.png" />
     <Content Include="images\logo.svg" />
@@ -2242,6 +2243,7 @@
     <Content Include="Views\ThongKe\TheoTime.cshtml" />
     <Content Include="Views\ThongKe\TheoTiTrong.cshtml" />
     <Content Include="Views\Search\_GetHangSanXuatPartial.cshtml" />
+    <Content Include="Views\Search\_ListProductAjaxPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

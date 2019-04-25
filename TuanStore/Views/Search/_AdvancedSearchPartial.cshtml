@@ -2,60 +2,123 @@
 @using PagedList;
 @using PagedList.Mvc;
 @model PagedList.IPagedList<SanPham>
-
 <div id="insert-ajax">
-    @if (ViewBag.type == "grid")
-    {
-        <div class="product-grid-holder">
-            <div class="row no-margin">
-                @foreach (var item in Model)
-                {
-                    <div class="col-xs-12 col-sm-4 no-margin product-item-holder hover">
-                        @Html.Partial("_ProductGridShowPartal", item)
-                    </div><!-- /.product-item-holder -->
-                }
-            </div><!-- /.row -->
-        </div><!-- /.product-grid-holder -->
-        <div class="pagination-holder" style="padding-top: 30px">
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 text-left">
-                    <div id="nav_grid">
-                        @Html.PagedListPager(Model, page => Url.Action("AdvancedSearchP", "Search", new { term = ViewBag.Name, loai = ViewBag.loai, hangsx = ViewBag.hangsx, minprice = ViewBag.minprice, maxprice = ViewBag.maxprice, typeview = "grid", page = page }), new PagedListRenderOptions { ContainerDivClasses = null, LiElementClasses = null })
-                    </div>
+
+    @*Code ajax phân trang*@
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            $(document).on("click", "#nav_grid a[href]", function () {
+                $.ajax({
+                    url: $(this).attr("href"),
+                    type: 'GET',
+                    cache: false,
+                    success: function (result) {
+                        $('#grid-view').html(result);
+                        $('html, body').animate({
+                            scrollTop: $("#grid-view").offset().top
+                        }, 500);
+                    }
+                });
+                return false;
+            });
+        });
+
+        $(document).ready(function () {
+            $(document).on("click", "#nav_list a[href]", function () {
+                $.ajax({
+                    url: $(this).attr("href"),
+                    type: 'GET',
+                    cache: false,
+                    success: function (result) {
+                        $('#list-view').html(result);
+                        $('html, body').animate({
+                            scrollTop: $("#list-view").offset().top
+                        }, 500);
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+    <section id="gaming">
+        <div class="grid-list-products">
+            <h2 class="section-title">Kết quả tìm kiếm</h2>
+            <div class="control-bar">
+                @*Chưa code phần sort*@
+                <div id="" class="inline">
+                    <select data-placeholder="sort by popularity">
+                        <option value="1">Sắp xếp theo loại</option>
+                        <option value="2">Sắp xếp theo hãng</option>
+                        <option value="3">Sắp xếp theo giá</option>
+                    </select>
                 </div>
-                <div class="col-xs-12 col-sm-6">
-                    <div class="result-counter">
-                        <p class="h4 text-info no-margin">Có tất cả <span>@Model.TotalItemCount</span> sản phẩm</p>
-                    </div>
+                <div id="" class="inline">
+                    <select>
+                        <option value="1">Tăng dần</option>
+                        <option value="2">Giảm dần</option>
+                    </select>
                 </div>
-            </div><!-- /.row -->
-        </div><!-- /.pagination-holder -->
-    }
-    else
-    {
-        <div class="products-list">
-            @foreach (var item in Model)
-            {
-                @Html.Partial("_ProductListShowPartial", item)
-            }
-        </div><!-- /.products-list -->
-        <div class="pagination-holder">
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 text-left">
-                    <div id="nav_list">
-                        @Html.PagedListPager(Model, page => Url.Action("AdvancedSearchP", "Search", new { term = ViewBag.Name, loai = ViewBag.loai, hangsx = ViewBag.hangsx, minprice = ViewBag.minprice, maxprice = ViewBag.maxprice, typeview = "list",page = page }), new PagedListRenderOptions { ContainerDivClasses = null, LiElementClasses = null })
-                    </div>
+                <div class="grid-list-buttons">
+                    <ul>
+                        <li class="grid-list-button-item active"><a data-toggle="tab" href="#grid-view"><i class="fa fa-th-large"></i> Lưới</a></li>
+                        <li class="grid-list-button-item "><a data-toggle="tab" href="#list-view"><i class="fa fa-th-list"></i> Danh sách</a></li>
+                    </ul>
                 </div>
-                <div class="col-xs-12 col-sm-6">
-                    <div class="result-counter">
-                        Có tât cả <span>@Model.TotalItemCount</span> sản phẩm
-                    </div>
-                </div>
-            </div><!-- /.row -->
-        </div><!-- /.pagination-holder -->
-    }
+            </div><!-- /.control-bar -->
+            <div class="tab-content">
+                <div id="grid-view" class="products-grid fade tab-pane in active">
+                    @*@Html.Action("AdvancedSearchP", "Search", new { term = ViewBag.Name, loai = ViewBag.loai, hangsx = ViewBag.hangsx, minprice = ViewBag.minprice, maxprice = ViewBag.maxprice, typeview = "grid" })*@
+                    <div class="product-grid-holder">
+                        <div class="row no-margin">
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-xs-12 col-sm-4 no-margin product-item-holder hover">
+                                    @Html.Partial("_ProductGridShowPartal", item)
+                                </div><!-- /.product-item-holder -->
+                            }
+                        </div><!-- /.row -->
+                    </div><!-- /.product-grid-holder -->
+                    <div class="pagination-holder" style="padding-top: 30px">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 text-left">
+                                <div id="nav_grid">
+                                    @Html.PagedListPager(Model, page => Url.Action("AdvancedSearchP", "Search", new { term = ViewBag.Name, loai = ViewBag.loai, hangsx = ViewBag.hangsx, minprice = ViewBag.minprice, maxprice = ViewBag.maxprice, typeview = "grid", page = page, typepagelist = 1 }), new PagedListRenderOptions { ContainerDivClasses = null, LiElementClasses = null })
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+                                <div class="result-counter">
+                                    <p class="h4 text-info no-margin">Có tất cả <span>@Model.TotalItemCount</span> sản phẩm</p>
+                                </div>
+                            </div>
+                        </div><!-- /.row -->
+                    </div><!-- /.pagination-holder -->
+                </div><!-- /.products-grid #grid-view -->
+
+                <div id="list-view" class="products-grid fade tab-pane ">
+                    @*@Html.Action("AdvancedSearchP", "Search", new { term = ViewBag.Name, loai = ViewBag.loai, hangsx = ViewBag.hangsx, minprice = ViewBag.minprice, maxprice = ViewBag.maxprice, typeview = "list" })*@
+                    <div class="products-list">
+                        @foreach (var item in Model)
+                        {
+                            @Html.Partial("_ProductListShowPartial", item)
+                        }
+                    </div><!-- /.products-list -->
+                    <div class="pagination-holder">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 text-left">
+                                <div id="nav_list">
+                                    @Html.PagedListPager(Model, page => Url.Action("AdvancedSearchP", "Search", new { term = ViewBag.Name, loai = ViewBag.loai, hangsx = ViewBag.hangsx, minprice = ViewBag.minprice, maxprice = ViewBag.maxprice, typeview = "list", page = page, typepagelist = 1 }), new PagedListRenderOptions { ContainerDivClasses = null, LiElementClasses = null })
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+                                <div class="result-counter">
+                                    <span class="h4 text-info no-margin">Có tât cả <span>@Model.TotalItemCount</span> sản phẩm</span>
+                                </div>
+                            </div>
+                        </div><!-- /.row -->
+                    </div><!-- /.pagination-holder -->
+                </div><!-- /.products-grid #list-view -->
+            </div><!-- /.tab-content -->
+        </div><!-- /.grid-list-products -->
+    </section><!-- /#gaming -->
+    <!-- ========================================= CONTENT : END ========================================= -->
 </div>
-
-
-
-

@@ -82,10 +82,11 @@ namespace TuanStore.Controllers
         {
             IQueryable<SanPham> splist = ManagerObiect.getIntance().Laydanhsachsanphammoixem().AsQueryable();
             ViewBag.type = "grid";
+            TempData["LoaiSearch"] = "seenproduct";
             int pageNumber = (page ?? 1);
             return PhanTrangAdvanced(splist, pageNumber);
         }
-        public ActionResult AdvancedSearchP(string term, string loai, string hangsx, string typeview, int? page, int? minprice, int? maxprice)
+        public ActionResult AdvancedSearchP(string term, string loai, string hangsx, string typeview, int? page, int? minprice, int? maxprice,int? typepagelist)
         {
             ViewBag.Name = term;
             ViewBag.loai = loai;
@@ -93,9 +94,17 @@ namespace TuanStore.Controllers
             ViewBag.minprice = minprice;
             ViewBag.maxprice = maxprice;
             ViewBag.type = typeview;
+            HttpCookie Cookietest = new HttpCookie("Cookietest");
+            Cookietest.Value = "Oke";
+            Cookietest.Expires = DateTime.Now.AddDays(1);
             SanPhamModel sp = new SanPhamModel();
             IQueryable<SanPham> lst = sp.AdvancedSearch(term, loai, hangsx, minprice, maxprice);
-            return PhanTrangAdvanced(lst, page);
+            int typePT = (typepagelist ?? 0);
+            if(typePT == 1)
+            {
+                return PhanTrangAdvanced2(lst, page);
+            }
+            else return PhanTrangAdvanced(lst, page);
         }
         
         private ActionResult PhanTrangAdvanced(IQueryable<SanPham> lst, int? page)
@@ -104,6 +113,13 @@ namespace TuanStore.Controllers
             int pageNumber = (page ?? 1);
             lst = lst.OrderByDescending(m => m.MaSP);
             return View("_AdvancedSearchPartial", lst.ToPagedList(pageNumber, pageSize));
+        }
+        private ActionResult PhanTrangAdvanced2(IQueryable<SanPham> lst, int? page)
+        {
+            int pageSize = 9;
+            int pageNumber = (page ?? 1);
+            lst = lst.OrderByDescending(m => m.MaSP);
+            return View("_ListProductAjaxPartial", lst.ToPagedList(pageNumber, pageSize));
         }
     }
 }

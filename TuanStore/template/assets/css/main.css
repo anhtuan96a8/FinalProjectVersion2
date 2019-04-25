@@ -923,13 +923,14 @@ header .top-cart-row .top-cart-holder .basket-item-count {
 header .top-cart-row .top-cart-holder .basket-item-count .count {
   position: absolute;
   color: #fff;
+  padding-top:3px;
   top: 5px;
-  right: 12px;
+  right: 9px;
   border-radius: 100px;
-  width: 21px;
-  height: 21px;
+  width: 28px;
+  height: 28px;
   line-height: 21px;
-  font-size: 12px;
+  font-size: 16px;
   font-weight: bold;
   text-align: center;
 }
@@ -3584,10 +3585,10 @@ header .top-cart-row .top-cart-holder .total-price-basket {
   margin-bottom: 12px;
 }
 #checkout-page #subtotal-holder .tabled-data li label {
-  min-width: 230px;
+  width: 160px;
 }
 #checkout-page #subtotal-holder .tabled-data li .value {
-  width: 140px;
+  min-width: 180px;
 }
 #checkout-page #total-field {
   margin-top: 11px;
