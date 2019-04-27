@@ -2,10 +2,9 @@
 @using PagedList;
 @using PagedList.Mvc;
 @model PagedList.IPagedList<SanPham>
-<div id="insert-ajax">
 
-    @*Code ajax phân trang*@
-    <script language="javascript" type="text/javascript">
+@*Code ajax phân trang*@
+<script language="javascript" type="text/javascript">
         $(document).ready(function () {
             $(document).on("click", "#nav_grid a[href]", function () {
                 $.ajax({
@@ -39,25 +38,101 @@
                 return false;
             });
         });
+        //ajax sort
+        $(document).ready(function () {
+            $(document).on("click", ".sorttest2", function () {
+                var loai = $('#saveloai').val();
+                var hangsx = $('#savehangsx').val();
+                var minprice = $('#saveminprice').val();
+                var maxprice = $('#savemaxprice').val();
+                var typesearch = $('#savetypesearch').val();
+                var page = $('#savepage').val();
+
+                $.ajax({
+                    url: "/Search/AdvancedSearchP",
+                    type: 'GET',
+                    data:{ loai: loai, hangsx: hangsx, minprice: minprice, maxprice: maxprice, page: page, typesort: '2', typesearch: typesearch},
+                    contentType: "application/json; charset=utf-8",
+                    success: function (result) {
+                        $("#insert-ajax").html(result);
+                    },
+                });
+            });
+        });
+
+        $(document).ready(function () {
+            $(document).on("click", ".sorttest1", function () {
+                var loai = $('#saveloai').val();
+                var hangsx = $('#savehangsx').val();
+                var minprice = $('#saveminprice').val();
+                var maxprice = $('#savemaxprice').val();
+                var typesearch = $('#savetypesearch').val();
+                var page = $('#savepage').val();
+                $.ajax({
+                    url: "/Search/AdvancedSearchP",
+                    type: 'GET',
+                    data:{ loai: loai, hangsx: hangsx, minprice: minprice, maxprice: maxprice, page: page, typesort: '1', typesearch: typesearch},
+                    success: function (result) {
+                        $("#insert-ajax").html(result);
+                    },
+                });
+            });
+        });
+        // ajax sort
+        @*$(document).ready(function () {
+            $("select.selectsort1").on('change', function () {
+                alert('chuan');
+                if ('@ViewBag.typesort' == null) {
+                    var optionSelected = $("option:selected", this);
+                    var typesort = optionSelected.val;
+                }
+                else var typesort = '@ViewBag.typesort';
+                $.ajax({
+                    url: "/Search/AdvancedSearchP",
+                    type: 'GET',
+                    data: { loai: '@ViewBag.loai', hangsx: '@ViewBag.hangsx', minprice: '@ViewBag.minprice', maxprice: '@ViewBag.maxprice', page: '@ViewBag.page', typesort: typesort, typesearch: '@ViewBag.typesearch', typepagelist: '@ViewBag.typepagelist' },
+                    success: function (result) {
+                    $("#insert-ajax").html(result);
+                },
+            });
+            });
+        });*@
+</script>
+@if (ViewBag.typesearch != null)
+{
+    <script language="javascript" type="text/javascript">
+            
     </script>
+}
+<div id="insert-ajax">
     <section id="gaming">
+        <input type="text" id="saveloai" value="@ViewBag.loai" hidden />
+        <input type="text" id="savehangsx" value="@ViewBag.hangsx" hidden />
+        <input type="text" id="saveminprice" value="@ViewBag.minprice" hidden />
+        <input type="text" id="savetypemaxprice" value="@ViewBag.maxprice" hidden />
+        <input type="text" id="savetypesearch" value="@ViewBag.typesearch" hidden />
+        @*<input type="text" id="savetypesort" value="@ViewBag.typesort" hidden />*@
+
         <div class="grid-list-products">
             <h2 class="section-title">Kết quả tìm kiếm</h2>
             <div class="control-bar">
                 @*Chưa code phần sort*@
-                <div id="" class="inline">
-                    <select data-placeholder="sort by popularity">
-                        <option value="1">Sắp xếp theo loại</option>
-                        <option value="2">Sắp xếp theo hãng</option>
-                        <option value="3">Sắp xếp theo giá</option>
-                    </select>
+                <div class="inline">
+                    <p class="sorttest1">Thấp-Cao</p>
+                    @*<select data-placeholder="sort by popularity" class="selectsort1">
+                        <option disabled="disabled" selected="selected">Sắp xếp</option>
+                        <option value="1">Giá từ thấp đến cao</option>
+                        <option value="2">Giá từ cao đến thấp</option>
+                    </select>*@
                 </div>
-                <div id="" class="inline">
+                <div class="inline"><p class="sorttest2">Cao-Thấp</p></div>
+                @*<div id="selectsort2" class="inline">
                     <select>
                         <option value="1">Tăng dần</option>
                         <option value="2">Giảm dần</option>
                     </select>
-                </div>
+                </div>*@
+
                 <div class="grid-list-buttons">
                     <ul>
                         <li class="grid-list-button-item active"><a data-toggle="tab" href="#grid-view"><i class="fa fa-th-large"></i> Lưới</a></li>
@@ -80,14 +155,20 @@
                     </div><!-- /.product-grid-holder -->
                     <div class="pagination-holder" style="padding-top: 30px">
                         <div class="row">
-                            <div class="col-xs-12 col-sm-6 text-left">
+                            <div class="col-xs-12 col-sm-8 text-left">
                                 <div id="nav_grid">
-                                    @Html.PagedListPager(Model, page => Url.Action("AdvancedSearchP", "Search", new { term = ViewBag.Name, loai = ViewBag.loai, hangsx = ViewBag.hangsx, minprice = ViewBag.minprice, maxprice = ViewBag.maxprice, typeview = "grid", page = page, typepagelist = 1 }), new PagedListRenderOptions { ContainerDivClasses = null, LiElementClasses = null })
+                                    @Html.PagedListPager(Model, page => Url.Action("AdvancedSearchP", "Search", new { term = ViewBag.Name, loai = ViewBag.loai, hangsx = ViewBag.hangsx, minprice = ViewBag.minprice, maxprice = ViewBag.maxprice, typeview = "grid", page = page, typepagelist = 1, typesearch = ViewBag.typesearch, typesort = ViewBag.typesort }), new PagedListRenderOptions { ContainerDivClasses = null, LiElementClasses = null,
+                                               DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+                                               DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+                                               DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
+                                               DisplayLinkToNextPage = PagedListDisplayMode.Never,
+                                               MaximumPageNumbersToDisplay = 3
+                               })
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-6">
+                            <div class="col-xs-12 col-sm-4">
                                 <div class="result-counter">
-                                    <p class="h4 text-info no-margin">Có tất cả <span>@Model.TotalItemCount</span> sản phẩm</p>
+                                    <p class="h4 text-info no-margin">Có tất cả <span> @Model.TotalItemCount</span> sản phẩm</p>
                                 </div>
                             </div>
                         </div><!-- /.row -->
@@ -104,14 +185,20 @@
                     </div><!-- /.products-list -->
                     <div class="pagination-holder">
                         <div class="row">
-                            <div class="col-xs-12 col-sm-6 text-left">
+                            <div class="col-xs-12 col-sm-8 text-left">
                                 <div id="nav_list">
-                                    @Html.PagedListPager(Model, page => Url.Action("AdvancedSearchP", "Search", new { term = ViewBag.Name, loai = ViewBag.loai, hangsx = ViewBag.hangsx, minprice = ViewBag.minprice, maxprice = ViewBag.maxprice, typeview = "list", page = page, typepagelist = 1 }), new PagedListRenderOptions { ContainerDivClasses = null, LiElementClasses = null })
+                                    @Html.PagedListPager(Model, page => Url.Action("AdvancedSearchP", "Search", new { term = ViewBag.Name, loai = ViewBag.loai, hangsx = ViewBag.hangsx, minprice = ViewBag.minprice, maxprice = ViewBag.maxprice, typeview = "list", page = page, typepagelist = 1, typesearch = ViewBag.typesearch, typesort = ViewBag.typesort }), new PagedListRenderOptions { ContainerDivClasses = null, LiElementClasses = null,
+                                                                                   DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+                                                                                   DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+                                                                                   DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
+                                                                                   DisplayLinkToNextPage = PagedListDisplayMode.Never,
+                                                                                   MaximumPageNumbersToDisplay = 3
+                                                                   })
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-6">
+                            <div class="col-xs-12 col-sm-4">
                                 <div class="result-counter">
-                                    <span class="h4 text-info no-margin">Có tât cả <span>@Model.TotalItemCount</span> sản phẩm</span>
+                                    <span class="h4 text-info no-margin">Có tât cả <span> @Model.TotalItemCount</span> sản phẩm</span>
                                 </div>
                             </div>
                         </div><!-- /.row -->

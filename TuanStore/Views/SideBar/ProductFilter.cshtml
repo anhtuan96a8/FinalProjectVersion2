@@ -1,18 +1,45 @@
-﻿<script>
-    
-
-    function summitfilter()
-    {
-        var form = document.getElementById("productfilterfrm");
-        form.submit();
-    }
+﻿@using TuanStore.Models;
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<SanPham>
+<script>
+    // ajax.data send to controller : 
+    // typesearch : (null normal search) (1: best discount) (2: best sell)
+    // (3: hot) (4: new import) (5 new seen)
+    $(document).ready(function () {
+        $(document).on("click", "#searchproduct", function () {
+            //var loai = "";
+            //var loaispsearch = $("#inputsearchloai:checked");
+            //if (loaispsearch.length > 0) {
+            //    loai = inputsearchloai.val();
+            //}
+            //var hangsx = "";
+            //var hangsxsearch = $("#inputsearchhangsx:checked");
+            //if (hangsxsearch.length > 0) {
+            //    hangsx = inputsearchhangsx.val();
+            //}
+            var loai = $("#inputsearchloai:checked").val();
+            var hangsx = $("#inputsearchhangsx:checked").val();
+            var minprice = $("input[name='minprice']").val();
+            var maxprice = $("input[name='maxprice']").val();
+            $.ajax({
+                url: "/Search/AdvancedSearchP",
+                type: 'GET',
+                data: { loai: loai, hangsx: hangsx, minprice: minprice, maxprice: maxprice },
+                success: function (result) {
+                    $("#insert-ajax").html(result);
+                },
+            });
+        });
+    });
 
     // START ajax search
     $(document).ready(function () {
         $(document).on("click", "#search_discount_product", function () {
             $.ajax({
-                url: "/Search/AjaxSearchDiscountProduct",
+                url: "/Search/AdvancedSearchP",
                 type: 'GET',
+                data: {typesearch: '1'},
                 success: function (result) {
                     $("#insert-ajax").html(result);
                 },
@@ -22,8 +49,9 @@
     $(document).ready(function () {
         $(document).on("click", "#search_sellest", function () {
             $.ajax({
-                url: "/Search/AjaxSearchSellest",
+                url: "/Search/AdvancedSearchP",
                 type: 'GET',
+                data: { typesearch: '2' },
                 success: function (result) {
                     $("#insert-ajax").html(result);
                 },
@@ -33,8 +61,9 @@
     $(document).ready(function () {
         $(document).on("click", "#search_hot_product", function () {
             $.ajax({
-                url: "/Search/AjaxSearchHotProduct",
+                url: "/Search/AdvancedSearchP",
                 type: 'GET',
+                data: {typesearch: '3'},
                 success: function (result) {
                     $("#insert-ajax").html(result);
                 },
@@ -44,8 +73,9 @@
     $(document).ready(function () {
         $(document).on("click", "#search_new_product", function () {
             $.ajax({
-                url: "/Search/AjaxSearchNewProduct",
+                url: "/Search/AdvancedSearchP",
                 type: 'GET',
+                data: {typesearch: '4'},
                 success: function (result) {
                     $("#insert-ajax").html(result);
                 },
@@ -55,97 +85,96 @@
     $(document).ready(function () {
         $(document).on("click", "#search_seen_product", function () {
             $.ajax({
-                url: "/Search/AjaxSearchSeenProduct",
+                url: "/Search/AdvancedSearchP",
                 type: 'GET',
+                data: {typesearch: '5'},
                 success: function (result) {
                     $("#insert-ajax").html(result);
                 },
             });
         });
     });
-    // End Ajax            
+    // End Ajax
 </script>
-
 <!-- ========================================= PRODUCT FILTER ========================================= -->
 @using TuanStore.Models;
 <div class="widget">
     <h1>Lọc sản phẩm</h1>
-    <form id="productfilterfrm" action="@Url.Action("AdvancedSearchView", "Search")" autocomplete="off">
-        <div class="body bordered">
-            <div class="category-filter">
-                <h4>Tìm kiếm theo hạng mục</h4>
-                <hr />
-                <p id="search_discount_product" class="block no-margin">
-                    <i class="fa fa-hand-o-right" aria-hidden="true"></i>
-                    <label>Sản phẩm giảm giá nhiều</label>
-                </p>
-                <p class="block no-margin" id="search_sellest">
-                    <i class="fa fa-hand-o-right" aria-hidden="true"></i>
-                    <label>Sản phẩm bán chạy nhất</label>
-                </p>
-                <p class="block no-margin" id="search_hot_product">
-                    <i class="fa fa-hand-o-right" aria-hidden="true"></i>
-                    <label>Sản phẩm nổi bật nhất</label>
-                </p>
-                <p class="block no-margin" id="search_new_product">
-                    <i class="fa fa-hand-o-right" aria-hidden="true"></i>
-                    <label>Sản phẩm mới nhập</label>
-                </p>
-                <p href="" class="block no-margin" id="search_seen_product">
-                    <i class="fa fa-hand-o-right" aria-hidden="true"></i>
-                    <label>Sản phẩm vừa xem</label>
-                </p>
-                <hr />
-                <h4>Loại sản phẩm</h4>
-                <ul>
-                    @{
-                        CategoryModel cat = new CategoryModel();
-                        IQueryable<LoaiSP> catlist = cat.GetCategory();
-                        foreach (var item in catlist)
-                        {
-                            <li><input name="loai" class="le-checkbox" type="radio" value="@item.MaLoai" /> <label>@item.TenLoai</label></li>
-                        }
+    @*<form id="productfilterfrm" action="@Url.Action("AdvancedSearchView", "Search")" autocomplete="off">*@
+    <div class="body bordered">
+        <div class="category-filter">
+            <h4>Tìm kiếm theo hạng mục</h4>
+            <hr />
+            <p id="search_discount_product" class="block no-margin">
+                <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                <label>Sản phẩm giảm giá nhiều</label>
+            </p>
+            <p class="block no-margin" id="search_sellest">
+                <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                <label>Sản phẩm bán chạy nhất</label>
+            </p>
+            <p class="block no-margin" id="search_hot_product">
+                <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                <label>Sản phẩm nổi bật nhất</label>
+            </p>
+            <p class="block no-margin" id="search_new_product">
+                <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                <label>Sản phẩm mới nhập</label>
+            </p>
+            <p href="" class="block no-margin" id="search_seen_product">
+                <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                <label>Sản phẩm vừa xem</label>
+            </p>
+            <hr />
+            <h4>Loại sản phẩm</h4>
+            <ul>
+                @{
+                    CategoryModel cat = new CategoryModel();
+                    IQueryable<LoaiSP> catlist = cat.GetCategory();
+                    foreach (var item in catlist)
+                    {
+                        <li class="checkuncheck"><input id="inputsearchloai" name="loai" class="le-checkbox" type="radio" value="@item.MaLoai" /> <label>@item.TenLoai</label></li>
                     }
-                </ul>
-                <hr>
-                <h4>Hãng sản xuất</h4>
-                <ul>
-                    @{
-                        HangSanXuatModel han = new HangSanXuatModel();
-                        IQueryable<HangSanXuat> hanlist = han.GetHangSX();
-                        foreach (var item in hanlist)
-                        {
-                            if (item.HangSX != "NOTTT")
-                            {
-                                <li><input name="hangsx" class="le-checkbox" type="radio" value="@item.HangSX" /> <label>@item.TenHang</label></li>
-                            }
-                        }
-                    }
-                </ul>
-                @*<li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" href="@Url.Action("Index", "Category", new { MaLoai = "" })">Tât cả các loại</a>
-            <ul class="dropdown-menu" role="menu">
-                @Html.Action("GetHangSanXuat", "Search")
+                }
             </ul>
-        </li>*@
-            </div><!-- /.category-filter -->
-
-            <div class="price-filter">
-                <h4 class="no-margin">Giá</h4>
-                <div class="price-range-holder">
-                    <h5>Từ</h5>
-                    <input class="le-input" type="number" name="minprice" step="200000" min="0" max="30000000" placeholder="Giá min"/>
-                    <h5>Đến</h5>
-                    <input class="le-input" type="number" name="maxprice" step="500000" min="0" max="30000000" placeholder="Giá max"/>
-                    <span class="min-max">
-                        Giá: 0 VNĐ - 30,000,000 VNĐ
-                    </span>
-                    <span class="filter-button">
-                        <a id="searchproduct" style="padding: 10px 22px 10px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold" href='javascript:summitfilter()'>Tìm kiếm</a>
-                    </span>
-                </div>
-            </div><!-- /.price-filter -->
-        </div><!-- /.body -->
-    </form>
+            <hr>
+            <h4>Hãng sản xuất</h4>
+            <ul>
+                @{
+                    HangSanXuatModel han = new HangSanXuatModel();
+                    IQueryable<HangSanXuat> hanlist = han.GetHangSX();
+                    foreach (var item in hanlist)
+                    {
+                        if (item.HangSX != "NOTTT")
+                        {
+                            <li class="checkuncheck"><input id="inputsearchhangsx" name="hangsx" class="le-checkbox" type="radio" value="@item.HangSX" /> <label>@item.TenHang</label></li>
+                        }
+                    }
+                }
+            </ul>
+            @*<li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="@Url.Action("Index", "Category", new { MaLoai = "" })">Tât cả các loại</a>
+                    <ul class="dropdown-menu" role="menu">
+                        @Html.Action("GetHangSanXuat", "Search")
+                    </ul>
+                </li>*@
+        </div><!-- /.category-filter -->
+        <div class="price-filter">
+            <h4 class="no-margin">Giá</h4>
+            <div class="price-range-holder">
+                <h5>Từ</h5>
+                <input class="le-input" type="number" name="minprice" step="200000" min="0" max="30000000" placeholder="Giá min" />
+                <h5>Đến</h5>
+                <input class="le-input" type="number" name="maxprice" step="500000" min="0" max="30000000" placeholder="Giá max" />
+                <span class="min-max">
+                    Giá: 0 VNĐ - 30,000,000 VNĐ
+                </span>
+                <span class="filter-button" id="searchproduct">
+                    <a style="padding: 10px 22px 10px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold" @*href='javascript:summitfilter()'*@>Tìm kiếm</a>
+                </span>
+            </div>
+        </div><!-- /.price-filter -->
+    </div><!-- /.body -->
+    @*</form>*@
 </div><!-- /.widget -->
 <!-- ========================================= PRODUCT FILTER : END ========================================= -->

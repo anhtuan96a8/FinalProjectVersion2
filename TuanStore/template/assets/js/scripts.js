@@ -288,7 +288,16 @@
     /*===================================================================================*/
 
     $(document).ready(function () {
-        
+        //$(".checkuncheck").click(function () {
+        //    if ($(".le-select:checked").length > 0) {
+        //        $(".le-select").prop("checked", false);
+        //    }
+        //});
+        //$(document).on('dblclick', '.le-select', function () {
+        //    if (this.checked) {
+        //        $(this).prop('checked', false);
+        //    }
+        //});
         // Select Dropdown
         if($('.le-select').length > 0){
             $('.le-select select').customSelect({customClass:'le-select-in'});

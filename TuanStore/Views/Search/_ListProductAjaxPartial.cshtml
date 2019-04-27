@@ -3,53 +3,68 @@
 @using PagedList.Mvc;
 @model PagedList.IPagedList<SanPham>
 
-    @if (ViewBag.type == "grid")
-    {
-        <div class="product-grid-holder">
-            <div class="row no-margin">
-                @foreach (var item in Model)
-                {
-                    <div class="col-xs-12 col-sm-4 no-margin product-item-holder hover">
-                        @Html.Partial("_ProductGridShowPartal", item)
-                    </div><!-- /.product-item-holder -->
-                }
-            </div><!-- /.row -->
-        </div><!-- /.product-grid-holder -->
-        <div class="pagination-holder" style="padding-top: 30px">
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 text-left">
-                    <div id="nav_grid">
-                        @Html.PagedListPager(Model, page => Url.Action("AdvancedSearchP", "Search", new { term = ViewBag.Name, loai = ViewBag.loai, hangsx = ViewBag.hangsx, minprice = ViewBag.minprice, maxprice = ViewBag.maxprice, typeview = "grid", page = page, typepagelist = 1 }), new PagedListRenderOptions { ContainerDivClasses = null, LiElementClasses = null })
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6">
-                    <div class="result-counter">
-                        <p class="h4 text-info no-margin">Có tất cả <span>@Model.TotalItemCount</span> sản phẩm</p>
-                    </div>
-                </div>
-            </div><!-- /.row -->
-        </div><!-- /.pagination-holder -->
-    }
-    else
-    {
-        <div class="products-list">
+
+@if (ViewBag.type == "grid")
+{
+    <div class="product-grid-holder">
+        <div class="row no-margin">
             @foreach (var item in Model)
             {
-                @Html.Partial("_ProductListShowPartial", item)
+                <div class="col-xs-12 col-sm-4 no-margin product-item-holder hover">
+                    @Html.Partial("_ProductGridShowPartal", item)
+                </div><!-- /.product-item-holder -->
             }
-        </div><!-- /.products-list -->
-        <div class="pagination-holder">
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 text-left">
-                    <div id="nav_list">
-                        @Html.PagedListPager(Model, page => Url.Action("AdvancedSearchP", "Search", new { term = ViewBag.Name, loai = ViewBag.loai, hangsx = ViewBag.hangsx, minprice = ViewBag.minprice, maxprice = ViewBag.maxprice, typeview = "list", page = page, typepagelist = 1 }), new PagedListRenderOptions { ContainerDivClasses = null, LiElementClasses = null })
-                    </div>
+        </div><!-- /.row -->
+    </div><!-- /.product-grid-holder -->
+    <div class="pagination-holder" style="padding-top: 30px">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 text-left">
+                <div id="nav_grid">
+                    @Html.PagedListPager(Model, page => Url.Action("AdvancedSearchP", "Search", new { term = ViewBag.Name, loai = ViewBag.loai, hangsx = ViewBag.hangsx, minprice = ViewBag.minprice, maxprice = ViewBag.maxprice, typeview = "grid", page = page, typepagelist = 1, typesearch = ViewBag.typesearch, typesort = ViewBag.typesort }), new PagedListRenderOptions { ContainerDivClasses = null, LiElementClasses = null,
+                                            DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+                                            DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+                                            DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
+                                            DisplayLinkToNextPage = PagedListDisplayMode.Never,
+                                            MaximumPageNumbersToDisplay = 3
+                            })
                 </div>
-                <div class="col-xs-12 col-sm-6">
-                    <div class="result-counter">
-                        <p class="h4 text-info no-margin">Có tất cả <span>@Model.TotalItemCount</span> sản phẩm</p>
-                    </div>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <div class="result-counter">
+                    <p class="h4 text-info no-margin">Có tất cả <span> @Model.TotalItemCount</span> sản phẩm</p>
                 </div>
-            </div><!-- /.row -->
-        </div><!-- /.pagination-holder -->
-    }
+            </div>
+        </div><!-- /.row -->
+    <!--Lưu page để sort-->
+        <input type="text" id="savepage" value="@ViewBag.page" hidden />
+    </div><!-- /.pagination-holder -->
+}
+else
+{
+    <div class="products-list">
+        @foreach (var item in Model)
+        {
+            @Html.Partial("_ProductListShowPartial", item)
+        }
+    </div><!-- /.products-list -->
+    <div class="pagination-holder">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 text-left">
+                <div id="nav_list">
+                    @Html.PagedListPager(Model, page => Url.Action("AdvancedSearchP", "Search", new { term = ViewBag.Name, loai = ViewBag.loai, hangsx = ViewBag.hangsx, minprice = ViewBag.minprice, maxprice = ViewBag.maxprice, typeview = "list", page = page, typepagelist = 1, typesearch = ViewBag.typesearch, typesort = ViewBag.typesort }), new PagedListRenderOptions { ContainerDivClasses = null, LiElementClasses = null,
+                                           DisplayLinkToFirstPage = PagedListDisplayMode.IfNeeded,
+                                           DisplayLinkToLastPage = PagedListDisplayMode.IfNeeded,
+                                           DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
+                                           DisplayLinkToNextPage = PagedListDisplayMode.Never,
+                                           MaximumPageNumbersToDisplay = 3
+                           })
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <div class="result-counter">
+                    <p class="h4 text-info no-margin">Có tất cả <span>@Model.TotalItemCount</span> sản phẩm</p>
+                </div>
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.pagination-holder -->
+}

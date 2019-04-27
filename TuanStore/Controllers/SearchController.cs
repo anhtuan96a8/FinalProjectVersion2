@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using TuanStore.Models;
 using PagedList;
 using PagedList.Mvc;
+using Newtonsoft.Json.Linq;
 
 namespace TuanStore.Controllers
 {
@@ -46,47 +47,13 @@ namespace TuanStore.Controllers
             ViewBag.maxprice = maxprice;
             return View("AdvancedSearchView");
         }
-        public ActionResult AjaxSearchDiscountProduct(int? page)
-        {
-            SanPhamModel sp = new SanPhamModel();
-            IQueryable<SanPham> splist = sp.SPKhuyenMai();
-            ViewBag.type = "grid";
-            int pageNumber = (page ?? 1);
-            return PhanTrangAdvanced(splist,pageNumber);
-        }
-        public ActionResult AjaxSearchSellest(int? page)
-        {
-            SanPhamModel sp = new SanPhamModel();
-            IQueryable<SanPham> splist = sp.SPBanChay(0);
-            ViewBag.type = "grid";
-            int pageNumber = (page ?? 1);
-            return PhanTrangAdvanced(splist, pageNumber);
-        }
-        public ActionResult AjaxSearchNewProduct(int? page)
-        {
-            SanPhamModel sp = new SanPhamModel();
-            IQueryable<SanPham> splist = sp.SPMoiNhap();
-            ViewBag.type = "grid";
-            int pageNumber = (page ?? 1);
-            return PhanTrangAdvanced(splist, pageNumber);
-        }
-        public ActionResult AjaxSearchHotProduct(int? page)
-        {
-            SanPhamModel sp = new SanPhamModel();
-            IQueryable<SanPham> splist = sp.SPHot();
-            ViewBag.type = "grid";
-            int pageNumber = (page ?? 1);
-            return PhanTrangAdvanced(splist, pageNumber);
-        }
-        public ActionResult AjaxSearchSeenProduct(int? page)
-        {
-            IQueryable<SanPham> splist = ManagerObiect.getIntance().Laydanhsachsanphammoixem().AsQueryable();
-            ViewBag.type = "grid";
-            TempData["LoaiSearch"] = "seenproduct";
-            int pageNumber = (page ?? 1);
-            return PhanTrangAdvanced(splist, pageNumber);
-        }
-        public ActionResult AdvancedSearchP(string term, string loai, string hangsx, string typeview, int? page, int? minprice, int? maxprice,int? typepagelist)
+        //public ActionResult Sort(string jsonsort)
+        //{
+        //    dynamic item = JObject.Parse(jsonsort);
+        //    var term = jsonsort.prop1;
+        //    return AdvancedSearchP(null, null, null, null);
+        //}
+        public ActionResult AdvancedSearchP(string term, string loai, string hangsx, string typeview, int? page, int? minprice, int? maxprice,int? typepagelist, int? typesearch ,int? typesort)
         {
             ViewBag.Name = term;
             ViewBag.loai = loai;
@@ -94,11 +61,94 @@ namespace TuanStore.Controllers
             ViewBag.minprice = minprice;
             ViewBag.maxprice = maxprice;
             ViewBag.type = typeview;
-            HttpCookie Cookietest = new HttpCookie("Cookietest");
-            Cookietest.Value = "Oke";
-            Cookietest.Expires = DateTime.Now.AddDays(1);
+            ViewBag.typesearch = typesearch;
+            ViewBag.typesort = typesort;
+            ViewBag.page= page;
+            ViewBag.typepagelist = typepagelist;
+            
+            // Phân loại search và sort
             SanPhamModel sp = new SanPhamModel();
-            IQueryable<SanPham> lst = sp.AdvancedSearch(term, loai, hangsx, minprice, maxprice);
+            IQueryable<SanPham> lst;
+            int loaisearch = (typesearch ?? 0);// kiểu search là null thì sẽ là 0
+            if(loaisearch == 0)
+            {
+                lst = sp.AdvancedSearch(term, loai, hangsx, minprice, maxprice);
+                if (typesort == 1)
+                {
+                    lst = lst.OrderBy(e => e.GiaTien);
+                }
+                else if(typesort == 2)
+                {
+                    lst = lst.OrderByDescending(e => e.GiaTien);
+                }
+                else lst = lst.OrderByDescending(m => m.MaSP);
+            }
+            else if (loaisearch == 1)
+            {
+                lst = sp.SPKhuyenMai();
+                if (typesort == 1)
+                {
+                    lst = lst.OrderBy(e => e.GiaTien);
+                }
+                else if (typesort == 2)
+                {
+                    lst = lst.OrderByDescending(e => e.GiaTien);
+                }
+                else lst = lst.OrderByDescending(m => m.MaSP);
+            }
+            else if(loaisearch == 2)
+            {
+                lst = sp.SPBanChay(0);
+                if (typesort == 1)
+                {
+                    lst = lst.OrderBy(e => e.GiaTien);
+                }
+                else if (typesort == 2)
+                {
+                    lst = lst.OrderByDescending(e => e.GiaTien);
+                }
+                else lst = lst.OrderByDescending(m => m.MaSP);
+            }
+            else if(loaisearch == 3)
+            {
+                lst = sp.SPHot();
+                if (typesort == 1)
+                {
+                    lst = lst.OrderBy(e => e.GiaTien);
+                }
+                else if (typesort == 2)
+                {
+                    lst = lst.OrderByDescending(e => e.GiaTien);
+                }
+                else lst = lst.OrderByDescending(m => m.MaSP);
+            }
+            else if (loaisearch == 4)
+            {
+                lst = sp.SPMoiNhap();
+                if (typesort == 1)
+                {
+                    lst = lst.OrderBy(e => e.GiaTien);
+                }
+                else if (typesort == 2)
+                {
+                    lst = lst.OrderByDescending(e => e.GiaTien);
+                }
+                else lst = lst.OrderByDescending(m => m.MaSP);
+            }
+            else
+            {
+                lst = ManagerObiect.getIntance().Laydanhsachsanphammoixem().AsQueryable();
+                if (typesort == 1)
+                {
+                    lst = lst.OrderBy(e => e.GiaTien);
+                }
+                else if (typesort == 2)
+                {
+                    lst = lst.OrderByDescending(e => e.GiaTien);
+                }
+                else lst = lst.OrderByDescending(m => m.MaSP);
+            }
+            // xét phân trang
             int typePT = (typepagelist ?? 0);
             if(typePT == 1)
             {
@@ -111,14 +161,12 @@ namespace TuanStore.Controllers
         {
             int pageSize = 9;
             int pageNumber = (page ?? 1);
-            lst = lst.OrderByDescending(m => m.MaSP);
             return View("_AdvancedSearchPartial", lst.ToPagedList(pageNumber, pageSize));
         }
         private ActionResult PhanTrangAdvanced2(IQueryable<SanPham> lst, int? page)
         {
             int pageSize = 9;
             int pageNumber = (page ?? 1);
-            lst = lst.OrderByDescending(m => m.MaSP);
             return View("_ListProductAjaxPartial", lst.ToPagedList(pageNumber, pageSize));
         }
     }
