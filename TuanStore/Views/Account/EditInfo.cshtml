@@ -3,10 +3,11 @@
     ViewBag.Title = "Chỉnh sửa thông tin cá nhân";
     Layout = "~/Views/Shared/_LayoutFrontEnd.cshtml";
 }
-
-
 <main id="authentication" class="inner-bottom-md">
     <div class="container">
+        <br />
+        <h1 class="">@ViewBag.Title</h1>
+        <hr />
         <div class="row">
             <div id="StatupMessage">
                 @if (ViewBag.StatusMessage != null)
@@ -14,7 +15,6 @@
                     <h5>@ViewBag.StatusMessage</h5>
                 }
             </div>
-
             @using (Html.BeginForm())
             {
                 @Html.AntiForgeryToken()
@@ -24,11 +24,10 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-3" })
                             <div class="col-md-5">
-                                @Html.TextBoxFor(model => model.Email, new { @class = "le-input", disabled = "disabled", @readonly="readonly" })
+                                @Html.TextBoxFor(model => model.Email, new { @class = "le-input", disabled = "disabled", @readonly = "readonly" })
                                 @Html.ValidationMessageFor(model => model.Email)
                             </div>
                         </div>
-
                         <div class="form-group">
                             @Html.LabelFor(model => model.DienThoai, new { @class = "control-label col-md-3" })
                             <div class="col-md-5">
@@ -36,7 +35,6 @@
                                 @Html.ValidationMessageFor(model => model.DienThoai)
                             </div>
                         </div>
-
                         <div class="form-group">
                             @Html.LabelFor(model => model.CMND, new { @class = "control-label col-md-3" })
                             <div class="col-md-5">
@@ -44,7 +42,6 @@
                                 @Html.ValidationMessageFor(model => model.CMND)
                             </div>
                         </div>
-
                         <div class="form-group">
                             @Html.LabelFor(model => model.HoTen, new { @class = "control-label col-md-3" })
                             <div class="col-md-5">
@@ -52,7 +49,6 @@
                                 @Html.ValidationMessageFor(model => model.HoTen)
                             </div>
                         </div>
-
                         <div class="form-group">
                             @Html.LabelFor(model => model.NgaySinh, new { @class = "control-label col-md-3" })
                             <div class="col-md-3">
@@ -60,7 +56,6 @@
                                 @Html.ValidationMessageFor(model => model.NgaySinh)
                             </div>
                         </div>
-
                         <div class="form-group">
                             @Html.LabelFor(model => model.GioiTinh, new { @class = "control-label col-md-3" })
                             <div class="col-md-2">
@@ -72,7 +67,6 @@
                                 @Html.ValidationMessageFor(model => model.GioiTinh)
                             </div>
                         </div>
-
                         <div class="form-group">
                             @Html.LabelFor(model => model.DiaChi, new { @class = "control-label col-md-3" })
                             <div class="col-md-8">
@@ -82,7 +76,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-offset-3 col-md-8">
-                                <input type="submit" value="Lưu lại" class="le-button huge" />
+                                <button type="submit" class="le-button huge"><img src="~/images/icon/save.jpg" style="border-radius:50%;width:30px; height:30px;margin-right:5px" /> Lưu lại</button>
                             </div>
                         </div>
                     </div>
@@ -93,7 +87,6 @@
                 <div class="col-md-4">
                     @Html.AntiForgeryToken()
                     @Html.LabelFor(model => model.Avatar, new { @class = "control-label" })
-
                     @*@Html.EditorFor(model => model.Avatar)
                     @Html.ValidationMessageFor(model => model.Avatar)*@
                     <div style="text-align:center; margin:20px">
@@ -103,11 +96,10 @@
                         <input type="file" name="file" accept=".jpg" />
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Tải lên" class="le-button" />
+                        <button type="submit" class="le-button"><img src="~/images/icon/pushdata.png" style="border-radius:50%;width:30px; height:30px;margin-right:5px" /> Tải lên</button>
                     </div>
                 </div>
             }
         </div>
-
     </div>
 </main>

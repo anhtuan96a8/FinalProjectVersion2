@@ -29,7 +29,7 @@ namespace TuanStore.Models
             cm.AddComment(rep);
             cm.UpdateComment(rep);
         }
-        private string GetAnswer(string question)
+        public string GetAnswer(string question)
         {
             using (var client = new WebClient())
             {

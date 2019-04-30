@@ -33,41 +33,35 @@
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <!-- The fav icon -->
-    <link rel="shortcut icon" href="~/images/faviconadmin.png">
+    <link rel="shortcut icon" href="~/images/icon/faviconadmin.png">
 </head>
 <body>
     <!-- topbar starts -->
     <div class="navbar navbar-default" role="navigation">
-        <div class="navbar-inner">
+        <div class="navbar-inner" style="background-color:#7ED0FB">
             <!-- user dropdown starts -->
             <div class="btn-group pull-right">
-                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    <i class="glyphicon glyphicon-user"></i><span class="hidden-sm hidden-xs"> @User.Identity.Name </span>
+                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#34495E;color:red;font-weight:bold;border: 2px solid black">
+                    <span class="hidden-sm hidden-xs">
+                        @if (Session["Avatar"] != null)
+                                    {
+                                        <img src="@Url.Content("~/images/avatars/")@Session["Avatar"].ToString()" alt="avatar" style="border-radius:50%;width:20px; height:20px" /> 
+                                        @Session["Name"]
+                                    }
+                                    else { <i class="glyphicon glyphicon-user"></i><span class="hidden-sm hidden-xs"> @User.Identity.Name </span>}
+                    </span>
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a href="@Url.Action("EditInfo", "Account")">Profile</a></li>
+                    <li><a href="@Url.Action("EditInfo", "Account")">Hồ sơ cá nhân</a></li>
                     <li class="divider"></li>
-                    <li><a href="@Url.Action("LogOut", "Account")">Logout</a></li>
+                    <li><a href="@Url.Action("LogOut", "Account")">Đăng xuất</a></li>
                 </ul>
             </div>
             <!-- user dropdown ends -->
-            <ul class="collapse navbar-collapse nav navbar-nav top-menu">
-                <li><a href="@Url.Action("Index", "Home")"><i class="glyphicon glyphicon-globe"></i> Về trang chủ</a></li>
-                @*<li class="dropdown">
-                        <a href="#" data-toggle="dropdown">
-                            <i class="glyphicon glyphicon-star"></i> Chức năng <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>
-                        </ul>
-                    </li>*@
+            <ul class="collapse navbar-collapse nav navbar-nav top-menu" style="margin-top:7px">
+                <li><a class="btn btn-default" href="@Url.Action("Index", "Home")" style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#34495E;color:red;font-weight:bold;border: 2px solid black"><img src="~/images/icon/logo.svg" width="20" height="20" alt="Alternate Text" /> Về trang chủ</a></li>
+                
             </ul>
         </div>
     </div>
@@ -209,8 +203,8 @@
                     Tuan
                 </a> 2019
             </p>
-            <p class="col-md-3 col-sm-3 col-xs-12 powered-by">
-                Templates: <a href="http://usman.it/free-responsive-admin-template">Charisma</a>
+            <p class="col-md-3 col-sm-3 col-xs-12 powered-by h4 text-danger no-margin" style="margin: 0px">
+                I want to be rich
             </p>
         </footer>
     </div><!--/.fluid-container-->

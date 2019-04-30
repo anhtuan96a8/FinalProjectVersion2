@@ -134,6 +134,11 @@ namespace TuanStore.Controllers
             }
             return RedirectToAction("TimBinhLuan");
         }
-
+        public ActionResult AnswerBot(string chat)
+        {
+            Chatbot chatbot = new Chatbot();
+            string answer = chatbot.GetAnswer(chat);
+            return Content(answer);
+        }
     }
 }

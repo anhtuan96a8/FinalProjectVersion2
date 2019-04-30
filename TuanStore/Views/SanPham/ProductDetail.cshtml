@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "ProductDetail";
+    ViewBag.Title = "Chi tiết sản phẩm";
     Layout = "~/Views/Shared/_LayoutFrontEnd.cshtml";
     if (Model.GiaTien < Model.GiaGoc)
     {
@@ -35,14 +35,14 @@
                 <div id="owl-single-product">
                     <div class="single-product-gallery-item" id="slide1">
                         <a data-rel="prettyphoto" @*href="@Url.Content("~/images/products/")@Model.AnhDaiDien"*@>
-                            <img class="img-responsive" style="width:433px; height: 433px;" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhDaiDien" width="353" />
+                            <img class="img-responsive" style="width:433px; height: 433px;" alt="" src="@Url.Content("~/images/products/")@Model.AnhDaiDien" width="353" />
                         </a>
                     </div><!-- /.single-product-gallery-item -->
                     @if (Model.AnhNen != null && Model.AnhNen.ToString() != "")
                     {
                         <div class="single-product-gallery-item" id="slide2">
                             <a data-rel="prettyphoto" @*href="@Url.Content("~/images/products/")@Model.AnhNen"*@>
-                                <img class="img-responsive" style="width:433px; height: 433px;" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhNen" />
+                                <img class="img-responsive" style="width:433px; height: 433px;" alt="" src="@Url.Content("~/images/products/")@Model.AnhNen"  />
                             </a>
                         </div><!-- /.single-product-gallery-item -->
                     }
@@ -51,7 +51,7 @@
                     {
                         <div class="single-product-gallery-item" id="slide3">
                             <a data-rel="prettyphoto" @*href="@Url.Content("~/images/products/")@Model.AnhKhac"*@>
-                                <img class="img-responsive" style="width:433px; height: 433px;" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhKhac" />
+                                <img class="img-responsive" style="width:433px; height: 433px;" alt="" src="@Url.Content("~/images/products/")@Model.AnhKhac"  />
                             </a>
                         </div><!-- /.single-product-gallery-item -->
                     }
@@ -66,14 +66,14 @@
                         @if (Model.AnhNen != null && Model.AnhNen.ToString() != "")
                         {
                             <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="1" href="#slide2">
-                                <img width="67" height="80" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhNen" />
+                                <img width="67" height="80" alt="" src="@Url.Content("~/images/products/")@Model.AnhNen"  />
                             </a>
                         }
 
                         @if (Model.AnhKhac != null && Model.AnhNen.ToString() != "")
                         {
                             <a class="horizontal-thumb" data-target="#owl-single-product" data-slide="2" href="#slide3">
-                                <img width="67" height="80" alt="" src="@Url.Content("~/template/")assets/images/blank.gif" data-echo="@Url.Content("~/images/products/")@Model.AnhKhac" />
+                                <img width="67" height="80" alt="" src="@Url.Content("~/images/products/")@Model.AnhKhac" />
                             </a>
                         }
 
@@ -89,7 +89,7 @@
                     else
                     {<span class="not-available">Hết hàng</span>}
                 </div>
-                <div class="title"><a href="#">@Model.TenSP</a></div>
+                <div class="title animated fadeInRightBig "><a href="#">@Model.TenSP</a></div>
                 <div class="brand"></div>
             
                 <div class="text-capitalize" style="font-size: large ">@Html.Raw(@Model.GioiThieu)</div>
@@ -98,12 +98,21 @@
                     @if (Model.GiaGoc != Model.GiaTien)
                     {
                         <div class="brand"></div>
-                        <h3 class="text-center " style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#67B824;color:white;font-weight:bold; width:250px">Giảm giá @ViewBag.Giamgia%</h3>
+                        <h3 class="text-center animated infinite tada delay-5s" style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#67B824;color:white;font-weight:bold; width:250px">Giảm giá @ViewBag.Giamgia%</h3>
+                    }
+                    @if (Model.GiaTien > 500000)
+                    {
+                        <div class="no-margin">
+                            <img src="~/images/icon/freeship.png" style="border-radius:60px;width:80px; height:50px" />
+                            <span class="text-info h3" style="margin-top:4px"> Miễn phí vận chuyển</span>
+                        </div>
                     }
                     @if (Model.SanPhamKhuyenMais.Any())
                     {
-                        <div class="text-capitalize" style="background-color: #efefef">@Html.Raw(Model.SanPhamKhuyenMais.FirstOrDefault().MoTa)</div>
+                        <div class="brand"></div>
+                        <div class="text-capitalize" @*style="background-color: #efefef"*@>@Html.Raw(Model.SanPhamKhuyenMais.FirstOrDefault().MoTa)</div>
                     }
+
                 </div>
                 <div class="brand"></div>
 
@@ -120,7 +129,10 @@
                             <a class="plus" href="javascript:;"></a>
                         </form>
                     </div>
-                    <a id="addto-cart" href="javascript:;" onclick="Addcart('@Model.MaSP',0)" class="le-button huge">Cho vào giỏ</a>
+                    <a id="addto-cart" href="javascript:;" onclick="Addcart('@Model.MaSP',0)" class="le-button huge">
+                        <img src="~/images/icon/discount.png" style="border-radius:50%;width:30px; height:30px" />
+                        Cho vào giỏ
+                    </a>
                 </div><!-- /.qnt-holder -->
             </div><!-- /.body -->
         </div><!-- /.body-holder -->
@@ -133,7 +145,7 @@
 
             <ul class="nav nav-tabs simple">
                 <li class="active"><a href="#description" data-toggle="tab">Mô tả</a></li>
-                <li><a href="#additional-info" data-toggle="tab">Thông sô kỹ thuật</a></li>
+                <li><a href="#additional-info" data-toggle="tab">Thông số kỹ thuật</a></li>
                 <li><a href="#reviews" data-toggle="tab">Bình luận</a></li>
             </ul><!-- /.nav-tabs -->
             <div class="tab-content">

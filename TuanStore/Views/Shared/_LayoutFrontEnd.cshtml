@@ -33,7 +33,7 @@
     <!-- Icons/Glyphs -->
     <link rel="stylesheet" href="@Url.Content("~/template/assets/css/font-awesome.min.css")">
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="~/images/favicon.png" />
+    <link rel="icon" type="image/png" href="~/images/icon/favicon.png" />
     <!-- HTML5 elements and media queries Support for IE8 : HTML5 shim and Respond.js -->
     <!--[if lt IE 9]>
         <script src="~/template/assets/js/html5shiv.js"></script>
@@ -49,33 +49,37 @@
                 <div class="col-xs-12 col-sm-6 no-margin" style="padding-top:6px;">
                     @if (Request.IsAuthenticated)
                     {
-                        <marquee class="h4" style="padding: 2px 20px 0px 0px;margin: 0 0 0 0">Chào mừng <span style="color:blue">@User.Identity.Name</span> đến với TuanStore</marquee>
+                        <marquee class="animated infinite bounce delay-2s " style="padding: 2px 20px 0px 0px;margin: 0 0 0 0">Chào mừng <span style="color:blue">@User.Identity.Name</span> đến với TuanStore</marquee>
                     }
                     else
                     {
-                        <marquee class="h4" style="padding: 2px 20px 0px 0px;margin:0 0 0 0">Chào mừng bạn đến với TuanStore</marquee>
+                        <marquee class="animated infinite bounce delay-2s " style="padding: 2px 20px 0px 0px;margin:0 0 0 0">Chào mừng bạn đến với TuanStore</marquee>
                     }
-                    
+
                 </div><!-- /.col -->
                 <div class="col-xs-12 col-sm-6 no-margin">
                     <ul class="right">
                         @if (User.IsInRole("Nhân viên") || User.IsInRole("Quản trị viên"))
                         {
-                            <li><a href="@Url.Action("Index", "Admin")"  class="btn doimau" style="padding: 9px 22px 9px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold">Trang quản trị</a></li>
+                            <li><a href="@Url.Action("Index", "Admin")" class="btn doimau" style="padding: 8px 22px 7px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold"><img src="~/images/icon/admin.png" style="border-radius:50%;width:20px; height:20px"/> Trang quản trị</a></li>
                         }
                         @if (!Request.IsAuthenticated)
                         {
                             <li class="dropdown">
-                                <a class="dropdown-toggle btn doimau" data-toggle="dropdown" href="#user-cp" style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold">
+                                <a  href="@Url.Action("Authentication", "Account")" class="btn" style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold">
+                                    <img src="~/images/icon/sig-up.png" style="border-radius:50%;width:20px; height:20px" /> Đăng ký
+                                </a>
+                                @*<a class="dropdown-toggle btn doimau" data-toggle="dropdown" href="#user-cp" style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold">
                                     Đăng ký
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Authentication", "Account")">Đăng kí làm khách hàng </a></li>
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("RegisterB2B", "Account")">Đăng ký làm nhà cung cấp</a></li>
-                                </ul>
+                                </ul>*@
                             </li>
-                            <li><a href="@Url.Action("Authentication", "Account")" class="btn doimau" style="padding: 10px 22px 10px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold">
-                                    Đăng nhập
+                            <li>
+                                <a href="@Url.Action("Authentication", "Account")" class="btn doimau" style="padding: 9px 22px 9px 22px;border-radius:50px;background-color:#34495E;border:none;color:white;font-weight:bold">
+                                    <img src="~/images/icon/Login-128.png" style="border-radius:50%;width:20px; height:20px" /> Đăng nhập
                                 </a>
                             </li>
                         }
@@ -85,18 +89,19 @@
                                 <a class="dropdown-toggle btn doimau" data-toggle="dropdown" href="#user-cp" style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold">
                                     @if (Session["Avatar"] != null)
                                     {
-                                        <img src="@Url.Content("~/images/avatars/")@Session["Avatar"].ToString()" alt="avatar" style="border-radius:50%;width:20px;" /> 
+                                        <img src="@Url.Content("~/images/avatars/")@Session["Avatar"].ToString()" style="border-radius:50%;width:20px; height:20px" />
                                         @Session["Name"]
                                     }
-                                    else { @User.Identity.Name}
+                                    else
+                                    { <img src="~/images/avatars/noavatar.jpg" style="border-radius:50%;width:20px; height:22px" />  @User.Identity.Name}
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Manage", "Account")">Cài đặt mật khẩu</a></li>
+                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Manage", "Account")"><img src="~/images/icon/setting.png" style="border-radius:50%;width:20px; height:20px" /> Cài đặt mật khẩu</a></li>
                                     @if (User.IsInRole("Khách hàng") || User.IsInRole("Quản trị viên") || User.IsInRole("Nhân viên"))
                                     {
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("EditInfo", "Account")">Thông tin cá nhân</a></li>
-                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Xemdonhang", "Home", new { maKH = User.Identity.GetUserId() })">Xem đơn hàng</a></li>
-                                        <li><a href="@Url.Action("LogOut", "Account")" style="color: crimson">Đăng xuất</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("EditInfo", "Account")"><img src="~/images/icon/profile.png" style="border-radius:50%;width:20px; height:20px" /> Thông tin cá nhân</a></li>
+                                        <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Xemdonhang", "Home", new { maKH = User.Identity.GetUserId() })"><img src="~/images/icon/purchase-order-xxl.png" style="border-radius:50%;width:20px; height:20px" /> Xem đơn hàng</a></li>
+                                        <li><a href="@Url.Action("LogOut", "Account")" style="color: crimson"> <img src="~/images/icon/exit.png" style="border-radius:50%;width:20px; height:20px" />Đăng xuất</a></li>
 
                                     }
                                     @if (User.IsInRole("Nhà cung cấp"))
@@ -127,11 +132,11 @@
                     <div class="container">
                         <div class="breadcrumb-nav-holder minimal">
                             <ul>
-                                
+
                                 <li class="breadcrumb-item">
                                     <a href="@Url.Action("Index","Home")">Trang chủ</a>
                                 </li>
-                                
+
                                 <li class="breadcrumb-item current">
                                     <a href="#">@ViewBag.Title</a>
                                 </li>
@@ -146,15 +151,25 @@
         <div>
             @RenderBody()
         </div>
-        
+
         <!-- ============================================================= FOOTER ============================================================= -->
         <footer id="footer" class="color-bg" style="padding-top:10px">
             <div class="sub-form-row" style="">
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-6">
-                            <span class="fa fa-envelope-o h4 no-margin" aria-hidden="true" style="padding-right: 10px"> anhtuan96a8@gmail.com </span>
-                            <span class="fa fa-phone h4 no-margin" aria-hidden="true"> 0982114043</span>
+                            <p class="h4 no-margin text-danger"><img src="~/images/icon/shipfree.png" style="border-radius:40%;width:40px; height:40px" /> <span style="color:black">Free ship</span> tất cả các hóa đơn trên <span style="color:black">500k</span> và tính phí <span style="color:black">30k</span> với các</p>
+                            <p class="h4 no-margin text-danger" style="padding-left: 45px"> hóa đơn còn lại</p>
+                            <p class="h4 no-margin" aria-hidden="true"><img src="~/images/icon/hour-open.png" style="border-radius:40%;width:40px; height:40px" /> Mở cửa: Tất cả các ngày trong tuần </p>
+                            <p class="h4 no-margin" style="padding-left: 143px">Từ <span class="text-info">8:00AM</span> đến<span class="text-info"> 21:00PM</span></p>
+                            <br />
+                            <br />
+                            <br />
+                            <p class="h3 no-margin text-danger  animated infinite bounce" aria-hidden="true"><img src="~/images/icon/phone-icon.png" style="border-radius:50%;width:40px; height:40px;" /> Hotline : 0982114043</p>
+                            <p class="h3 no-margin text-info" aria-hidden="true"><img src="~/images/icon/email.png" style="border-radius:50%;width:40px; height:40px" /> anhtuan96a8@gmail.com </p>
+                            <p class="h3 no-margin" aria-hidden="true"><img src="~/images/icon/address.png" style="border-radius:50%;width:40px; height:40px" /> Địa chỉ : Số 51 Ngõ 279/49 Hoàng Mai Hà Nội </p>
+
+
                         </div>
                         <div class="mapouter col-sm-6">
                             <div class="gmap_canvas"><iframe width="570" height="300" id="gmap_canvas" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7450.17369089254!2d105.85271680188045!3d20.989155611306895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac13ff250d23%3A0x7aa5bd7940902be!2zTmfDoWNoIDI3OS80OSBIb8OgbmcgTWFpLCBIb8OgbmcgVsSDbiBUaOG7pSwgSGFpIELDoCBUcsawbmcsIEjDoCBO4buZaSwgVmlldG5hbQ!5e0!3m2!1sen!2s!4v1555964926371!5m2!1sen!2s" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div>
@@ -175,7 +190,7 @@
                             </style>
                         </div>
                     </div>
-                    
+
                 </div><!-- /.container -->
             </div><!-- /.sub-form-row -->
             <div class="copyright-bar">
@@ -199,6 +214,8 @@
             </div><!-- /.copyright-bar -->
         </footer><!-- /#footer -->
         <!-- ============================================================= FOOTER : END ============================================================= -->
+
+        @Html.Partial("_ChatBot")
     </div><!-- /.wrapper -->
    
 

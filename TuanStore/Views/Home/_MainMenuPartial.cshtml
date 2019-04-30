@@ -16,16 +16,38 @@
                     @foreach (var item in Model)
                     {
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">@item.LoaiSP.TenLoai</a>
+                            <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown">
+                                @if (item.LoaiSP.TenLoai == "Đồng hồ nam")
+                                {
+                                    <img src="~/images/icon/menwatch.jpg" style="border-radius:50%;width:30px; height:30px" />
+                                }
+                                else if (item.LoaiSP.TenLoai == "Đồng hồ nữ")
+                                {
+                                    <img src="~/images/icon/watch.jpg" style="border-radius:50%;width:30px; height:30px" />
+                                }
+                                else if (item.LoaiSP.TenLoai == "Đồng hồ đôi")
+                                {
+                                    <img src="~/images/icon/couplewatch.png" style="border-radius:50%;width:30px; height:30px;background-color:white" />
+                                }
+                                else if (item.LoaiSP.TenLoai == "Đồng hồ thông minh")
+                                {
+                                    <img src="~/images/icon/martwatch.png" style="border-radius:50%;width:30px; height:30px;background-color:white" />
+                                }
+                                else
+                                {
+                                    <img src="~/images/icon/phukien.png" style="border-radius:50%;width:30px; height:30px" />
+                                }
+                                @item.LoaiSP.TenLoai
+                            </a>
                             <ul class="dropdown-menu">
-                                @foreach(var i in item.HangSX)
+                                @foreach (var i in item.HangSX)
                                 {
                                     <li><a href="@Url.Action("AdvancedSearchView", "Search", new { loai = item.LoaiSP.MaLoai, hangsx = i.HangSX })">@i.TenHang</a></li>
                                 }
                             </ul>
                         </li>
                     }
-                   
+                    <li><a href=""><img src="~/images/icon/icon-telephone.png" style="border-radius:50%;width:30px; height:30px;background-color:white" />Tin tức</a></li>
                 </ul><!-- /.navbar-nav -->
             </div><!-- /.navbar-collapse -->
         </div><!-- /.navbar -->
