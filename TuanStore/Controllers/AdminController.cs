@@ -89,6 +89,19 @@ namespace TuanStore.Controllers
             spm.DeleteSP(id);
             return TimSP(null,null,null);
         }
+        public ActionResult DeleteSPByName(string name)
+        {
+            if (name == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            SanPhamModel spm = new SanPhamModel();
+            DeleteAnh(spm.FindById(name).AnhDaiDien);
+            DeleteAnh(spm.FindById(name).AnhNen);
+            DeleteAnh(spm.FindById(name).AnhKhac);
+            spm.DeleteSP(name);
+            return RedirectToAction("SanPham");
+        }
 
         [AuthLog(Roles = "Quản trị viên,Nhân viên")]
         public bool UploadAnh(HttpPostedFileBase file,string tenfile)
@@ -253,6 +266,66 @@ namespace TuanStore.Controllers
                     DownloadAnh(values[5], masp + "1");
                     DownloadAnh(values[5], masp + "2");
                     DownloadAnh(values[5], masp + "3");
+                }
+            }
+            return RedirectToAction("SanPham");
+        }
+        public ActionResult DeleteSPLazada()
+        {
+            using (TextFieldParser parser = new TextFieldParser(Server.MapPath("~/data/database-lazada.csv")))
+            {
+                parser.TextFieldType = FieldType.Delimited;
+                parser.SetDelimiters(",");
+                while (!parser.EndOfData)
+                {
+                    string[] values = parser.ReadFields();
+                    if (values[0].Contains("Link")) continue;
+                    var x = values[1];
+                    SanPhamModel spm = new SanPhamModel();
+                    DeleteAnh(spm.FindByName(values[1]).AnhDaiDien);
+                    DeleteAnh(spm.FindByName(values[1]).AnhNen);
+                    DeleteAnh(spm.FindByName(values[1]).AnhKhac);
+                    spm.DeleteSPName(values[1]);
+
+                }
+            }
+            return RedirectToAction("SanPham");
+
+        }
+        public ActionResult AddDataLazada()
+        {
+            SanPhamModel spm = new SanPhamModel();
+            using (TextFieldParser parser = new TextFieldParser(Server.MapPath("~/data/database-lazada.csv")))
+            {
+                parser.TextFieldType = FieldType.Delimited;
+                parser.SetDelimiters(",");
+                while (!parser.EndOfData)
+                {
+                    string[] values = parser.ReadFields();
+                    if (values[0].Contains("Link")) continue;
+                    //Xu ly hang san xuat
+
+                    //Create SanPham
+                    SanPham sp = new SanPham();
+                    sp.TenSP = values[1];
+
+                    sp.HangSX = values[2];
+                    sp.LoaiSP = values[3];
+                    sp.XuatXu = "Việt Nam";
+                    sp.GiaGoc = decimal.Parse(values[4]);
+                    sp.GiaTien = decimal.Parse(values[4]);
+
+                    //IEnumerable<string> words = values[4].Split().Take(30);
+                    //sp.GioiThieu = words.ToString();
+                    //sp.MoTa = values[4];
+                    sp.SoLuong = 20;
+                    sp.ishot = false;
+                    sp.isnew = false;
+
+                    string masp = spm.ThemSP(sp);
+                    DownloadAnh(values[5], masp + "1");
+                    DownloadAnh(values[6], masp + "2");
+                    DownloadAnh(values[7], masp + "3");
                 }
             }
             return RedirectToAction("SanPham");

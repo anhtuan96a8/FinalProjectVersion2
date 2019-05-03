@@ -75,7 +75,11 @@ namespace TuanStore.Models
         {
             return db.SanPhams.Find(id);
         }
-
+        internal SanPham FindByName(string name)
+        {
+            var sp = (from p in db.SanPhams where (p.TenSP == name) select p).FirstOrDefault();
+            return sp;
+        }
         internal IQueryable<HangSanXuat> GetAllHangSX()
         {
             return db.HangSanXuats;
@@ -122,7 +126,12 @@ namespace TuanStore.Models
             db.SanPhams.Remove(sanpham);
             db.SaveChanges();
         }
-
+        internal void DeleteSPName(string name)
+        {
+            var sp = (from p in db.SanPhams where (p.TenSP == name) select p).FirstOrDefault();
+            db.SanPhams.Remove(sp);
+            db.SaveChanges();
+        }
         internal string ThemSP(SanPham sanpham)
         {
             sanpham.MaSP = TaoMa();
