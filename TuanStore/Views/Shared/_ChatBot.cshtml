@@ -12,28 +12,7 @@
                     </div>
                 </div>
                 <div id="messagebody" class="panel-body msg_container_base">
-                    <div class="row msg_container base_sent">
-                        <div class="col-md-10 col-xs-10">
-                            <div class="messages msg_sent">
-                                <p>Hi</p>
-                                <time datetime="2009-11-13T20:00">Admininstrator • Yesterday 10:05:22</time>
-                            </div>
-                        </div>
-                        <div class="col-md-2 col-xs-2 avatar-chatbot">
-                            <img src="https://cheme.mit.edu/wp-content/uploads/2017/01/stephanopoulosgeorge-431x400.jpg" class="chatimg img-responsive ">
-                        </div>
-                    </div>
-                    <div class="row msg_container base_receive">
-                        <div class="col-md-2 col-xs-2 avatar-chatbot">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Rajesh_Gopinathan.jpg/220px-Rajesh_Gopinathan.jpg" class="chatimg img-responsive ">
-                        </div>
-                        <div class="col-md-10 col-xs-10">
-                            <div class="messages msg_receive">
-                                <p>Hi sir,</p>
-                                <time datetime="2009-11-13T20:00">Rajesh M • Yesterday 10:05:28</time>
-                            </div>
-                        </div>
-                    </div>
+                    
 
                 </div>
             </div>
@@ -254,7 +233,7 @@
         $.ajax({
                 url: "/Comment/AnswerBot",
                 type: 'GET',
-                data: { content_chat: chat },
+                data: { chat : chat },
                 contentType: "application/json; charset=utf-8",
                 success: function (result) {
                     var body2 = '<div class="row msg_container base_receive">' +

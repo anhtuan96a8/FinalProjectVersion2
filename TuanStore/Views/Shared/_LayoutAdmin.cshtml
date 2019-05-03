@@ -48,19 +48,19 @@
                                         <img src="@Url.Content("~/images/avatars/")@Session["Avatar"].ToString()" alt="avatar" style="border-radius:50%;width:20px; height:20px" /> 
                                         @Session["Name"]
                                     }
-                                    else { <i class="glyphicon glyphicon-user"></i><span class="hidden-sm hidden-xs"> @User.Identity.Name </span>}
+                                    else { <img src="~/images/avatars/noavatar.jpg" style="border-radius:50%;width:20px; height:22px" /><span class="hidden-sm hidden-xs"> @User.Identity.Name </span>}
                     </span>
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a href="@Url.Action("EditInfo", "Account")">Hồ sơ cá nhân</a></li>
+                    <li><a href="@Url.Action("EditInfo", "Account")"> <img src="~/images/icon/profile.png" width="20" height="20" />Hồ sơ cá nhân</a></li>
                     <li class="divider"></li>
-                    <li><a href="@Url.Action("LogOut", "Account")">Đăng xuất</a></li>
+                    <li><a href="@Url.Action("LogOut", "Account")"> <img src="~/images/icon/exit.png" width="20" height="20"  />Đăng xuất</a></li>
                 </ul>
             </div>
             <!-- user dropdown ends -->
             <ul class="collapse navbar-collapse nav navbar-nav top-menu" style="margin-top:7px">
-                <li><a class="btn btn-default" href="@Url.Action("Index", "Home")" style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#34495E;color:red;font-weight:bold;border: 2px solid black"><img src="~/images/icon/logo.svg" width="20" height="20" alt="Alternate Text" /> Về trang chủ</a></li>
+                <li><a class="btn btn-default" href="@Url.Action("Index", "Home")" style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#34495E;color:red;font-weight:bold;border: 2px solid black"><img src="~/images/icon/logo.svg" width="20" height="20"  /> Về trang chủ</a></li>
                 
             </ul>
         </div>
@@ -90,30 +90,19 @@
                             </li>
                             @if (User.IsInRole("Quản trị viên"))
                             {
-                <li>
-                    <a href="#"><i class="glyphicon glyphicon-user red"></i><span style="font-weight: bold; color: #ff0000;"> Khu vực thành viên</span></a>
-                    <ul class="nav nav-pills nav-stacked">
-                        <li><a href="@Url.Action("Index", "Account")">Danh sách ngươi dùng</a></li>
-                        <li><a href="@Url.Action("Index", "Roles")">Danh sách chức vụ</a></li>
-                    </ul>
-                </li>
-            }
-                            <li>
-                                <a href="#"><i class="glyphicon glyphicon-plus-sign red"></i><span style="font-weight: bold; color: #ff0000;">Nhà cung cấp</span></a>
-                                <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="@Url.Action("Index","NhaCungCap")">Danh sách nhà cung cấp</a></li>
-                                    <li><a href="/HopDong">Hợp đồng</a></li>
-                                    @*<li><a href="@Url.Action("Index","SanPhamCanMua")">Đấu giá hợp đồng cung cấp</a></li>*@
-                                    <li><a href="@Url.Action("Index","DanhSachDK")">Danh sách đăng ký cung cấp</a></li>
-                                </ul>
-                            </li>
-
-
+                                <li>
+                                    <a href="#"><i class="glyphicon glyphicon-user red"></i><span style="font-weight: bold; color: #ff0000;"> Khu vực thành viên</span></a>
+                                    <ul class="nav nav-pills nav-stacked">
+                                        <li><a href="@Url.Action("Index", "Account")">Danh sách người dùng</a></li>
+                                        <li><a href="@Url.Action("Index", "Roles")">Danh sách chức vụ</a></li>
+                                    </ul>
+                                </li>
+                            }
+                            
                             <li>
                                 <a href="#"><i class="glyphicon glyphicon-briefcase red"></i><span style="font-weight: bold; color: #ff0000;">Đơn hàng - Hóa đơn</span></a>
                                 <ul class="nav nav-pills nav-stacked">
                                     <li><a href="@Url.Action("Index","Donhang")">Đơn hàng của khách</a></li>
-                                    <li><a href="@Url.Action("TinhTrangGiaoHang","HopDong")">Đơn hàng của đối tác</a></li>
                                 </ul>
                             </li>
 
@@ -124,21 +113,15 @@
                                     <li><a href="@Url.Action("Index", "Comment")">Tư vấn trực tuyến</a></li>
                                 </ul>
                             </li>
-
+                        @if (User.IsInRole("Quản trị viên"))
+                        {
                             <li>
                                 <a href="#"><i class="glyphicon glyphicon-list-alt red"></i><span style="font-weight: bold; color: #ff0000;"> Khu vực thống kê</span></a>
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="@Url.Action("ThongKeDoanhThu","ThongKe")">Doanh thu hàng tháng</a></li>
+                                    <li><a href="@Url.Action("ThongKeDoanhThu", "ThongKe")">Doanh thu hàng tháng</a></li>
                                 </ul>
                             </li>
-                            <li>
-                                    <!--Them B2B-->
-                                    <a href="#"><i class="glyphicon glyphicon-gift red"></i><span style="font-weight: bold; color:#ff0000"> Khu vực B2B</span></a>
-                                    <ul class="nav nav-pills nav-stacked">
-                                        <li><a href="@Url.Action("GetNhaDoiTac", "AdminB2B")">Danh sách các Nhà Đối Tác</a></li>
-                                        <li><a href="@Url.Action("Theodoithanhtoan", "AdminB2B")">Quan lí thanh toán</a></li>
-                                    </ul>
-                                </li>
+                        }
                                 @*<li>
                                     <a href="#"><i class="glyphicon glyphicon-cog red"></i><span style="font-weight: bold; color: #ff0000;">Cài đặt</span></a>
                                     <ul class="nav nav-pills nav-stacked">

@@ -3,7 +3,6 @@
     <thead>
         <tr>
             <th>Quyền lực</th>
-            <th>Mô tả</th>
             <th>Hành động</th>
         </tr>
     </thead>
@@ -12,12 +11,15 @@
         {
             <tr>
                 <td class="center">@item.Name</td>
-                <td class="center"></td>
                 <td class="center">
-                    <a class="btn btn-info" href="@Url.Action("EditKhuyenMai", "KhuyenMai", new { id = item.Id })">
-                        <i class="glyphicon glyphicon-edit icon-white"></i>
-                        Sửa
-                    </a>
+                    @if (item.Id != "dc481379-dfae-4d9e-93d8-dce55add3258")
+                    {
+                        <a class="btn btn-info" href="@Url.Action("DeleteRole", "Roles", new { roleId = item.Id })">
+                            <i class="glyphicon glyphicon-trash icon-white" style="color:red"></i>
+                            Xóa
+                        </a>
+                    }
+
                 </td>
             </tr>
         }

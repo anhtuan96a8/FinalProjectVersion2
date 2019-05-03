@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using System.IO;
+using Microsoft.VisualBasic.FileIO;
 
 
 namespace TuanStore.Controllers
@@ -190,6 +191,71 @@ namespace TuanStore.Controllers
             }
             return false;
         }
+        public bool DownloadAnh(string link, string filename)
+        {
+            string extend = ".jpg";
+            using (WebClient webClient = new WebClient())
+            {
+                webClient.DownloadFile(link, Server.MapPath("~/images/products/" + filename + extend));
+                return true;
+            }
+        }
+        public ActionResult AddData()
+        {
+            SanPhamModel spm = new SanPhamModel();
+            using (TextFieldParser parser = new TextFieldParser(Server.MapPath("~/data/database-dongho.csv")))
+            {
+                parser.TextFieldType = FieldType.Delimited;
+                parser.SetDelimiters(",");
+                while (!parser.EndOfData)
+                {
+                    string[] values = parser.ReadFields();
+                    if (values[0].Contains("Link")) continue;
+                    //Xu ly hang san xuat
+                    string hsx = "";
+                    if (values[2].Equals("Samsung"))
+                        hsx = "30312";
+                    else if (values[2].Equals("Apple"))
+                        hsx = "52018";
+                    else if (values[2].Equals("Huawei"))
+                        hsx = "07203";
+                    else if (values[2].Equals("Xiaomi"))
+                        hsx = "35225";
+                    else if (values[2].Equals("Garmin"))
+                        hsx = "57235";
+                    else if (values[2].Equals("Fitbit"))
+                        hsx = "26062";
+                    else if (values[2].Equals("Zeblaze"))
+                        hsx = "87146";
+                    else if (values[2].Equals("Sinophy"))
+                        hsx = "87146";
+                    else
+                    {
+                        hsx = values[2].Substring(0, 5).ToUpper();
+                    }
+                    //Create SanPham
+                    SanPham sp = new SanPham();
+                    sp.TenSP = values[1];
+                    sp.LoaiSP = "70443";
+                    sp.HangSX = hsx;
+                    sp.XuatXu = "Việt Nam";
+                    sp.GiaGoc = decimal.Parse(values[3]);
+                    sp.GiaTien = decimal.Parse(values[3]);
 
+                    IEnumerable<string> words = values[4].Split().Take(30);
+                    sp.GioiThieu = words.ToString();
+                    sp.MoTa = values[4];
+                    sp.SoLuong = 20;
+                    sp.ishot = false;
+                    sp.isnew = false;
+
+                    string masp = spm.ThemSP(sp);
+                    DownloadAnh(values[5], masp + "1");
+                    DownloadAnh(values[5], masp + "2");
+                    DownloadAnh(values[5], masp + "3");
+                }
+            }
+            return RedirectToAction("SanPham");
+        }
     }
 }

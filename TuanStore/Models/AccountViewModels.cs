@@ -84,45 +84,7 @@ namespace TuanStore.Models
 
         
     }
-
-    public class Register2B2ViewModel
-    {
-        [Required]
-        [Display(Name = "Tên đăng nhập")]
-        public string UserName { get; set; }
-
-        [Required]
-        [Display(Name = "Tên nhà cung cấp")]
-        public string TenNCC { get; set; }
-
-        [Required]
-        [Display(Name = "Địa chỉ")]
-        public string DiaChi { get; set; }
-
-        [Required]
-        [MaxLength(11)]
-        [Display(Name = "Điện thoại")]
-        public string SDT_NCC { get; set; }
-
-        [Required]
-        [DataType(DataType.EmailAddress)]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
-
-
-        [Required]
-        [StringLength(100, ErrorMessage = "{0} phải ít nhất {2} ký tự.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [Display(Name = "Mật khẩu")]
-        public string Password { get; set; }
-
-        [DataType(DataType.Password)]
-        [Display(Name = "Xác nhận mật khẩu")]
-        [Compare("Password", ErrorMessage = "Mật khẩu không trùng khớp")]
-        public string ConfirmPassword { get; set; }
-
-
-    }
+    
     public class ForgotPasswordViewModel
     {
         [Required]
@@ -235,43 +197,5 @@ namespace TuanStore.Models
         }
 
     }
-
-    public class EditInfo2B2ViewModel
-    {
-
-        public EditInfo2B2ViewModel()
-        { }
-
-        public EditInfo2B2ViewModel(NhaCungCap nhaCungCap)
-        {
-            // TODO: Complete member initialization
-            this.MaNCC = nhaCungCap.MaNCC;
-            this.TenNCC = nhaCungCap.TenNCC;
-            this.DiaChi = nhaCungCap.DiaChi;
-            this.SDT_NCC = nhaCungCap.SDT_NCC;
-            this.Email = nhaCungCap.Email;
-        }
-
-        [Required]
-        [Display(Name = "MaNCC")]
-        public string MaNCC { get; set; }
-
-        [Required]
-        [Display(Name = "Tên nhà cung cấp")]
-        public string TenNCC { get; set; }
-
-        [Required]
-        [Display(Name = "Địa chỉ")]
-        public string DiaChi { get; set; }
-
-        [Required]
-        [MaxLength(11)]
-        [Display(Name = "Điện thoại")]
-        public string SDT_NCC { get; set; }
-
-        [Required]
-        [Display(Name = "Email")]
-        [DataType(DataType.EmailAddress)]
-        public string Email { get; set; }
-    }
+    
 }

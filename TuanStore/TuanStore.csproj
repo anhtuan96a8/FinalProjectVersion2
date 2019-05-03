@@ -92,6 +92,7 @@
     <Reference Include="Microsoft.Owin.Security.Twitter">
       <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -201,13 +202,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\B2B\AdminB2BController.cs" />
-    <Compile Include="Controllers\B2B\AuctionController.cs" />
-    <Compile Include="Controllers\B2B\DanhSachDKController.cs" />
-    <Compile Include="Controllers\B2B\HopDongController.cs" />
-    <Compile Include="Controllers\B2B\NhaCungCapController.cs" />
     <Compile Include="Controllers\ThongKeController.cs" />
-    <Compile Include="Controllers\B2B\SanPhamCanMuaController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\CustomFilterRole.cs" />
     <Compile Include="Controllers\DonhangController.cs" />
@@ -216,18 +211,14 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhuyenMaiController.cs" />
     <Compile Include="Controllers\LoaiSPController.cs" />
-    <Compile Include="Controllers\OauthController.cs" />
-    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SanPhamController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SideBarController.cs" />
-    <Compile Include="Controllers\XacthucController.cs" />
     <Compile Include="Controllers\XuligiohangController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Access_token.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AspNetRole.cs">
       <DependentUpon>ECModel.tt</DependentUpon>
@@ -241,15 +232,6 @@
     <Compile Include="Models\AspNetUserLogin.cs">
       <DependentUpon>ECModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\B2B\Classsupport.cs" />
-    <Compile Include="Models\B2B\ConfigAPIModel.cs" />
-    <Compile Include="Models\B2B\DangkisanphamModel.cs" />
-    <Compile Include="Models\B2B\DoitacModel.cs" />
-    <Compile Include="Models\B2B\DSDangKyModel.cs" />
-    <Compile Include="Models\B2B\HopdongNCCModel.cs" />
-    <Compile Include="Models\B2B\NhaCungCapModel.cs" />
-    <Compile Include="Models\B2B\SanPhamCanMuaAdd.cs" />
-    <Compile Include="Models\B2B\SanphamcanmuaModel.cs" />
     <Compile Include="Models\BinhLuan.cs">
       <DependentUpon>ECModel.tt</DependentUpon>
     </Compile>
@@ -261,12 +243,6 @@
     <Compile Include="Models\Chitietgiohang.cs" />
     <Compile Include="Models\ClassPartial\SanphamPartial.cs" />
     <Compile Include="Models\CommentModel.cs" />
-    <Compile Include="Models\ConfigAPI.cs">
-      <DependentUpon>ECModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DanhsachdangkisanphamNCC.cs">
-      <DependentUpon>ECModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\DonHangKH.cs">
       <DependentUpon>ECModel.tt</DependentUpon>
     </Compile>
@@ -298,9 +274,6 @@
       <DependentUpon>ECModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HangSanXuatModel.cs" />
-    <Compile Include="Models\HopDongNCC.cs">
-      <DependentUpon>ECModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\KhuyenMai.cs">
       <DependentUpon>ECModel.tt</DependentUpon>
@@ -315,24 +288,13 @@
     <Compile Include="Models\MainMenuModel.cs" />
     <Compile Include="Models\ManagerObiect.cs" />
     <Compile Include="Models\NGANLUONG.cs" />
-    <Compile Include="Models\NhaCungCap.cs">
-      <DependentUpon>ECModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Oauth.cs">
-      <DependentUpon>ECModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Request_token.cs" />
     <Compile Include="Models\SanPham.cs">
-      <DependentUpon>ECModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Sanphamcanmua.cs">
       <DependentUpon>ECModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SanPhamKhuyenMai.cs">
       <DependentUpon>ECModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SanPhamModel.cs" />
-    <Compile Include="Models\Shipping.cs" />
     <Compile Include="Models\Trackingaction.cs">
       <DependentUpon>ECModel.tt</DependentUpon>
     </Compile>
@@ -660,30 +622,10 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="images\accept.png" />
-    <Content Include="images\address.png" />
-    <Content Include="images\admin.png" />
-    <Content Include="images\avatars\3a92095d-9524-4310-91db-e4b33f34d077.jpg" />
-    <Content Include="images\avatars\912a7a6d-b24d-40e7-bfed-726fb822b99d.jpg" />
+    <Content Include="images\avatars\431841.jpg" />
     <Content Include="images\avatars\noavatar.jpg" />
-    <Content Include="images\background-header.jpg" />
     <Content Include="images\banners\1.jpg" />
     <Content Include="images\banners\banner.jpg" />
-    <Content Include="images\cancle.png" />
-    <Content Include="images\cartphieu.jpg" />
-    <Content Include="images\circuit-lock.jpg" />
-    <Content Include="images\couplewatch.png" />
-    <Content Include="images\discount.png" />
-    <Content Include="images\discountitem.png" />
-    <Content Include="images\email.png" />
-    <Content Include="images\exit.png" />
-    <Content Include="images\favicon.png" />
-    <Content Include="images\faviconadmin.png" />
-    <Content Include="images\freeship.png" />
-    <Content Include="images\hoitem.png" />
-    <Content Include="images\hour-open.png" />
-    <Content Include="images\icon-cart.jpg" />
-    <Content Include="images\icon-telephone.png" />
     <Content Include="images\icon\accept.png" />
     <Content Include="images\icon\address.png" />
     <Content Include="images\icon\admin.png" />
@@ -727,16 +669,6 @@
     <Content Include="images\icon\view.png" />
     <Content Include="images\icon\viewdetail.png" />
     <Content Include="images\icon\watch.jpg" />
-    <Content Include="images\Login-128.png" />
-    <Content Include="images\logo.png" />
-    <Content Include="images\logo.svg" />
-    <Content Include="images\map.jpg" />
-    <Content Include="images\martwatch.png" />
-    <Content Include="images\menwatch.jpg" />
-    <Content Include="images\mycart.jpg" />
-    <Content Include="images\newitem.jpg" />
-    <Content Include="images\phone-icon.png" />
-    <Content Include="images\phukien.png" />
     <Content Include="images\products\016131.jpg" />
     <Content Include="images\products\021151.jpg" />
     <Content Include="images\products\148841.jpg" />
@@ -781,20 +713,8 @@
     <Content Include="images\products\TN004.jpg" />
     <Content Include="images\products\TN005.jpg" />
     <Content Include="images\products\TN006.jpg" />
-    <Content Include="images\profile.png" />
-    <Content Include="images\purchase-order-xxl.png" />
-    <Content Include="images\pushdata.png" />
-    <Content Include="images\save.jpg" />
-    <Content Include="images\setting.png" />
-    <Content Include="images\shipfree.png" />
-    <Content Include="images\shipping.jpg" />
-    <Content Include="images\sig-up.png" />
-    <Content Include="images\view.png" />
-    <Content Include="images\viewdetail.png" />
-    <Content Include="images\watch.jpg" />
     <Content Include="JqueryCountdown timer\jquery.countdown.js" />
     <Content Include="JqueryCountdown timer\jquery.countdown.min.js" />
-    <Content Include="js\B2BAdmin.js" />
     <Content Include="js\excanvas.min.js" />
     <Content Include="js\flot-data.js" />
     <Content Include="js\jquery.flot.js" />
@@ -853,8 +773,8 @@
     <Content Include="Models\ECModel.edmx.diagram">
       <DependentUpon>ECModel.edmx</DependentUpon>
     </Content>
-    <Content Include="images\logo.psd" />
     <Content Include="images\icon\logo.psd" />
+    <Content Include="data\database-dongho.csv" />
     <None Include="Properties\PublishProfiles\NguyenAnhTuan.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
@@ -1893,7 +1813,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
@@ -1913,7 +1832,6 @@
     <Content Include="Views\_ViewStart - Copy.cshtml" />
     <Content Include="Views\Comment\_CommentListPartial.cshtml" />
     <Content Include="Views\Comment\_CommentFormPartial.cshtml" />
-    <Content Include="Views\Xacthuc\authenticate.cshtml" />
     <Content Include="Views\Home\login.cshtml" />
     <Content Include="Views\Shared\_LayoutFrontEnd.cshtml" />
     <Content Include="template\assets\css\fonts\fontawesome-webfont.eot" />
@@ -2261,17 +2179,11 @@
     <Content Include="Views\GiaoDien\General.cshtml" />
     <Content Include="Views\SanPham\_PartialSanPhamLienQuan.cshtml" />
     <Content Include="Views\Comment\_ChilComment.cshtml" />
-    <Content Include="Views\Auction\Index.cshtml" />
-    <Content Include="Views\Shared\_LayoutB2B.cshtml" />
-    <Content Include="Views\Auction\ProductFilterB2B.cshtml" />
-    <Content Include="Views\Auction\Danhsachcanmua.cshtml" />
-    <Content Include="Views\Auction\ChitietAuction.cshtml" />
     <Content Include="Views\Account\Index.cshtml">
       <SubType>Code</SubType>
     </Content>
     <Content Include="Views\Account\UserList.cshtml" />
     <Content Include="Views\Shared\AuthorizeFailed.cshtml" />
-    <Content Include="Views\Roles\CreateRole.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
     <Content Include="Views\Roles\Rolelist.cshtml" />
     <Content Include="Views\Account\UserDetail.cshtml" />
@@ -2283,37 +2195,6 @@
     <Content Include="Views\Donhang\Index.cshtml" />
     <Content Include="Views\Donhang\DonHangPartial.cshtml" />
     <Content Include="Views\Donhang\DonHangDetail.cshtml" />
-    <Content Include="Views\DonHangNCC\DonHangDetail.cshtml" />
-    <Content Include="Views\DonHangNCC\DonHangPartial.cshtml" />
-    <Content Include="Views\DonHangNCC\Index.cshtml" />
-    <Content Include="Views\Auction\ChitietSanphamAuction.cshtml" />
-    <Content Include="Views\Auction\ModalRegister.cshtml" />
-    <Content Include="Views\Auction\DanhsachNCCDK.cshtml" />
-    <Content Include="Views\NhaCungCap\Index.cshtml" />
-    <Content Include="Views\NhaCungCap\NCCPartial.cshtml" />
-    <Content Include="Views\HopDong\Index.cshtml" />
-    <Content Include="Views\HopDong\HopDongPartial.cshtml" />
-    <Content Include="Views\SanPhamCanMua\Index.cshtml" />
-    <Content Include="Views\SanPhamCanMua\SPCMPartial.cshtml" />
-    <Content Include="Views\SanPhamCanMua\EditSPCM.cshtml" />
-    <Content Include="Views\AdminB2B\Taohopdong.cshtml" />
-    <Content Include="Views\AdminB2B\ConfigAPI.cshtml" />
-    <Content Include="Views\AdminB2B\GetAccesstoken.cshtml" />
-    <Content Include="Views\AdminB2B\Laysoluongton.cshtml" />
-    <Content Include="Views\AdminB2B\GetOrders.cshtml" />
-    <Content Include="Views\AdminB2B\GetNhaDoiTac.cshtml" />
-    <Content Include="Views\AdminB2B\DoitacPartial.cshtml" />
-    <Content Include="Views\AdminB2B\XemXacNhanGiaoHang.cshtml" />
-    <Content Include="Views\AdminB2B\BasicParitial.cshtml" />
-    <Content Include="Views\AdminB2B\BasicOauthParitial.cshtml" />
-    <Content Include="Views\Account\RegisterB2B.cshtml" />
-    <Content Include="Views\Account\EditNCCInfo.cshtml" />
-    <Content Include="Views\DanhSachDK\Index.cshtml" />
-    <Content Include="Views\DanhSachDK\DSDKPartial.cshtml" />
-    <Content Include="Views\HopDong\TinhTrangGiaoHang.cshtml" />
-    <Content Include="Views\HopDong\TTGiaoHangPartial.cshtml" />
-    <Content Include="Views\AdminB2B\Theodoithanhtoan.cshtml" />
-    <Content Include="Views\HopDong\HopDongB2BPartial.cshtml" />
     <Content Include="Views\Account\ThongBao.cshtml" />
     <Content Include="Views\ThongKe\ThongKeDoanhThu.cshtml" />
     <Content Include="Views\ThongKe\TheoTime.cshtml" />

@@ -17,19 +17,20 @@ using System;
     using System.ComponentModel;
 
     public partial class LoaiSP
-{
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public LoaiSP()
     {
 
-        this.SanPhams = new HashSet<SanPham>();
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public LoaiSP()
+        {
 
-    }
-    [DisplayName("Mã Loại Sản Phẩm")]
-    public string MaLoai { get; set; }
-    [DisplayName("Tên Loại Sản Phẩm")]
-    public string TenLoai { get; set; }
+            this.SanPhams = new HashSet<SanPham>();
+
+        }
+
+
+        public string MaLoai { get; set; }
+        [DisplayName("Tên Loại Sản Phẩm")]
+       public string TenLoai { get; set; }
 
 
 

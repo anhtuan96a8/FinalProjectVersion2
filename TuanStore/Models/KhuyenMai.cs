@@ -15,7 +15,6 @@ namespace TuanStore.Models
 using System;
     using System.Collections.Generic;
     using System.ComponentModel;
-    using System.Web.Mvc;
 
     public partial class KhuyenMai
 {
@@ -27,23 +26,26 @@ using System;
         this.SanPhamKhuyenMais = new HashSet<SanPhamKhuyenMai>();
 
     }
-    [DisplayName("Mã khuyễn mãi")]
-    public string MaKM { get; set; }
-    [DisplayName("Ngày bắt đầu")]
-    public Nullable<System.DateTime> NgayBatDau { get; set; }
-    [DisplayName("Ngày kết thúc")]
-    public Nullable<System.DateTime> NgayKetThuc { get; set; }
-    [DisplayName("Nội dung")]
-    [AllowHtml]
-    public string NoiDung { get; set; }
-    [DisplayName("Tên chương trình")]
-    public string TenCT { get; set; }
-    [DisplayName("Ảnh chương trình")]
-    public string AnhCT { get; set; }
+
+
+        [DisplayName("Mã khuyễn mãi")]
+        public string MaKM { get; set; }
+        [DisplayName("Ngày bắt đầu")]
+        public Nullable<System.DateTime> NgayBatDau { get; set; }
+        [DisplayName("Ngày kết thúc")]
+        public Nullable<System.DateTime> NgayKetThuc { get; set; }
+        [DisplayName("Nội dung")]
+        public string NoiDung { get; set; }
+        [DisplayName("Tên chương trình")]
+        public string TenCT { get; set; }
+        [DisplayName("Ảnh chương trình")]
+        public string AnhCT { get; set; }
 
 
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<SanPhamKhuyenMai> SanPhamKhuyenMais { get; set; }
 

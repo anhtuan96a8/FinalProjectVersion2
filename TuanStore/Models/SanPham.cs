@@ -28,11 +28,7 @@ using System;
 
         this.ChiTietDonHangs = new HashSet<ChiTietDonHang>();
 
-        this.HopDongNCCs = new HashSet<HopDongNCC>();
-
         this.SanPhamKhuyenMais = new HashSet<SanPhamKhuyenMai>();
-
-        this.Sanphamcanmuas = new HashSet<Sanphamcanmua>();
 
     }
 
@@ -76,6 +72,7 @@ using System;
         public string ThongSoKyThuat { get; set; }
 
 
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<BinhLuan> BinhLuans { get; set; }
@@ -86,19 +83,11 @@ using System;
 
     public virtual HangSanXuat HangSanXuat { get; set; }
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<HopDongNCC> HopDongNCCs { get; set; }
-
     public virtual LoaiSP LoaiSP1 { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<SanPhamKhuyenMai> SanPhamKhuyenMais { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<Sanphamcanmua> Sanphamcanmuas { get; set; }
 
 }
 

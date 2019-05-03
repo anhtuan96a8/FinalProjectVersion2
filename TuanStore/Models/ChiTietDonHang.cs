@@ -18,18 +18,19 @@ using System;
 
     public partial class ChiTietDonHang
 {
-    [DisplayName("Mã đơn hàng")]
-    public string MaDH { get; set; }
 
-    public string MaSP { get; set; }
-    [DisplayName("Số Lượng")]
-    public Nullable<int> SoLuong { get; set; }
-    [DisplayName("Thành tiền")]
-    public Nullable<decimal> ThanhTien { get; set; }
+        [DisplayName("Mã đơn hàng")]
+        public string MaDH { get; set; }
+
+        public string MaSP { get; set; }
+        [DisplayName("Số Lượng")]
+        public Nullable<int> SoLuong { get; set; }
+        [DisplayName("Thành tiền")]
+        public Nullable<decimal> ThanhTien { get; set; }
 
 
 
-    public virtual DonHangKH DonHangKH { get; set; }
+        public virtual DonHangKH DonHangKH { get; set; }
 
     public virtual SanPham SanPham { get; set; }
 

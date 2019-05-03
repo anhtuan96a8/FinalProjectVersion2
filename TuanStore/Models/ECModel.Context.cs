@@ -44,17 +44,11 @@ public partial class Entities : DbContext
 
     public virtual DbSet<ChiTietDonHang> ChiTietDonHangs { get; set; }
 
-    public virtual DbSet<ConfigAPI> ConfigAPIs { get; set; }
-
-    public virtual DbSet<DanhsachdangkisanphamNCC> DanhsachdangkisanphamNCCs { get; set; }
-
     public virtual DbSet<DonHangKH> DonHangKHs { get; set; }
 
     public virtual DbSet<GiaoDien> GiaoDiens { get; set; }
 
     public virtual DbSet<HangSanXuat> HangSanXuats { get; set; }
-
-    public virtual DbSet<HopDongNCC> HopDongNCCs { get; set; }
 
     public virtual DbSet<KhuyenMai> KhuyenMais { get; set; }
 
@@ -62,13 +56,7 @@ public partial class Entities : DbContext
 
     public virtual DbSet<LoaiSP> LoaiSPs { get; set; }
 
-    public virtual DbSet<NhaCungCap> NhaCungCaps { get; set; }
-
-    public virtual DbSet<Oauth> Oauths { get; set; }
-
     public virtual DbSet<SanPham> SanPhams { get; set; }
-
-    public virtual DbSet<Sanphamcanmua> Sanphamcanmuas { get; set; }
 
     public virtual DbSet<SanPhamKhuyenMai> SanPhamKhuyenMais { get; set; }
 

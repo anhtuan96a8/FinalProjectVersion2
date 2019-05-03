@@ -78,31 +78,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ConfigAPIs">
-      <EntityTypeMapping TypeName="Model.ConfigAPI">
-        <MappingFragment StoreEntitySet="ConfigAPI">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="MaNCC" ColumnName="MaNCC" />
-          <ScalarProperty Name="LinkRequesrToken" ColumnName="LinkRequesrToken" />
-          <ScalarProperty Name="LinkAccessToken" ColumnName="LinkAccessToken" />
-          <ScalarProperty Name="LinkKiemTraLuongTon" ColumnName="LinkKiemTraLuongTon" />
-          <ScalarProperty Name="LinkXacNhanGiaoHang" ColumnName="LinkXacNhanGiaoHang" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="DanhsachdangkisanphamNCCs">
-      <EntityTypeMapping TypeName="Model.DanhsachdangkisanphamNCC">
-        <MappingFragment StoreEntitySet="DanhsachdangkisanphamNCC">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="MaSPCanMua" ColumnName="MaSPCanMua" />
-          <ScalarProperty Name="MaNCC" ColumnName="MaNCC" />
-          <ScalarProperty Name="Ghichu" ColumnName="Ghichu" />
-          <ScalarProperty Name="NgayDK" ColumnName="NgayDK" />
-          <ScalarProperty Name="Trangthai" ColumnName="Trangthai" />
-          <ScalarProperty Name="TienmoiSP" ColumnName="TienmoiSP" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="DonHangKHs">
       <EntityTypeMapping TypeName="Model.DonHangKH">
         <MappingFragment StoreEntitySet="DonHangKH">
@@ -138,26 +113,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="HopDongNCCs">
-      <EntityTypeMapping TypeName="Model.HopDongNCC">
-        <MappingFragment StoreEntitySet="HopDongNCC">
-          <ScalarProperty Name="MaHD" ColumnName="MaHD" />
-          <ScalarProperty Name="MaNCC" ColumnName="MaNCC" />
-          <ScalarProperty Name="NgayKy" ColumnName="NgayKy" />
-          <ScalarProperty Name="ThoiHanHD" ColumnName="ThoiHanHD" />
-          <ScalarProperty Name="TGGiaoHang" ColumnName="TGGiaoHang" />
-          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
-          <ScalarProperty Name="SLToiThieu" ColumnName="SLToiThieu" />
-          <ScalarProperty Name="SLCungCap" ColumnName="SLCungCap" />
-          <ScalarProperty Name="Dateaccept" ColumnName="Dateaccept" />
-          <ScalarProperty Name="IsBuy" ColumnName="IsBuy" />
-          <ScalarProperty Name="SoNgayGiao" ColumnName="SoNgayGiao" />
-          <ScalarProperty Name="DonGia" ColumnName="DonGia" />
-          <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
-          <ScalarProperty Name="TTThanhToan" ColumnName="TTThanhToan" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="KhuyenMais">
       <EntityTypeMapping TypeName="Model.KhuyenMai">
         <MappingFragment StoreEntitySet="KhuyenMai">
@@ -189,34 +144,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="NhaCungCaps">
-      <EntityTypeMapping TypeName="Model.NhaCungCap">
-        <MappingFragment StoreEntitySet="NhaCungCap">
-          <ScalarProperty Name="MaNCC" ColumnName="MaNCC" />
-          <ScalarProperty Name="TenNCC" ColumnName="TenNCC" />
-          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
-          <ScalarProperty Name="SDT_NCC" ColumnName="SDT_NCC" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Website" ColumnName="Website" />
-          <ScalarProperty Name="Net_user" ColumnName="Net_user" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Oauths">
-      <EntityTypeMapping TypeName="Model.Oauth">
-        <MappingFragment StoreEntitySet="Oauth">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="Consumer_key" ColumnName="Consumer_key" />
-          <ScalarProperty Name="Callback" ColumnName="Callback" />
-          <ScalarProperty Name="Request_token" ColumnName="Request_token" />
-          <ScalarProperty Name="Verifier_token" ColumnName="Verifier_token" />
-          <ScalarProperty Name="Date_comsumer" ColumnName="Date_comsumer" />
-          <ScalarProperty Name="MaNCC" ColumnName="MaNCC" />
-          <ScalarProperty Name="Token" ColumnName="Token" />
-          <ScalarProperty Name="ExpiresTime" ColumnName="ExpiresTime" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="SanPhams">
       <EntityTypeMapping TypeName="Model.SanPham">
         <MappingFragment StoreEntitySet="SanPham">
@@ -237,18 +164,6 @@
           <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
           <ScalarProperty Name="isnew" ColumnName="isnew" />
           <ScalarProperty Name="ishot" ColumnName="ishot" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Sanphamcanmuas">
-      <EntityTypeMapping TypeName="Model.Sanphamcanmua">
-        <MappingFragment StoreEntitySet="Sanphamcanmua">
-          <ScalarProperty Name="ID" ColumnName="ID" />
-          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
-          <ScalarProperty Name="Soluong" ColumnName="Soluong" />
-          <ScalarProperty Name="Ngayketthuc" ColumnName="Ngayketthuc" />
-          <ScalarProperty Name="Ngaydang" ColumnName="Ngaydang" />
-          <ScalarProperty Name="Mota" ColumnName="Mota" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

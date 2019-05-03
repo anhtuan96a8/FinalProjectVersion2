@@ -27,18 +27,19 @@ using System;
 
     }
 
-    [DisplayName("Mã Sản Phẩm")]
-    public string HangSX { get; set; }
-    [DisplayName("Tên Hãng")]
-    public string TenHang { get; set; }
-    [DisplayName("Trụ Sở Chính")]
-    public string TruSoChinh { get; set; }
-    [DisplayName("Quốc Gia")]
-    public string QuocGia { get; set; }
+
+        [DisplayName("Mã Sản Phẩm")]
+        public string HangSX { get; set; }
+        [DisplayName("Tên Hãng")]
+        public string TenHang { get; set; }
+        [DisplayName("Trụ Sở Chính")]
+        public string TruSoChinh { get; set; }
+        [DisplayName("Quốc Gia")]
+        public string QuocGia { get; set; }
 
 
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<SanPham> SanPhams { get; set; }
 

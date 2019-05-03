@@ -3,9 +3,12 @@
     ViewBag.Title = "Chức vụ";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-
-@Html.ActionLink("Create Role", "Create", "Role")
-
+@if (ViewBag.Message != null)
+{
+    <script>
+        alert("@ViewBag.Message")
+    </script>
+}
 <div class="row">
     <div class="box col-md-12">
         <div class="box-inner">
@@ -24,15 +27,13 @@
                 <div class="form-inline" style="text-align: right; padding: 10px">
                 </div>
                 <div class="Ajax-Table">
-                    @Html.Action("Rolelist","Roles")
+                    @Html.Action("Rolelist", "Roles")
                 </div>
-
             </div>
         </div>
     </div>
     <!--/span-->
 </div><!--/row-->
-
 <div class="row">
     <div class="box col-md-12">
         <div class="box-inner">
@@ -47,7 +48,6 @@
                 </div>
             </div>
             <div class="box-content">
-
                 @using (Html.BeginForm("Create", "Roles"))
                 {
                     <table id="tbrole">
@@ -60,9 +60,7 @@
                     </table>
                     <input type="submit" value="Thêm mới" class="btn btn-info" />
                 }
-
             </div>
-
         </div>
     </div>
     <!--/span-->

@@ -18,23 +18,24 @@ using System;
 
     public partial class BinhLuan
 {
-    [DisplayName("Mã bình luận")]
-    public int MaBL { get; set; }
-    [DisplayName("Mã Sản Phẩm")]
-    public string MaSP { get; set; }
-    [DisplayName("Mã khách hàng")]
-    public string MaKH { get; set; }
-    [DisplayName("Nội dung")]
-    public string NoiDung { get; set; }
-    [DisplayName("Ngày Đăng")]
-    public Nullable<System.DateTime> NgayDang { get; set; }
-    [DisplayName("Họ và tên")]
-    public string HoTen { get; set; }
-    public string Email { get; set; }
-    [DisplayName("Đã trả lời")]
-    public string DaTraLoi { get; set; }
 
-    public Nullable<int> Parent { get; set; }
+        [DisplayName("Mã bình luận")]
+        public int MaBL { get; set; }
+        [DisplayName("Mã Sản Phẩm")]
+        public string MaSP { get; set; }
+        [DisplayName("Mã khách hàng")]
+        public string MaKH { get; set; }
+        [DisplayName("Nội dung")]
+        public string NoiDung { get; set; }
+        [DisplayName("Ngày Đăng")]
+        public Nullable<System.DateTime> NgayDang { get; set; }
+        [DisplayName("Họ và tên")]
+        public string HoTen { get; set; }
+        public string Email { get; set; }
+        [DisplayName("Đã trả lời")]
+        public string DaTraLoi { get; set; }
+
+        public Nullable<int> Parent { get; set; }
 
 
 

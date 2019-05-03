@@ -35,7 +35,30 @@ namespace TuanStore.Controllers
         [HttpPost]
         public ActionResult Create(IdentityRole Role)
         {
+            if (Role.Name == null)
+            {
+                ViewBag.Message = "Bạn không được để trống tên Tên Chức Vụ";
+                return RedirectToAction("Index");
+            }
+
+            if (context.Roles.Where(d => d.Name == Role.Name).FirstOrDefault() != null)
+            {
+                ViewBag.Message = "Tên chức vụ đã tồn tại";
+                return RedirectToAction("Index");
+               
+            }
             context.Roles.Add(Role);
+            context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult DeleteRole(string roleId)
+        {
+            if(roleId == "dc481379-dfae-4d9e-93d8-dce55add3258")
+            {
+                return RedirectToAction("Index");
+            }
+            var roleremove = context.Roles.Where(d => d.Id == roleId).FirstOrDefault();
+            context.Roles.Remove(roleremove);
             context.SaveChanges();
             return RedirectToAction("Index");
         }

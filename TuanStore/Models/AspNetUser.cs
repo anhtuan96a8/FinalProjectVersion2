@@ -30,8 +30,6 @@ public partial class AspNetUser
 
         this.DonHangKHs = new HashSet<DonHangKH>();
 
-        this.NhaCungCaps = new HashSet<NhaCungCap>();
-
         this.AspNetRoles = new HashSet<AspNetRole>();
 
     }
@@ -92,10 +90,6 @@ public partial class AspNetUser
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<DonHangKH> DonHangKHs { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<NhaCungCap> NhaCungCaps { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 

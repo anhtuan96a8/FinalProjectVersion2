@@ -3,7 +3,7 @@
     ViewBag.Title = "Giỏ hàng";
     Layout = "~/Views/Shared/_LayoutFrontEnd.cshtml";
 }
-<section id="cart-page">
+<section id="cart-page" style="padding-top:50px">
     <div class="container">
         <!-- ========================================= CONTENT ========================================= -->
         <div class="col-xs-12 col-md-9 items-holder no-margin">
@@ -73,8 +73,8 @@
                         </li>
                     </ul>
                     <div class="buttons-holder">
-                        <a class="le-button big" href='@Url.Action("Checkout", "Home")'>Chấp thuận</a>
-                        <a class="simple-link block" style="color:brown" href='@Url.Action("Index","Home")'>Quay lại mua hàng</a>
+                        <a class="le-button big" href='@Url.Action("Checkout", "Home")'><img src="~/images/icon/accept.png" width="30" height="30" /> Chấp thuận</a>
+                        <a class="simple-link block" style="color:brown" href='@Url.Action("Index","Home")'> <img src="~/images/icon/back.png" width="30" height="30" /> Quay lại mua hàng</a>
                     </div>
                 </div>
             </div><!-- /.widget -->
