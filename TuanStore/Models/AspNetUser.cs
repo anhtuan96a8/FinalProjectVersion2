@@ -32,6 +32,8 @@ public partial class AspNetUser
 
         this.AspNetRoles = new HashSet<AspNetRole>();
 
+        this.DanhGiaSPs = new HashSet<DanhGiaSP>();
+
     }
 
 
@@ -94,6 +96,10 @@ public partial class AspNetUser
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<DanhGiaSP> DanhGiaSPs { get; set; }
 
 }
 

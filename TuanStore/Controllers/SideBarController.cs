@@ -27,6 +27,21 @@ namespace TuanStore.Controllers
             splist = splist.Take(6);
             return PartialView("_GiamGiaNhieuPartial", splist);
         }
+        public ActionResult GiamGiaNhieuRow()
+        {
+            SanPhamModel sp = new SanPhamModel();
+            IQueryable<SanPham> splist = sp.SPKhuyenMai();
+            splist = splist.Take(6);
+            ViewBag.Title = "Sản Phẩm Giảm Giá";
+            return PartialView("_SanPhamGiamGiaRowPartial", splist);
+        }
+        public ActionResult SanPhamBanChayRow()
+        {
+            SanPhamModel sp = new SanPhamModel();
+            IQueryable<SanPham> splist = sp.SPBanChay(6);
+            ViewBag.Title = "Sản Phẩm Bán Chạy";
+            return PartialView("_GiamGiaBanChayRowPartial", splist);
+        }
 
         public ActionResult KhuyenMaiPost()
         {

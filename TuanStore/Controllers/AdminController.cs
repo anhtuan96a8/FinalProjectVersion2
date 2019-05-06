@@ -206,7 +206,7 @@ namespace TuanStore.Controllers
         }
         public bool DownloadAnh(string link, string filename)
         {
-            string extend = ".jpg";
+            string extend = ".webp";
             using (WebClient webClient = new WebClient())
             {
                 webClient.DownloadFile(link, Server.MapPath("~/images/products/" + filename + extend));

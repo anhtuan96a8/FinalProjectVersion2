@@ -11,7 +11,7 @@
 @model TuanStore.Models.SanPham
 <script language="javascript" type="text/javascript">
     $(document).ready(function () {
-        $(document).on("click", "#nav a[href]", function () {
+        $(document).on("click", "#nav_comment a[href]", function () {
             $.ajax({
                 url: $(this).attr("href"),
                 type: 'GET',
@@ -20,6 +20,22 @@
                     $('#Comments').html(result);
                     $('html, body').animate({
                         scrollTop: $("#reviews").offset().top
+                    }, 500);
+                }
+            });
+            return false;
+        });
+    });
+    $(document).ready(function () {
+        $(document).on("click", "#nav_danhgia a[href]", function () {
+            $.ajax({
+                url: $(this).attr("href"),
+                type: 'GET',
+                cache: false,
+                success: function (result) {
+                    $('#rates').html(result);
+                    $('html, body').animate({
+                        scrollTop: $("#rate").offset().top
                     }, 500);
                 }
             });
@@ -122,7 +138,7 @@
                     {<div class="price-prev">@string.Format("{0:0,0}", Model.GiaGoc) VNĐ</div>}
                 </div>
                 <div class="qnt-holder">
-                    <div class="le-quantity">
+                    <div class="le-quantity" style="margin-top:4px">
                         <form>
                             <a class="minus" href="javascript:;"></a>
                             <input name="quantity" class="sl" readonly="readonly" type="text" value="1" />
@@ -144,9 +160,10 @@
         <div class="tab-holder">
 
             <ul class="nav nav-tabs simple">
-                <li class="active"><a href="#description" data-toggle="tab">Mô tả</a></li>
-                <li><a href="#additional-info" data-toggle="tab">Thông số kỹ thuật</a></li>
-                <li><a href="#reviews" data-toggle="tab">Bình luận</a></li>
+                <li class="active"><a href="#description" data-toggle="tab"><img src="~/images/icon/mota.png" width="30px" /> Mô tả</a></li>
+                <li><a href="#additional-info" data-toggle="tab"><img src="~/images/icon/thongsokythuat.png" width="30px" /> Thông số kỹ thuật</a></li>
+                <li><a href="#reviews" data-toggle="tab"><img src="~/images/icon/comment.png" width="30px" /> Hỏi đáp</a></li>
+                <li><a href="#rate" data-toggle="tab"><img src="~/images/icon/ratin.png" width="30"  /> Đánh giá</a></li>
             </ul><!-- /.nav-tabs -->
             <div class="tab-content">
                 <div class="tab-pane active" id="description">
@@ -167,7 +184,6 @@
                     <h2>Thông số kỹ thuật của @Model.TenSP</h2>
                     @Html.Raw(Model.ThongSoKyThuat)
                 </div><!-- /.tab-pane #additional-info -->
-
                 <div class="tab-pane" id="reviews">
                     <div class="comments" id="Comments">
                         @Html.Action("LoadComment", "Comment", new RouteValueDictionary { { "masp", @Model.MaSP } })
@@ -176,6 +192,18 @@
                         <div class="col-sm-8 col-xs-12">
                             <div class="new-review-form">
                                 @Html.Action("AddComment", "Comment", new RouteValueDictionary { { "masp", @Model.MaSP } })
+                            </div><!-- /.new-review-form -->
+                        </div><!-- /.col -->
+                    </div><!-- /.add-review -->
+                </div><!-- /.tab-pane #reviews -->
+                <div class="tab-pane" id="rate">
+                    <div class="comments" id="rates">
+                        @Html.Action("LoadDanhGia", "DanhGia", new RouteValueDictionary { { "masp", @Model.MaSP } })
+                    </div>
+                    <div class="add-review row">
+                        <div class="col-sm-8 col-xs-12">
+                            <div class="new-review-form">
+                                @Html.Action("AddDanhGia", "DanhGia", new RouteValueDictionary { { "masp", @Model.MaSP } })
                             </div><!-- /.new-review-form -->
                         </div><!-- /.col -->
                     </div><!-- /.add-review -->

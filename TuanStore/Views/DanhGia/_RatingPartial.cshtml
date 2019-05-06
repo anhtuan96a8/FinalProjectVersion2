@@ -1,0 +1,54 @@
+﻿@model TuanStore.Models.DanhGiaSP
+<div class="comment-item">
+    <div class="row no-margin">
+        <div class="col-lg-1 col-xs-12 col-sm-2 no-margin">
+            <div class="avatar">
+                @if (@Model.HoTen == null)
+                {
+                    <img alt="avatar" src="@Url.Content("~/images/avatars/")@Model.AspNetUser.Avatar" width="70" height="70">
+                }
+                else
+                {
+                    <img alt="avatar" src="@Url.Content("~/template/assets/images/default-avatar.jpg") ">
+                }
+            </div><!-- /.avatar -->
+        </div><!-- /.col -->
+            <div class="col-xs-12 col-lg-11 col-sm-10 no-margin">
+                <div class="comment-body">
+                    <div class="meta-info">
+                        <div class="author inline" style="padding-top:6px">
+                            @if (@Model.HoTen == null)
+                            {
+                                <a href="#" class="bold">@Model.AspNetUser.UserName</a>
+                            }
+                            else
+                            {
+                                <a href="#" class="bold">@Model.HoTen</a>
+                            }
+
+                        </div>
+                        <div class=" inline">
+                            @for (int i = 1; i <= Model.Rate; i++)
+                            {
+                                <img src="~/images/icon/star.png" width="30px" />
+                            }
+                            @if (Model.Rate < 5)
+                            {
+                                for (int i = 1; i <= (5 - Model.Rate); i++)
+                                {
+                                    <img src="~/images/icon/star-none.png" width="30px" />
+                                }
+                            }
+                        </div>
+                        <div class="date inline pull-right" style="padding-top:6px">
+                            @Model.NgayDang
+                        </div>
+                    </div><!-- /.meta-info -->
+                    <p class="comment-text">
+                        @Model.NoiDung
+                    </p><!-- /.comment-text -->
+                </div><!-- /.comment-body -->
+            </div><!-- /.col -->
+
+    </div><!-- /.row -->
+</div><!-- /.comment-item -->

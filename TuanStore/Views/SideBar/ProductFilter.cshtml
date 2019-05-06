@@ -99,30 +99,31 @@
 <!-- ========================================= PRODUCT FILTER ========================================= -->
 @using TuanStore.Models;
 <div class="widget">
-    <h1>Lọc sản phẩm</h1>
+    <h1>Lọc sản phẩm <img src="~/images/icon/filter.png" width="40" alt="Alternate Text" /></h1>
     @*<form id="productfilterfrm" action="@Url.Action("AdvancedSearchView", "Search")" autocomplete="off">*@
     <div class="body bordered">
         <div class="category-filter">
             <h4>Tìm kiếm theo hạng mục</h4>
             <hr />
             <p id="search_discount_product" class="block no-margin">
-                <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                <img src="~/images/icon/bestsale.png" width="33px"  alt="Alternate Text" />
+                @*<i class="fa fa-hand-o-right" aria-hidden="true"></i>*@
                 <label>Sản phẩm giảm giá nhiều</label>
             </p>
             <p class="block no-margin" id="search_sellest">
-                <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                <img src="~/images/icon/bestbuy.png" width="33px" alt="Alternate Text" />
                 <label>Sản phẩm bán chạy nhất</label>
             </p>
             <p class="block no-margin" id="search_hot_product">
-                <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                <img src="~/images/icon/besthot.png" width="33px" alt="Alternate Text" />
                 <label>Sản phẩm nổi bật nhất</label>
             </p>
             <p class="block no-margin" id="search_new_product">
-                <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                <img src="~/images/icon/new.png" width="33px" alt="Alternate Text" />
                 <label>Sản phẩm mới nhập</label>
             </p>
             <p href="" class="block no-margin" id="search_seen_product">
-                <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+                <img src="~/images/icon/seen.png" width="33px" alt="Alternate Text" />
                 <label>Sản phẩm vừa xem</label>
             </p>
             <hr />
@@ -170,7 +171,7 @@
                     Giá: 0 VNĐ - 30,000,000 VNĐ
                 </span>
                 <span class="filter-button" id="searchproduct">
-                    <a style="padding: 10px 22px 10px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold" @*href='javascript:summitfilter()'*@>Tìm kiếm</a>
+                    <a style="padding: 10px 22px 10px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold" @*href='javascript:summitfilter()'*@><img src="~/images/icon/search.png" width="30px" /> Tìm kiếm</a>
                 </span>
             </div>
         </div><!-- /.price-filter -->

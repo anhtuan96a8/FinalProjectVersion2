@@ -13,7 +13,10 @@
             else
             {
                 $(id1).append(result);
-                skipnum += 4;
+                if (action == "AllProducts") {
+                    skipnum += 8;
+                }
+                else skipnum += 4;
                 var fixa = "<a class=\"btn-loadmore btn\" style=\"padding: 8px 22px 8px 22px;margin:70px 0 0 0; border-radius: 50px; background-color: #34495E; color: white; font-weight: bold\" href=\'javascript:LoadMorePro(" + skipnum.toString() + ",\"" + action + "\",\"" + id + "\",\"" + id1 + "\")\'>";
                 //fixa += "<i class=\"fa fa-plus\"></i>Tải thêm</a>";
                 fixa += "<img src=\"/images/icon/loadmore.png\" style=\"border-radius: 50%; width: 30px; height: 30px\" /> Tải thêm</a>";

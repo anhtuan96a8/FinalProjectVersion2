@@ -57,6 +57,7 @@
     <NavigationProperty Name="BinhLuans" Relationship="Self.FK_BinhLuan_AspNetUsers" FromRole="AspNetUsers" ToRole="BinhLuan" />
     <NavigationProperty Name="DonHangKHs" Relationship="Self.FK_DonHangKH_AspNetUsers" FromRole="AspNetUsers" ToRole="DonHangKH" />
     <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+    <NavigationProperty Name="DanhGiaSPs" Relationship="Model.FK_DanhGia_AspNetUsers" FromRole="AspNetUser" ToRole="DanhGiaSP" />
   </EntityType>
   <EntityType Name="BinhLuan">
     <Key>
@@ -177,6 +178,7 @@
     <NavigationProperty Name="SanPhamKhuyenMais" Relationship="Self.FK_SanPhamKhuyenMai_SanPham" FromRole="SanPham" ToRole="SanPhamKhuyenMai" />
     <Property Name="GioiThieu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="ThongSoKyThuat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DanhGiaSPs" Relationship="Model.FK_DanhGia_SanPham" FromRole="SanPham" ToRole="DanhGiaSP" />
   </EntityType>
   <EntityType Name="SanPhamKhuyenMai">
     <Key>
@@ -417,5 +419,71 @@
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <EntitySet Name="DanhGiaSPs" EntityType="Model.DanhGiaSP" />
+    <AssociationSet Name="FK_DanhGia_AspNetUsers" Association="Model.FK_DanhGia_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="DanhGiaSP" EntitySet="DanhGiaSPs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DanhGia_SanPham" Association="Model.FK_DanhGia_SanPham">
+      <End Role="SanPham" EntitySet="SanPhams" />
+      <End Role="DanhGiaSP" EntitySet="DanhGiaSPs" />
+    </AssociationSet>
+    <EntitySet Name="TinTucs" EntityType="Model.TinTuc" />
   </EntityContainer>
+  <EntityType Name="DanhGiaSP">
+    <Key>
+      <PropertyRef Name="MaDG" />
+    </Key>
+    <Property Name="MaDG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaSP" Type="String" MaxLength="5" FixedLength="true" Unicode="true" />
+    <Property Name="Rate" Type="Int32" />
+    <Property Name="MaKH" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NgayDang" Type="DateTime" Precision="3" />
+    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="Model.FK_DanhGia_AspNetUsers" FromRole="DanhGiaSP" ToRole="AspNetUser" />
+    <NavigationProperty Name="SanPham" Relationship="Model.FK_DanhGia_SanPham" FromRole="DanhGiaSP" ToRole="SanPham" />
+  </EntityType>
+  <Association Name="FK_DanhGia_AspNetUsers">
+    <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.DanhGiaSP" Role="DanhGiaSP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DanhGiaSP">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DanhGia_SanPham">
+    <End Type="Model.SanPham" Role="SanPham" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Model.DanhGiaSP" Role="DanhGiaSP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="MaSP" />
+      </Principal>
+      <Dependent Role="DanhGiaSP">
+        <PropertyRef Name="MaSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TinTuc">
+    <Key>
+      <PropertyRef Name="MaTT" />
+    </Key>
+    <Property Name="MaTT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ChuDe" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="TieuDe" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="NgayDang" Type="DateTime" Precision="3" />
+    <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AnhDaiDien" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+  </EntityType>
 </Schema>

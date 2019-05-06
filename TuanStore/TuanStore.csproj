@@ -202,6 +202,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\DanhGiaController.cs" />
     <Compile Include="Controllers\ThongKeController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\CustomFilterRole.cs" />
@@ -215,6 +216,7 @@
     <Compile Include="Controllers\SanPhamController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SideBarController.cs" />
+    <Compile Include="Controllers\TinTucController.cs" />
     <Compile Include="Controllers\XuligiohangController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -243,6 +245,10 @@
     <Compile Include="Models\Chitietgiohang.cs" />
     <Compile Include="Models\ClassPartial\SanphamPartial.cs" />
     <Compile Include="Models\CommentModel.cs" />
+    <Compile Include="Models\DanhGiaModel.cs" />
+    <Compile Include="Models\DanhGiaSP.cs">
+      <DependentUpon>ECModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DonHangKH.cs">
       <DependentUpon>ECModel.tt</DependentUpon>
     </Compile>
@@ -295,6 +301,10 @@
       <DependentUpon>ECModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SanPhamModel.cs" />
+    <Compile Include="Models\TinTuc.cs">
+      <DependentUpon>ECModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TinTucModel.cs" />
     <Compile Include="Models\Trackingaction.cs">
       <DependentUpon>ECModel.tt</DependentUpon>
     </Compile>
@@ -629,6 +639,7 @@
     <Content Include="images\icon\accept.png" />
     <Content Include="images\icon\address.png" />
     <Content Include="images\icon\admin.png" />
+    <Content Include="images\icon\back.png" />
     <Content Include="images\icon\background-header.jpg" />
     <Content Include="images\icon\buy.png" />
     <Content Include="images\icon\cancle.png" />
@@ -639,6 +650,8 @@
     <Content Include="images\icon\discount.png" />
     <Content Include="images\icon\discountitem.png" />
     <Content Include="images\icon\email.png" />
+    <Content Include="images\icon\empty-cart.png" />
+    <Content Include="images\icon\emptyorder.png" />
     <Content Include="images\icon\exit.png" />
     <Content Include="images\icon\favicon.png" />
     <Content Include="images\icon\faviconadmin.png" />
@@ -1814,7 +1827,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
@@ -1832,7 +1844,6 @@
     <Content Include="Views\_ViewStart - Copy.cshtml" />
     <Content Include="Views\Comment\_CommentListPartial.cshtml" />
     <Content Include="Views\Comment\_CommentFormPartial.cshtml" />
-    <Content Include="Views\Home\login.cshtml" />
     <Content Include="Views\Shared\_LayoutFrontEnd.cshtml" />
     <Content Include="template\assets\css\fonts\fontawesome-webfont.eot" />
     <Content Include="template\assets\css\fonts\fontawesome-webfont.ttf" />
@@ -2202,6 +2213,15 @@
     <Content Include="Views\Search\_GetHangSanXuatPartial.cshtml" />
     <Content Include="Views\Search\_ListProductAjaxPartial.cshtml" />
     <Content Include="Views\Shared\_ChatBot.cshtml" />
+    <Content Include="Views\TinTuc\Index.cshtml" />
+    <Content Include="Views\TinTuc\InderForUser.cshtml" />
+    <Content Include="Views\SideBar\_SanPhamGiamGiaRowPartial.cshtml" />
+    <Content Include="Views\SideBar\_GiamGiaBanChayRowPartial.cshtml" />
+    <Content Include="Views\DanhGia\Index.cshtml" />
+    <Content Include="Views\DanhGia\DanhGiaPartial.cshtml" />
+    <Content Include="Views\DanhGia\_RatingPartial.cshtml" />
+    <Content Include="Views\DanhGia\_ListRatingPartial.cshtml" />
+    <Content Include="Views\DanhGia\_RatingFormPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

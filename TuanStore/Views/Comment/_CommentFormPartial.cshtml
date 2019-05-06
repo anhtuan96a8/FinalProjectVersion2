@@ -8,9 +8,10 @@
         }, 500);
         $('#HoTen').val('');
         $('#NoiDung').val('');
+        $('#Email').val('');
     }
 </script>
-<h2>Viết bình luận</h2>
+<h2>Viết bình luận <img src="~/images/icon/writecmt.png" width="25" alt="Alternate Text" /></h2>
 @using (Ajax.BeginForm("AddComment", "Comment", null, new AjaxOptions { UpdateTargetId = "Comments", OnSuccess = "test" }, new { @id = "contact-form", @class = "contact-form" }))
 {
     @Html.AntiForgeryToken()
@@ -31,7 +32,7 @@
         else
         {
             <div class="col-xs-12 col-sm-6">
-                <label>Xin chào @ViewBag.Name</label>
+                <label class="h4" style="color: maroon">Xin chào : @ViewBag.Name</label>
             </div>
         }
     </div>
@@ -43,11 +44,11 @@
             </div>
         </div>*@<!-- /.field-row -->
     <div class="field-row">
-        <label>Sản phẩm này như thế nào?</label>
+        <label>Hỏi đáp về sản phẩm ?</label>
         @Html.TextAreaFor(model => model.NoiDung, new { @class = "le-input", @rows = "8"})
         @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
     </div><!-- /.field-row -->
     <div class="buttons-holder">
-        <button type="submit" class="le-button huge" formmethod="post">Gửi</button>
+        <button type="submit" class="le-button huge" formmethod="post"><img src="~/images/icon/send.png" width="30"/> Gửi</button>
     </div><!-- /.buttons-holder -->
 }

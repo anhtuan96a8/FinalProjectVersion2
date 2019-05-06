@@ -78,7 +78,7 @@ namespace TuanStore.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Invalid username or password.");
+                    ModelState.AddModelError("", "Sai tên tài khoản hoặc mật khẩu");
                 }
             }
 

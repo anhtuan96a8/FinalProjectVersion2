@@ -1,0 +1,51 @@
+﻿@using Microsoft.AspNet.Identity
+@model TuanStore.Models.DanhGiaSP
+<script>function test1() {
+        $('html, body').animate({
+            scrollTop: $("#rate").offset().top
+        }, 500);
+        $('#HoTenDanhGia').val('');
+        $('#NoiDungDanhGia').val('');
+        $('#EmailDanhGia').val('')
+    }</script>
+<h2>Viết đánh giá <img src="~/images/icon/writerate.png" width="25" alt="Alternate Text" /></h2>
+@using (Ajax.BeginForm("AddDanhGia", "DanhGia", null, new AjaxOptions { UpdateTargetId = "rates", OnSuccess = "test1" }, new { @id = "contact-form", @class = "contact-form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.MaSP, new { htmlAttributes = new { @class = "le-input" } })
+    <div class="row field-row">
+        @if (!Request.IsAuthenticated)
+        {
+            <div class="col-xs-12 col-sm-6">
+                @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @id = "HoTenDanhGia", @class = "le-input", placeholder = "Họ tên của bạn" } })
+                @Html.ValidationMessageFor(model => model.HoTen, "", new { @id = "HoTenDanhGia", @class = "text-danger" })
+            </div>
+            <div class="col-xs-12 col-sm-6">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @id = "EmailDanhGia", @class = "le-input", placeholder = "Email của bạn" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @id = "EmailDanhGia", @class = "text-danger" })
+            </div>
+        }
+        else
+        {
+            <div class="col-xs-12 col-sm-6">
+                <label class="h4" style="color: maroon">Xin chào : @ViewBag.Name</label>
+            </div>
+        }
+    </div>
+    @*rate bang star*@
+    @*<div class="field-row star-row">
+            <label>your rating</label>
+            <div class="star-holder">
+                <div class="star big" data-score="0"></div>
+            </div>
+        </div>*@<!-- /.field-row -->
+    <div class="field-row">
+        <label>Đánh giá sản phẩm </label>
+        @Html.TextAreaFor(model => model.NoiDung, new { @id = "NoiDungDanhGia", @class = "le-input", @rows = "8" })
+        @Html.ValidationMessageFor(model => model.NoiDung, "", new { @id = "NoiDungDanhGia", @class = "text-danger" })
+    </div><!-- /.field-row -->
+    <div class="buttons-holder">
+        <button type="submit" class="le-button huge" formmethod="post"><img src="~/images/icon/send.png" width="30" /> Gửi</button>
+    </div><!-- /.buttons-holder -->
+}

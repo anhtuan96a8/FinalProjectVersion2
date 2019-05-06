@@ -62,6 +62,10 @@ public partial class Entities : DbContext
 
     public virtual DbSet<Trackingaction> Trackingactions { get; set; }
 
+    public virtual DbSet<DanhGiaSP> DanhGiaSPs { get; set; }
+
+    public virtual DbSet<TinTuc> TinTucs { get; set; }
+
 }
 
 }

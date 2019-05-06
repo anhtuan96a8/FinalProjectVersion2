@@ -13,17 +13,18 @@ namespace TuanStore.Models
 
     public class ManageUserViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Nhập mật khẩu hiện tại")]
         [DataType(DataType.Password)]
         [Display(Name = "Mật khẩu hiện tại")]
         public string OldPassword { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Nhập mật khẩu mới")]
         [StringLength(100, ErrorMessage = "{0} phải ít nhất {2} ký tự.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Mật khẩu mới")]
         public string NewPassword { get; set; }
 
+        [Required(ErrorMessage = "Nhập lại mật khẩu mới")]
         [DataType(DataType.Password)]
         [Display(Name = "Nhập lại mật khẩu")]
         [Compare("NewPassword", ErrorMessage = "Mật khẩu không trùng khớp.")]
@@ -32,11 +33,11 @@ namespace TuanStore.Models
 
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Hãy nhập tên đăng nhập")]
         [Display(Name = "Tên đăng nhập")]
         public string UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Hãy nhập mật khẩu")]
         [DataType(DataType.Password)]
         [Display(Name = "Mật khẩu")]
         public string Password { get; set; }
@@ -47,16 +48,17 @@ namespace TuanStore.Models
 
     public class RegisterViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "Hãy nhập Email của bạn")]
         [Display(Name = "Email")]
+        [EmailAddress(ErrorMessage = "Email không đúng dạng")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Hãy nhập tên đăng nhập của bạn")]
         [Display(Name = "Tên đăng nhập")]
         public string UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Hãy nhập họ tên của bạn")]
         [Display(Name = "Họ tên")]
         public string HoTen { get; set; }
 
@@ -71,12 +73,13 @@ namespace TuanStore.Models
         [Display(Name = "Địa chỉ")]
         public string DiaChi { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Hãy nhập mật khẩu")]
         [StringLength(100, ErrorMessage = "{0} phải ít nhất {2} ký tự.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Mật khẩu")]
         public string Password { get; set; }
 
+        [Required(ErrorMessage = "Hãy nhập lại mật khẩu")]
         [DataType(DataType.Password)]
         [Display(Name = "Xác nhận mật khẩu")]
         [Compare("Password", ErrorMessage = "Mật khẩu không trùng khớp")]

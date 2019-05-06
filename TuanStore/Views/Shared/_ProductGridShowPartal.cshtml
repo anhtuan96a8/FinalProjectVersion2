@@ -27,8 +27,9 @@
     </div>
     <div class="body">
         <div class="label-discount clear"></div>
-        <div class="title" style="min-height:40px">
+        <div class="title" >
             <a href="@Url.Action("Index", "SanPham", new { id = @Model.MaSP })">@Model.TenSP</a>
+            @*@Model.TenSP*@
         </div>
         @if (Model.HangSanXuat.HangSX != "NOTTT")
         {<div class="brand">@Model.HangSanXuat.TenHang</div>}

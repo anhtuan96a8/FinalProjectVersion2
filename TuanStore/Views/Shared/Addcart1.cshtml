@@ -7,11 +7,25 @@
     <div class="total-price-basket">
         <span class="lbl">giỏ hàng:</span>
         <span class="total-price">
-            <span class="value">@string.Format("{0:0,0}", @Model.TinhtongtienCart())  </span><span class="sign">VNĐ</span>
+            @if (Model.getGiohang().Count < 1)
+            {
+                <span class="value">@string.Format("{0:0,0}", 00)  </span><span class="sign">VNĐ</span>
+            }
+            else
+            {
+                <span class="value">@string.Format("{0:0,0}", @Model.TinhtongtienCart())  </span><span class="sign">VNĐ</span>
+            }
         </span>
     </div>
 </a>
 <ul class="dropdown-menu">
+    @if(Model.getGiohang().Count < 1)
+    {
+        <div>
+            <img src="~/images/icon/emptyorder.png" style="margin-left: 70px" alt="" />
+            <p style="margin-left: 15px;color: orangered; font-size:16px;font-weight:bold">Bạn chưa có sản phẩm nào trong giỏ</p>
+        </div>
+    }
     @for (int i = 0; i < @Model.getGiohang().Count; i++)
     {
         <li>
@@ -24,14 +38,13 @@
                     </div>
                     <div class="col-xs-8 col-sm-8 no-margin">
                         <div class="title">@Model.getGiohang()[i].sanPham.TenSP</div>
-                        <div class="price">@string.Format("{0:0,0}",@Model.getGiohang()[i].Thanhtien) VNĐ</div>
+                        <div class="price">@string.Format("{0:0,0}", @Model.getGiohang()[i].Thanhtien) VNĐ</div>
                     </div>
                 </div>
-                
+
             </div>
         </li>
     }
-
 
     <li class="checkout">
         <div class="basket-item">

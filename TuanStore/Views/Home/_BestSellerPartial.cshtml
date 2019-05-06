@@ -2,7 +2,6 @@
 @model List<SanPham>
 
 <div class="product-grid-holder medium row">
-
     <div class="col-xs-12 col-md-7 no-margin ">
         <div class="row no-margin">
             @for (int i = 1; i < Model.Count; ++i)
@@ -13,38 +12,32 @@
             }
         </div>
     </div><!-- /.col -->
-
     <div class="col-xs-12 col-md-5 no-margin">
         <div class="product-item-holder size-big single-product-gallery small-gallery" style="">
-
             <div id="best-seller-single-product-slider" class="single-product-slider owl-carousel">
                 <div class="single-product-gallery-item" id="slide1">
                     <a data-rel="prettyphoto" href="#">
-                        <img alt="" src="@Url.Content("~/images/products/")@Model[0].AnhDaiDien"/>
+                        <img alt="" src="@Url.Content("~/images/products/")@Model[0].AnhDaiDien" />
                     </a>
                 </div><!-- /.single-product-gallery-item -->
-
                 <div class="single-product-gallery-item" id="slide2">
                     <a data-rel="prettyphoto" href="#">
                         <img alt="" src="@Url.Content("~/images/products/")@Model[0].AnhNen" />
                     </a>
                 </div><!-- /.single-product-gallery-item -->
-
                 <div class="single-product-gallery-item" id="slide3">
                     <a data-rel="prettyphoto" href="images/products/product-gallery-01.jpg">
                         <img alt="" src="@Url.Content("~/images/products/")@Model[0].AnhKhac" />
                     </a>
                 </div><!-- /.single-product-gallery-item -->
             </div><!-- /.single-product-slider -->
-
             <div class="gallery-thumbs clearfix">
                 <ul>
                     <li><a class="horizontal-thumb active" data-target="#best-seller-single-product-slider" data-slide="0" href="#slide1"><img alt="" src="@Url.Content("~/images/products/")@Model[0].AnhDaiDien" height="60" width="67" /></a></li>
                     <li><a class="horizontal-thumb" data-target="#best-seller-single-product-slider" data-slide="1" href="#slide2"><img alt="" src="@Url.Content("~/images/products/")@Model[0].AnhNen" height="60" width="67" /></a></li>
-                    <li><a class="horizontal-thumb" data-target="#best-seller-single-product-slider" data-slide="2" href="#slide3"><img alt="" src="@Url.Content("~/images/products/")@Model[0].AnhKhac)"  height="60" width="67" /></a></li>
+                    <li><a class="horizontal-thumb" data-target="#best-seller-single-product-slider" data-slide="2" href="#slide3"><img alt="" src="@Url.Content("~/images/products/")@Model[0].AnhKhac)" height="60" width="67" /></a></li>
                 </ul>
             </div><!-- /.gallery-thumbs -->
-
             <div class="body">
                 <div class="label-discount clear"></div>
                 <div class="title" style="min-height:70px !important">
@@ -58,5 +51,18 @@
             </div>
         </div><!-- /.product-item-holder -->
     </div><!-- /.col -->
-
+    
 </div><!-- /.product-grid-holder -->
+@*<div class="col-sm-12">
+    <div class="product-grid-holder">
+        <div id="sellestspload">
+        </div>
+    </div>
+    <div class="loadmore-holder text-center">
+        <div id="sellestsplink">
+            <a class="btn-loadmore btn" href='javascript:LoadMorePro(4,"SPBanChayLoadMore","#sellestsplink","#sellestspload")' style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold;margin:70px 0 0 0;">
+                <img src="~/images/icon/loadmore.png" style="border-radius:50%;width:30px; height:30px" />                            Tải thêm
+            </a>
+        </div>
+    </div>
+</div>*@

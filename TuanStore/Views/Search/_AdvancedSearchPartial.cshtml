@@ -114,18 +114,20 @@
         @*<input type="text" id="savetypesort" value="@ViewBag.typesort" hidden />*@
 
         <div class="grid-list-products">
-            <h2 class="section-title">Kết quả tìm kiếm</h2>
+            <h2 class="section-title">Kết quả tìm kiếm <img src="~/images/icon/result.png" width="30px" /></h2>
             <div class="control-bar">
-                @*Chưa code phần sort*@
                 <div class="inline">
-                    <p class="sorttest1">Thấp-Cao</p>
+                    <p class="h4">Sắp xếp theo giá :</p>
+                </div>
+                <div class="inline">
+                    <p class="sorttest1 btn" style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold"><img src="~/images/icon/sort-up.png" width="20px"  alt="Alternate Text" /> Thấp-Cao</p>
                     @*<select data-placeholder="sort by popularity" class="selectsort1">
                         <option disabled="disabled" selected="selected">Sắp xếp</option>
                         <option value="1">Giá từ thấp đến cao</option>
                         <option value="2">Giá từ cao đến thấp</option>
                     </select>*@
                 </div>
-                <div class="inline"><p class="sorttest2">Cao-Thấp</p></div>
+                <div class="inline"><p class="sorttest2 btn" style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold"><img src="~/images/icon/sort-down.png" width="20px"  alt="Alternate Text" /> Cao-Thấp</p></div>
                 @*<div id="selectsort2" class="inline">
                     <select>
                         <option value="1">Tăng dần</option>

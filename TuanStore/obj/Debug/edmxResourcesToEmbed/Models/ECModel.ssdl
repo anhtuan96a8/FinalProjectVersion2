@@ -82,6 +82,19 @@
     <Property Name="SoLuong" Type="int" />
     <Property Name="ThanhTien" Type="decimal" Precision="18" Scale="0" />
   </EntityType>
+  <EntityType Name="DanhGiaSP">
+    <Key>
+      <PropertyRef Name="MaDG" />
+    </Key>
+    <Property Name="MaDG" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaSP" Type="nchar" MaxLength="5" />
+    <Property Name="Rate" Type="int" />
+    <Property Name="MaKH" Type="nvarchar" MaxLength="128" />
+    <Property Name="NoiDung" Type="ntext" />
+    <Property Name="NgayDang" Type="datetime" />
+    <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="128" />
+  </EntityType>
   <EntityType Name="DonHangKH">
     <Key>
       <PropertyRef Name="MaDH" />
@@ -174,6 +187,19 @@
     <Property Name="MoTa" Type="ntext" />
     <Property Name="GiamGia" Type="int" />
   </EntityType>
+  <EntityType Name="TinTuc">
+    <Key>
+      <PropertyRef Name="MaTT" />
+    </Key>
+    <Property Name="MaTT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ChuDe" Type="nvarchar" MaxLength="100" />
+    <Property Name="TieuDe" Type="nvarchar" MaxLength="100" />
+    <Property Name="NgayDang" Type="datetime" />
+    <Property Name="MoTa" Type="ntext" />
+    <Property Name="AnhDaiDien" Type="ntext" />
+    <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="128" />
+  </EntityType>
   <EntityType Name="Trackingaction">
     <Key>
       <PropertyRef Name="Id" />
@@ -237,6 +263,34 @@
         <PropertyRef Name="MaSP" />
       </Principal>
       <Dependent Role="ChiTietDonHang">
+        <PropertyRef Name="MaSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DanhGia_AspNetUsers">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DanhGiaSP" Type="Self.DanhGiaSP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DanhGiaSP">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DanhGia_SanPham">
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DanhGiaSP" Type="Self.DanhGiaSP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SanPham">
+        <PropertyRef Name="MaSP" />
+      </Principal>
+      <Dependent Role="DanhGiaSP">
         <PropertyRef Name="MaSP" />
       </Dependent>
     </ReferentialConstraint>
@@ -369,6 +423,7 @@
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BinhLuan" EntityType="Self.BinhLuan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ChiTietDonHang" EntityType="Self.ChiTietDonHang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DanhGiaSP" EntityType="Self.DanhGiaSP" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DonHangKH" EntityType="Self.DonHangKH" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GiaoDien" EntityType="Self.GiaoDien" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HangSanXuat" EntityType="Self.HangSanXuat" Schema="dbo" store:Type="Tables" />
@@ -377,6 +432,7 @@
     <EntitySet Name="LoaiSP" EntityType="Self.LoaiSP" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SanPhamKhuyenMai" EntityType="Self.SanPhamKhuyenMai" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TinTuc" EntityType="Self.TinTuc" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Trackingaction" EntityType="Self.Trackingaction" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_BinhLuan_AspNetUsers" Association="Self.FK_BinhLuan_AspNetUsers">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -393,6 +449,14 @@
     <AssociationSet Name="FK_ChiTietDonHang_SanPham" Association="Self.FK_ChiTietDonHang_SanPham">
       <End Role="SanPham" EntitySet="SanPham" />
       <End Role="ChiTietDonHang" EntitySet="ChiTietDonHang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DanhGia_AspNetUsers" Association="Self.FK_DanhGia_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="DanhGiaSP" EntitySet="DanhGiaSP" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DanhGia_SanPham" Association="Self.FK_DanhGia_SanPham">
+      <End Role="SanPham" EntitySet="SanPham" />
+      <End Role="DanhGiaSP" EntitySet="DanhGiaSP" />
     </AssociationSet>
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />

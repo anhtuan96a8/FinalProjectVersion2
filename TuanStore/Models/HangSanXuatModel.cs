@@ -12,7 +12,7 @@ namespace TuanStore.Models
         public IQueryable<HangSanXuat> GetHangSX()
         {
             IQueryable<HangSanXuat> lst = db.HangSanXuats;
-            return lst;
+            return lst.OrderBy(m => m.TenHang);
         }
 
         internal HangSanXuat FindById(string id)

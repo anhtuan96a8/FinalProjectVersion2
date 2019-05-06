@@ -45,6 +45,11 @@ namespace TuanStore.Models
         }
         public double TinhtongtienCart()
         {
+            if (Tinhtongtiensanpham() > 500000)
+            {
+                phiVanChuyen = 0;
+            }
+            else phiVanChuyen = 30000;
             return Tinhtongtiensanpham() + phiVanChuyen;
         }
         public bool Changequanlity(int index, string soluong)

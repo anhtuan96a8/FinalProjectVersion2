@@ -144,6 +144,22 @@ namespace TuanStore.Controllers
             else
                 return null;
         }
+        public ActionResult AllProducts(int? skip)
+        {
+            SanPhamModel sp = new SanPhamModel();
+            int skipnum = (skip ?? 0);
+            IQueryable<SanPham> splist = sp.GetAll();
+            if (skipnum == 0)
+            {
+                splist = splist.OrderBy(r => r.MaSP).Skip(skipnum).Take(8);
+
+            }
+            else splist = splist.OrderBy(r => r.MaSP).Skip(skipnum).Take(8);
+            if (splist.Any())
+                return PartialView("_ProductTabLoadMorePartial", splist);
+            else
+                return null;
+        }
 
         public ActionResult SPKhuyenMai(int? skip)
         {
@@ -168,6 +184,22 @@ namespace TuanStore.Controllers
             IQueryable<SanPham> splist = sp.SPBanChay(7);      
             if (splist.Any())
                 return PartialView("_BestSellerPartial", splist.ToList());
+            else
+                return null;
+        }
+        public ActionResult SPBanChayLoadMore(int? skip)
+        {
+            SanPhamModel sp = new SanPhamModel();
+            int skipnum = (skip ?? 0);
+            IQueryable<SanPham> splist = sp.SPBanChay(skipnum+7);
+            if (skipnum == 4)
+            {
+                splist = splist.OrderBy(r => r.MaSP).Skip(7).Take(4);
+
+            }
+            else splist = splist.OrderBy(r => r.MaSP).Skip(skipnum).Take(4);
+            if (splist.Any())
+                return PartialView("_ProductTabLoadMorePartial", splist);
             else
                 return null;
         }

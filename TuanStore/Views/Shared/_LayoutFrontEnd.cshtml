@@ -61,15 +61,15 @@
                     <ul class="right">
                         @if (User.IsInRole("Nhân viên") || User.IsInRole("Quản trị viên"))
                         {
-                            <li><a href="@Url.Action("Index", "Admin")" class="btn doimau" style="padding: 8px 22px 7px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold"><img src="~/images/icon/admin.png" style="border-radius:50%;width:20px; height:20px"/> Trang quản trị</a></li>
+                            <li><a href="@Url.Action("Index", "Admin")" class="btn doimau" style="padding: 8px 22px 7px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold"><img src="~/images/icon/admin.png" style="border-radius:50%;width:20px; height:20px" /> Trang quản trị</a></li>
                         }
                         @if (!Request.IsAuthenticated)
                         {
                             <li class="dropdown">
-                                <a  href="@Url.Action("Authentication", "Account")" class="btn" style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold">
+                                <a href="@Url.Action("Authentication", "Account")" class="btn" style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold">
                                     <img src="~/images/icon/sig-up.png" style="border-radius:50%;width:20px; height:20px" /> Đăng ký
                                 </a>
-                                
+
                             </li>
                             <li>
                                 <a href="@Url.Action("Authentication", "Account")" class="btn doimau" style="padding: 9px 22px 9px 22px;border-radius:50px;background-color:#34495E;border:none;color:white;font-weight:bold">
@@ -87,7 +87,7 @@
                                         @Session["Name"]
                                     }
                                     else
-                                    { <img src="~/images/avatars/noavatar.jpg" style="border-radius:50%;width:20px; height:22px" />  @User.Identity.Name}
+                                    { <img src="~/images/avatars/noavatar.jpg" style="border-radius:50%;width:20px; height:22px" /> @User.Identity.Name}
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li role="presentation"><a role="menuitem" tabindex="-1" href="@Url.Action("Manage", "Account")"><img src="~/images/icon/setting.png" style="border-radius:50%;width:20px; height:20px" /> Cài đặt mật khẩu</a></li>
@@ -208,10 +208,51 @@
             </div><!-- /.copyright-bar -->
         </footer><!-- /#footer -->
         <!-- ============================================================= FOOTER : END ============================================================= -->
-
+        <a id="button"></a>
         @Html.Partial("_ChatBot")
     </div><!-- /.wrapper -->
-   
+    <style>
+        #button {
+            display: inline-block;
+            background-color: #FF9800;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            border-radius: 4px;
+            position: fixed;
+            bottom: 300px;
+            right: 30px;
+            transition: background-color .3s, opacity .5s, visibility .5s;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+            #button::after {
+                content: "\f077";
+                font-family: FontAwesome;
+                font-weight: normal;
+                font-style: normal;
+                font-size: 2em;
+                line-height: 50px;
+                color: #fff;
+            }
+
+            #button:hover {
+                cursor: pointer;
+                background-color: #333;
+            }
+
+            #button:active {
+                background-color: #555;
+            }
+
+            #button.show {
+                opacity: 1;
+                visibility: visible;
+            }
+
+    </style>
 
 
     <script src="@Url.Content("~/template/assets/js/jquery-1.10.2.min.js")"></script>
@@ -248,6 +289,23 @@
         $(window).bind("load", function () {
             $('.show-theme-options').delay(0).trigger('click');
         });
+
+        //scroll top
+        var btn = $('#button');
+        $(window).scroll(function () {
+            if ($(window).scrollTop() > 300) {
+                console.log("oke")
+                btn.addClass('show');
+            } else {
+                btn.removeClass('show');
+            }
+        });
+
+        btn.on('click', function (e) {
+            e.preventDefault();
+            $('html, body').animate({ scrollTop: 0 }, '300');
+        });
+
     </script>
     <!-- script change color -->
     <script src="http://w.sharethis.com/button/buttons.js"></script>
@@ -266,6 +324,7 @@
             });
         });
     </script>
+    
    
 </body>
 </html>

@@ -6,70 +6,81 @@
 }
 <div class="row">
     <div class="mycart">
-        <h3>Danh sách các hóa đơn bạn đã đặt hàng</h3>
-        <div class="simpleCart_items">
-            @for (int i = 0; i < @Model.Count; i++)
-            {
-                <div class="itemphieu">
-                    <div class="col-md-2 itemthumbphieu">
-                        <a href="javascript:;" onclick="ChiTietItem('@Url.Action("Chitietdonhang","Donhang")','@Model[i].donHang.MaDH')"><img src="~/images/icon/cartphieu.jpg" style="width:150px;" alt="img" title="xem chi tiết" /></a>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="itemnamemua">
-                            <i>Tên người Mua :</i> @Model[i].nguoiMua.HoTen
-                        </div>
-                       
-                        <div class="itemnamghichu">
-                            <i>Ghi chú :</i> @Model[i].donHang.Ghichu
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <div class="itemnamemua">
-                            Tổng tiền : <span style="color:red">@string.Format("{0:0,0}", Model[i].donHang.Tongtien) VND</span>
-                        </div>
-                        <div class="itemnamemua">
-                            Ngày mua : @Model[i].donHang.NgayDatMua
-                        </div>
-                        <div class="itemnamghichu">
-                            Địa chỉ : @Model[i].donHang.Diachi
-                        </div>
-                    </div>
-                    <div class="col-md-2">
+        <h3 style="color:red;font-size: 20px; margin-top:30px">Danh sách các hóa đơn bạn đã đặt hàng</h3>
+        @if (Model.Count < 1)
+        {
+            <div class="text-center">
+                <img src="~/images/icon/emptyorder.jpg" style="width:450px !important;height:350px !important; float:none !important" />
+                <p style="margin-left: 15px;color: orangered; font-size:16px;font-weight:bold">Bạn chưa có sản phẩm nào trong giỏ</p>
+                <a href="@Url.Action("Index","Home")" class="le-button big"><img src="~/images/icon/buynow.png" width="30px" /> Mua Hàng Ngay</a>
+            </div>
 
-                        @if (@Model[i].donHang.TinhTrangDH <= 1)
-                        {
-                            <div id="itemtrangthai">
-                                <span style="color:black">Trạng thái :</span><i> @Model[i].tinhTrangDH .</i>
+        }
+        else
+        {
+            <div class="simpleCart_items">
+
+                @for (int i = 0; i < @Model.Count; i++)
+                {
+                    <div class="itemphieu">
+                        <div class="col-md-2 itemthumbphieu">
+                            <a href="javascript:;" onclick="ChiTietItem('@Url.Action("Chitietdonhang","Donhang")','@Model[i].donHang.MaDH')"><img src="~/images/icon/cartphieu.jpg" style="width:150px;" alt="img" title="xem chi tiết" /></a>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="itemnamemua">
+                                <i>Tên người Mua :</i> @Model[i].nguoiMua.HoTen
+                            </div>
+
+                            <div class="itemnamghichu">
+                                <i>Ghi chú :</i> @Model[i].donHang.Ghichu
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="itemnamemua">
+                                Tổng tiền : <span style="color:red">@string.Format("{0:0,0}", Model[i].donHang.Tongtien) VND</span>
+                            </div>
+                            <div class="itemnamemua">
+                                Ngày mua : @Model[i].donHang.NgayDatMua
                             </div>
                             <div class="itemnamghichu">
-                                <a href="javascript:;" onclick="Huydonhang('@Model[i].donHang.MaDH')" class="btn" style="padding: 8px 10px 8px 10px; background-color:blueviolet;border-radius:30px;color:white"><img src="~/images/icon/cancle.png" style="border-radius:50%;width:20px; height:20px;"/> Hủy đơn đặt hàng</a>
+                                Địa chỉ : @Model[i].donHang.Diachi
                             </div>
-                        }
-                        else
-                        {
-                            <div id="itemtrangthai">
-                                <span style="color:black">Trạng thái :</span><i>@Model[i].tinhTrangDH .</i>
+                        </div>
+                        <div class="col-md-2">
+
+                            @if (@Model[i].donHang.TinhTrangDH <= 1)
+                            {
+                                <div id="itemtrangthai">
+                                    <span style="color:black">Trạng thái :</span><i> @Model[i].tinhTrangDH .</i>
+                                </div>
+                                <div class="itemnamghichu">
+                                    <a href="javascript:;" onclick="Huydonhang('@Model[i].donHang.MaDH')" class="btn" style="padding: 8px 10px 8px 10px; background-color:blueviolet;border-radius:30px;color:white"><img src="~/images/icon/cancle.png" style="border-radius:50%;width:20px; height:20px;" /> Hủy đơn đặt hàng</a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div id="itemtrangthai">
+                                    <span style="color:black">Trạng thái :</span><i>@Model[i].tinhTrangDH .</i>
+                                </div>
+                            }
+                            <div class="itemnamghichu">
+                                <a href="javascript:;" onclick="ChiTietItem('@Url.Action("Chitietdonhang","Donhang")','@Model[i].donHang.MaDH')" class="btn" style="padding: 8px 10px 8px 10px; background-color:saddlebrown;border-radius:30px;color:white;"><img src="~/images/icon/viewdetail.png" style="border-radius:50%;width:20px; height:20px;" /> Xem chi tiết đơn hàng</a>
                             </div>
-                        }
-                        <div class="itemnamghichu">
-                            <a href="javascript:;" onclick="ChiTietItem('@Url.Action("Chitietdonhang","Donhang")','@Model[i].donHang.MaDH')" class="btn" style="padding: 8px 10px 8px 10px; background-color:saddlebrown;border-radius:30px;color:white;"><img src="~/images/icon/viewdetail.png" style="border-radius:50%;width:20px; height:20px;" /> Xem chi tiết đơn hàng</a>
+
                         </div>
 
                     </div>
-                      
-                </div>
-            }
+                }
+                <div class="clear"></div>
+            </div>
+        }
 
-            <div class="clear"></div>
-
-        </div>
     </div>
 </div>
+@Html.Action("SanPhamBanChayRow", "SideBar")
+
 <div id="show-dialog-detail" style="display:none">
 </div>
-
-
-
 
 
 

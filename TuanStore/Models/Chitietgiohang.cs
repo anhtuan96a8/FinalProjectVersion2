@@ -13,6 +13,7 @@ namespace TuanStore.Models
         public int Soluong { get; set; }
         private double thanhtien;
 
+
         public double Thanhtien
         {
             get { return (double)sanPham.GiaTien * Soluong; }

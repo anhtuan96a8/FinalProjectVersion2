@@ -185,7 +185,19 @@ function timkiemBinhLuan() {
         },
     });
 }
-
+function timkiemDanhGia() {
+    var key = $('#inputSPDG').val();
+    var date = $('#dayDG').val();
+    var rate = $('#sosao').val();
+    $.ajax({
+        url: "/DanhGia/TimDanhGia",
+        type: 'GET',
+        data: { key: key, date: date, rate: rate },
+        success: function (result) {
+            $('.Ajax-Table').html(result);
+        },
+    });
+}
 function timkiemhopdong() {
     var key = $('#mahd').val();
     var tensp = $('#tensp').val();

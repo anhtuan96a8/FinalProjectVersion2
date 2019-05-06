@@ -113,8 +113,12 @@ namespace TuanStore.Models
                     dhkh.Ghichu = a.Note;
                     dhkh.NgayDatMua = DateTime.Now;
                     dhkh.TinhTrangDH = 1;
-                    dhkh.Tongtien = giohang.TinhtongtienCart();
-                    dhkh.PhiVanChuyen = 0;
+                    if(giohang.Tinhtongtiensanpham() > 500000)
+                    {
+                        dhkh.PhiVanChuyen = 0;
+                    }
+                    else dhkh.PhiVanChuyen = 30000;
+                    dhkh.Tongtien = giohang.Tinhtongtiensanpham() + (double)dhkh.PhiVanChuyen;
 
                     dhkh = db.DonHangKHs.Add(dhkh);
                     db.SaveChanges();

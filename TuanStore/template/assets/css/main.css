@@ -544,7 +544,9 @@ label.error {
   letter-spacing: -1px;
   font-weight: normal!important;
   text-transform: capitalize;
+  color:maroon;
 }
+
 .pagination {
   margin: 17px 0;
 }
@@ -1898,11 +1900,16 @@ header .top-cart-row .top-cart-holder .total-price-basket {
   margin: 0 0 32px 0;
   position: relative;
 }
+.size-small.product-item{
+    height: 300px !important;
+
+}
+
 .carousel-holder .title-nav h1,
 .carousel-holder .title-nav h2 {
   font-weight: normal !important;
   background-color: #fff;
-  color: #3d3d3d;
+  color: maroon;
   letter-spacing: -1px;
   padding: 0 23px 0 0;
   display: inline-block;
@@ -1918,6 +1925,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
   line-height: 35px;
 }
 .carousel-holder .title-nav .nav-holder {
+  margin-top:21px;
   float: right;
   display: inline-block;
 }
@@ -1929,7 +1937,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
 }
 .carousel-holder .title-nav .nav-holder:after {
   z-index: -1;
-  top: 50%;
+  top: 65%;
   position: absolute;
   left: 0;
   content: "";
@@ -2321,24 +2329,29 @@ header .top-cart-row .top-cart-holder .total-price-basket {
   background: none;
 }
 #owl-recently-viewed .owl-wrapper-outer,
-#owl-recently-viewed-2 .owl-wrapper-outer {
-  width: 100.1%;
-  padding-bottom: 70px;
+#owl-recently-viewed-2 .owl-wrapper-outer,
+#owl-recently-viewed-3 .owl-wrapper-outer {
+    width: 100.1%;
+    padding-bottom: 70px;
 }
 #owl-recently-viewed .owl-wrapper-outer .owl-item:hover .product-item-holder,
-#owl-recently-viewed-2 .owl-wrapper-outer .owl-item:hover .product-item-holder {
+#owl-recently-viewed-2 .owl-wrapper-outer .owl-item:hover .product-item-holder,
+#owl-recently-viewed-3 .owl-wrapper-outer .owl-item:hover .product-item-holder{
   border-right-width: 1px;
 }
 #owl-recently-viewed .owl-wrapper-outer .owl-item .product-item-holder,
-#owl-recently-viewed-2 .owl-wrapper-outer .owl-item .product-item-holder {
+#owl-recently-viewed-2 .owl-wrapper-outer .owl-item .product-item-holder,
+#owl-recently-viewed-3 .owl-wrapper-outer .owl-item .product-item-holder{
   border-right-width: 0;
 }
 #owl-recently-viewed .owl-wrapper-outer .owl-item .product-item-holder .wish-compare a,
-#owl-recently-viewed-2 .owl-wrapper-outer .owl-item .product-item-holder .wish-compare a {
+#owl-recently-viewed-2 .owl-wrapper-outer .owl-item .product-item-holder .wish-compare a,
+#owl-recently-viewed-3 .owl-wrapper-outer .owl-item .product-item-holder .wish-compare a{
   margin: 0 7px;
 }
 #owl-recently-viewed .owl-wrapper-outer .owl-item:last-child .product-item-holder,
-#owl-recently-viewed-2 .owl-wrapper-outer .owl-item:last-child .product-item-holder {
+#owl-recently-viewed-2 .owl-wrapper-outer .owl-item:last-child .product-item-holder ,
+#owl-recently-viewed-3 .owl-wrapper-outer .owl-item:last-child .product-item-holder{
   border-right-width: 1px;
 }
 #owl-recommended-products .owl-wrapper-outer {
@@ -2501,6 +2514,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
   min-height: 36px;
   line-height: 19px;
 }
+
 .product-grid-holder .product-item-holder.size-small {
   min-height: 270px;
   max-width: 146.2pt!important;
@@ -2512,6 +2526,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
   padding: 0;
 }
 .product-grid-holder .product-item-holder.size-small .image  img {
+   width:143px !important;
   height:143px;
 }
 .product-grid-holder .product-item-holder.size-small .body {
@@ -2569,9 +2584,14 @@ header .top-cart-row .top-cart-holder .total-price-basket {
   text-transform: capitalize;
 }
 .product-item-holder .body .title a {
-  color: #0e53a5;
-  font-weight: bold;
+    display:inline-block;
+    height:42px;
+    overflow-y: hidden;
+    text-overflow:ellipsis;
+    color: #0e53a5;
+    font-weight: bold;
 }
+
 .product-item-holder .body .brand {
   font-size: 10px;
   line-height: 30px;
@@ -2673,7 +2693,7 @@ header .top-cart-row .top-cart-holder .total-price-basket {
   border-right: 0;
 }
 .grid-list-products .product-grid-holder .product-item-holder {
-  min-height: 410px;
+  height: 410px;
   border: 1px solid #ececec;
   border-top: 0;
   border-left: 0;
@@ -4163,6 +4183,13 @@ header .top-cart-row .top-cart-holder .total-price-basket {
   margin-bottom: 35px;
   line-height: 40px;
 }
+#rates > h3 {
+    font-size: 24px;
+    font-weight: 400 !important;
+    border-bottom: 1px solid #ececec;
+    margin-bottom: 35px;
+    line-height: 40px;
+}
 .comment-item .comment-body header {
   border-bottom: none;
 }
@@ -4725,11 +4752,13 @@ select.top-drop-menu {
     max-width: 100% !important;
   }
   #owl-recently-viewed .size-small,
-  #owl-recently-viewed-2 .size-small {
+  #owl-recently-viewed-2 .size-small,
+   #owl-recently-viewed-3 .size-small{
     max-width: 100% !important;
   }
   #owl-recently-viewed .owl-wrapper-outer .owl-item .product-item-holder,
-  #owl-recently-viewed-2 .owl-wrapper-outer .owl-item .product-item-holder {
+  #owl-recently-viewed-2 .owl-wrapper-outer .owl-item .product-item-holder,
+  #owl-recently-viewed-3 .owl-wrapper-outer .owl-item .product-item-holder{
     border-right-width: 1px;
   }
   .megamenu-horizontal .dropdown-menu {
@@ -4935,12 +4964,13 @@ select.top-drop-menu {
 }
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) and (max-width: 1199px) {
-  #owl-recently-viewed .owl-item .product-item-holder,
-  #owl-recently-viewed-2 .owl-item .product-item-holder,
-  #owl-recommended-products .owl-item .product-item-holder {
-    max-width: none !important;
-    width: 100%;
-  }
+    #owl-recently-viewed .owl-item .product-item-holder,
+    #owl-recently-viewed-2 .owl-item .product-item-holder,
+    #owl-recently-viewed-3 .owl-item .product-item-holder,
+    #owl-recommended-products .owl-item .product-item-holder {
+        max-width: none !important;
+        width: 100%;
+    }
   #single-product .gallery-holder .single-product-gallery-item {
     width: 100%;
   }
@@ -4990,4 +5020,12 @@ select.top-drop-menu {
   .owl-buttons {
     display: block;
   }
+}
+.product-item-holder.size-small .body {
+    height: 92px;
+}
+.product-item-holder.size-small .body .title a {
+    display: inline-block;
+    overflow-y: hidden;
+    text-overflow: ellipsis;
 }

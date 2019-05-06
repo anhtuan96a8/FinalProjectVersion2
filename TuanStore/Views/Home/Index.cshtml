@@ -27,6 +27,7 @@
                 <li class="active"><a href="#featured" data-toggle="tab"><img src="~/images/icon/hoitem.png" style="border-radius:50%;width:30px; height:30px" /> Nổi bật</a></li>
                 <li><a href="#new-arrivals" data-toggle="tab"><img src="~/images/icon/newitem.jpg" style="border-radius:50%;width:30px; height:30px" /> Mới nhập</a></li>
                 <li><a href="#top-sales" data-toggle="tab"><img src="~/images/icon/discountitem.png" style="border-radius:50%;width:30px; height:30px" /> Giảm giá</a></li>
+                <li><a href="#all-products" data-toggle="tab"><img src="~/images/icon/allproduct.png" style="border-radius:50%;width:30px; height:30px" /> Tất cả</a></li>
             </ul>
 
             <!-- Tab panes -->
@@ -37,7 +38,7 @@
                             @Html.Action("SPNoiBat", "Home")
                         </div>
                     </div>
-                    <div class="loadmore-holder text-center" >
+                    <div class="loadmore-holder text-center">
                         <div id="sphotlink">
                             <a class="btn-loadmore btn" href='javascript:LoadMorePro(4,"SPNoiBat","#sphotlink","#spnoibat")' style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold;margin:70px 0 0 0;">
                                 <img src="~/images/icon/loadmore.png" style="border-radius:50%;width:30px; height:30px" />
@@ -46,37 +47,50 @@
                         </div>
                     </div>
                 </div>
-
-            <div class="tab-pane" id="new-arrivals">
-                <div class="product-grid-holder">
-                    <div id="spmoiload">
-                        @Html.Action("SPMoiNhap", "Home")
+                <div class="tab-pane" id="new-arrivals">
+                    <div class="product-grid-holder">
+                        <div id="spmoiload">
+                            @Html.Action("SPMoiNhap", "Home")
+                        </div>
+                    </div>
+                    <div class="loadmore-holder text-center">
+                        <div id="spmoilink">
+                            <a class="btn-loadmore btn" href='javascript:LoadMorePro(4,"SPMoiNhap","#spmoilink","#spmoiload")' style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold;margin:70px 0 0 0;">
+                                <img src="~/images/icon/loadmore.png" style="border-radius:50%;width:30px; height:30px" /> Tải thêm
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="loadmore-holder text-center">
-                    <div id="spmoilink">
-                        <a class="btn-loadmore btn" href='javascript:LoadMorePro(4,"SPMoiNhap","#spmoilink","#spmoiload")' style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold;margin:70px 0 0 0;">
-                            <img src="~/images/icon/loadmore.png" style="border-radius:50%;width:30px; height:30px" /> Tải thêm
-                        </a>
+                <div class="tab-pane" id="top-sales">
+                    <div class="product-grid-holder">
+                        <div id="spkmload">
+                            @Html.Action("SPKhuyenMai", "Home")
+                        </div>
+                    </div>
+                    <div class="loadmore-holder text-center">
+                        <div id="spkmlink">
+                            <a class="btn-loadmore btn" href='javascript:LoadMorePro(4,"SPKhuyenMai","#spkmlink","#spkmload")' style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold;margin:70px 0 0 0;">
+                                <img src="~/images/icon/loadmore.png" style="border-radius:50%;width:30px; height:30px" />                            Tải thêm
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane" id="all-products">
+                    <div class="product-grid-holder">
+                        <div id="allspload">
+                            @Html.Action("AllProducts", "Home")
+                        </div>
+                    </div>
+                    <div class="loadmore-holder text-center">
+                        <div id="allsplink">
+                            <a class="btn-loadmore btn" href='javascript:LoadMorePro(8,"AllProducts","#allsplink","#allspload")' style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold;margin:70px 0 0 0;">
+                                <img src="~/images/icon/loadmore.png" style="border-radius:50%;width:30px; height:30px" />                            Tải thêm
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="tab-pane" id="top-sales">
-                <div class="product-grid-holder">
-                    <div id="spkmload">
-                        @Html.Action("SPKhuyenMai", "Home")
-                    </div>
-                </div>
-                <div class="loadmore-holder text-center">
-                    <div id="spkmlink">
-                        <a class="btn-loadmore btn" href='javascript:LoadMorePro(4,"SPKhuyenMai","#spkmlink","#spkmload")' style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#34495E;color:white;font-weight:bold;margin:70px 0 0 0;">
-                            <img src="~/images/icon/loadmore.png" style="border-radius:50%;width:30px; height:30px" />                            Tải thêm
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 </div>

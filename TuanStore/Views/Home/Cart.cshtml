@@ -7,6 +7,15 @@
     <div class="container">
         <!-- ========================================= CONTENT ========================================= -->
         <div class="col-xs-12 col-md-9 items-holder no-margin">
+            @if (Model.getGiohang().Count < 1)
+            {
+                <div class="text-center">
+                    <img src="~/images/icon/empty-cart.png" style="margin-bottom: 30px" alt="" />
+                    <p style="margin-left: 15px;color: orangered; font-size:16px;font-weight:bold">Bạn chưa có sản phẩm nào trong giỏ</p>
+                    <a href="@Url.Action("Index","Home")" class="le-button big"><img src="~/images/icon/buynow.png" width="30px"/> Mua Hàng Ngay</a>
+                </div>
+            }
+
             @for (int i = 0; i < Model.getGiohang().Count; i++)
             {
                 <div class="row no-margin cart-item">
@@ -69,7 +78,14 @@
                     <ul id="total-price" class="tabled-data inverse-bold no-border">
                         <li>
                             <label>Tổng tiền :</label>
-                            <div class="value pull-right" style="color:red;margin:10px 0 20px 0;">@string.Format("{0:0,0}",@Model.TinhtongtienCart()) VNĐ</div>
+                            @if (Model.getGiohang().Count < 1)
+                            {
+                                <div class="value pull-right" style="color:red;margin:10px 0 20px 0;">@string.Format("{0:0,0}", 00) VNĐ</div>
+                            }
+                            else
+                            {
+                                <div class="value pull-right" style="color:red;margin:10px 0 20px 0;">@string.Format("{0:0,0}", @Model.TinhtongtienCart()) VNĐ</div>
+                            }
                         </li>
                     </ul>
                     <div class="buttons-holder">
@@ -81,6 +97,10 @@
             
         </div><!-- /.sidebar -->
         <!-- ========================================= SIDEBAR : END ========================================= -->
+    </div>
+    
+    <div>
+        @Html.Action("SanPhamBanChayRow", "SideBar")
     </div>
 </section>
 
