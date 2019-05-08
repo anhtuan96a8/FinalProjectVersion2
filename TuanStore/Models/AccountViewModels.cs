@@ -63,7 +63,7 @@ namespace TuanStore.Models
         public string HoTen { get; set; }
 
         [Required(ErrorMessage = "Vui lòng cung cấp số điện thoại", AllowEmptyStrings = false)]
-        [RegularExpression(@"(09)\d{8}|(01)\d{9}", ErrorMessage = "Entered phone format is not valid.")]
+        [RegularExpression(@"(09)\d{8}|(01)\d{9}", ErrorMessage = "Số điện thoại không đúng định dạng.")]
         [Display(Name = "Điện thoại liên lạc")]
         [DataType(DataType.PhoneNumber)]
         public string DienThoai { get; set; }
@@ -153,18 +153,18 @@ namespace TuanStore.Models
 
     public class EditInfoModel
     {
-        [Required(ErrorMessage = "Vui lòng cung cấp địa chỉ email")]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage = "Email không đúng dạng")]
+        [DataType(DataType.EmailAddress)]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Vui lòng cung cấp số điện thoại", AllowEmptyStrings = false)]
+        //[Required(ErrorMessage = "Vui lòng cung cấp số điện thoại", AllowEmptyStrings = false)]
         [RegularExpression(@"(09)\d{8}|(01)\d{9}", ErrorMessage = "Entered phone format is not valid.")]
         [Display(Name = "Điện thoại liên lạc")]
         [DataType(DataType.PhoneNumber)]
         public string DienThoai { get; set; }
 
-        [Required(ErrorMessage = "Vui lòng cung cấp họ tên của bạn", AllowEmptyStrings = false)]
+        //[Required(ErrorMessage = "Vui lòng cung cấp họ tên của bạn", AllowEmptyStrings = false)]
         [Display(Name = "Họ tên")]
         public string HoTen { get; set; }
 

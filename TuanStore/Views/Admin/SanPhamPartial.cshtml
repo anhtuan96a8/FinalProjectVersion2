@@ -22,15 +22,15 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                <td style="vertical-align:middle">
                     <input type="checkbox" name="lstdel" value="@item.MaSP" />
                 </td>
                 <td><img src="@Url.Content("~/images/products/")@item.AnhDaiDien" width="90" height="120" /></td>
-                <td class="center">@item.TenSP</td>
-                <td class="center">@item.LoaiSP1.TenLoai</td>
-                <td class="center">@item.SoLuong</td>
-                <td class="center">@string.Format("{0:0,0}", item.GiaTien) VNĐ</td>
-                <td class="center">
+                <td class="center" width="300px" style="vertical-align:middle">@item.TenSP</td>
+                <td class="text-center " style="vertical-align:middle" >@item.LoaiSP1.TenLoai</td>
+                <td class="text-center" style="vertical-align:middle" >@item.SoLuong</td>
+                <td class="text-center" style="vertical-align:middle">@string.Format("{0:0,0}", item.GiaTien) VNĐ</td>
+                <td class="center" style="vertical-align:middle">
                     <a class="btn btn-success" href='javascript:ChiTietItem("@Url.Action("SPDetail", "Admin")","@item.MaSP")'>
                         <i class="glyphicon glyphicon-zoom-in icon-white"></i>
                         Chi tiết

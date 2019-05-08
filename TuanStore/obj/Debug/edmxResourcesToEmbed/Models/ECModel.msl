@@ -214,8 +214,7 @@
     <EntitySetMapping Name="TinTucs">
       <EntityTypeMapping TypeName="Model.TinTuc">
         <MappingFragment StoreEntitySet="TinTuc">
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
           <ScalarProperty Name="AnhDaiDien" ColumnName="AnhDaiDien" />
           <ScalarProperty Name="MoTa" ColumnName="MoTa" />
           <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />

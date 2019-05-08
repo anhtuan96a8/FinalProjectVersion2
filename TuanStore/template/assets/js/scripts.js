@@ -244,35 +244,106 @@
     /*  STAR RATING
     /*===================================================================================*/
 
-    $(document).ready(function () {
+    //$(document).ready(function () {
 
-        if ($('.star').length > 0) {
-            $('.star').each(function(){
-                    var $star = $(this);
+    //    if ($('.star').length > 0) {
+    //        $('.star').each(function(){
+    //                var $star = $(this);
                     
-                    if($star.hasClass('big')){
-                        $star.raty({
-                            starOff: 'assets/images/star-big-off.png',
-                            starOn: 'assets/images/star-big-on.png',
-                            space: false,
-                            score: function() {
-                                return $(this).attr('data-score');
-                            }
-                        });
-                    }else{
-                     $star.raty({
-                        starOff: 'assets/images/star-off.png',
-                        starOn: 'assets/images/star-on.png',
-                        space: false,
-                        score: function() {
-                            return $(this).attr('data-score');
-                        }
-                    });
-                }
+    //                if($star.hasClass('big')){
+    //                    $star.raty({
+    //                        starOff: '~/images/icon/star-none.png',
+    //                        starOn: '~/images/icon/star.png',
+    //                        space: false,
+    //                        score: function() {
+    //                            return $(this).attr('data-score');
+    //                        }
+    //                    });
+    //                }else{
+    //                 $star.raty({
+    //                     starOff: '~/images/icon/star-none.png',
+    //                     starOn: '~/images/icon/star.png',
+    //                    space: false,
+    //                    score: function() {
+    //                        return $(this).attr('data-score');
+    //                    }
+    //                });
+    //            }
+    //        });
+    //    }
+    //});
+    $(document).ready(function () {
+        if ($('.star').length > 0) {
+            $('.star').each(function () {
+                var $star = $(this);
+                $star.raty({
+                    readOnly: true,
+                    starOff: 'images/icon/star-none.png',
+                    starOn: 'images/icon/star.png',
+                    path: document.location.origin,
+                    space: false,
+                    score: function () {
+                        return $(this).attr('data-score');
+                    }
+                });
             });
         }
+        if ($('.star-big').length > 0) {
+            $('.star-big').each(function () {
+                var $star = $(this);
+                $star.raty({
+                    readOnly: true,
+                    starOff: 'images/icon/star-none.png',
+                    starOn: 'images/icon/star.png',
+                    path: document.location.origin,
+                    space: false,
+                    score: function () {
+                        return $(this).attr('data-score');
+                    }
+                });
+            });
+        }
+        $('#NoiDungDanhGia').on('input', function (e) {
+            var comment = $('#NoiDungDanhGia').val();
+            if (comment.length > 1) {
+                var index = comment.length - 1;
+                if (index != -1) {
+                    if ((comment.charAt(index) == ' ' || comment.charAt(index) == '.')) {
+                        $.ajax({
+                            url: "http://localhost:9874/sav",
+                            type: "post",
+                            dataType: 'text',
+                            data: {
+                                Comment: comment
+                            },
+                            success: function (result) {
+                                $('.star-big').raty({
+                                    showCancel: true,
+                                    starOff: 'images/icon/star-none.png',
+                                    starOn: 'images/icon/star.png',
+                                    starHalf: 'template/assets/images/star-big-half.png',
+                                    path: document.location.origin,
+                                    space: false,
+                                    score: result
+                                });
+                                $('#RateDanhGia').val(result);
+                            }
+                        });
+                    }
+                }
+            }
+            else {
+                $('.star-big').raty({
+                    starOff: 'images/icon/star-none.png',
+                    starOn: 'images/icon/star.png',
+                    starHalf: 'template/assets/images/star-big-half.png',
+                    path: document.location.origin,
+                    space: false,
+                    score: 0
+                });
+            }
+        });
     });
-
     /*===================================================================================*/
     /*  SHARE THIS BUTTONS
     /*===================================================================================*/

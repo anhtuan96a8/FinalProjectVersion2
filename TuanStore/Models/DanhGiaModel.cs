@@ -51,5 +51,9 @@ namespace TuanStore.Models
             if (bl == null) return;
             BasicDel(madg);
         }
+        internal AspNetUser GetUser(string id)
+        {
+            return db.AspNetUsers.Where(m => m.Id == id).FirstOrDefault();
+        }
     }
 }

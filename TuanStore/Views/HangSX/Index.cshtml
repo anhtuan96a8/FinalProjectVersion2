@@ -8,13 +8,13 @@
         <div class="box-inner">
             <div class="box-header well" data-original-title="">
                 <h2><i class="glyphicon glyphicon-user"></i>@ViewBag.Title</h2>
-                <div class="box-icon">
+                @*<div class="box-icon">
                     <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
                     <a href="#" class="btn btn-minimize btn-round btn-default">
                         <i class="glyphicon glyphicon-chevron-up"></i>
                     </a>
                     <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
-                </div>
+                </div>*@
             </div>
             <div class="box-content">
                 <div class="alert alert-info" id="alert-info" style="display:none"></div>
@@ -47,13 +47,13 @@
         <div class="box-inner">
             <div class="box-header well" data-original-title="">
                 <h2><i class="glyphicon glyphicon-user"></i>Thêm @ViewBag.Title</h2>
-                <div class="box-icon">
+                @*<div class="box-icon">
                     <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
                     <a href="#" class="btn btn-minimize btn-round btn-default">
                         <i class="glyphicon glyphicon-chevron-up"></i>
                     </a>
                     <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
-                </div>
+                </div>*@
             </div>
             <div class="box-content">
 
@@ -63,14 +63,13 @@
                     <div class="form-horizontal">
                         <div class="alert alert-info" style="display:none">
                             @Html.AntiForgeryToken()
-                            @Html.ValidationSummary()
                             <span id="kiemtratrung"></span>
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.TenHang, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 @Html.TextBoxFor(model => model.TenHang, new { @class = "form-control", oninput = "kiemgiatritrung(this.value,\"" + @Url.Action("kiemtra", "HangSX") + "\",\"#loaiisok\")" })                         
-                                @Html.ValidationMessageFor(model => model.TenHang)
+                                @Html.ValidationMessageFor(model => model.TenHang,"" ,new { @class = "text-danger" })
                                 <span id="loaiisok"></span>
                             </div>
                         </div>  

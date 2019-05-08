@@ -45,8 +45,8 @@
         </div>*@<!-- /.field-row -->
     <div class="field-row">
         <label>Hỏi đáp về sản phẩm ?</label>
-        @Html.TextAreaFor(model => model.NoiDung, new { @class = "le-input", @rows = "8"})
-        @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
+        @Html.TextAreaFor(model => model.NoiDung, new { @class = "le-input", @rows = "8", placeholder = "Nhập nội dung hỏi đáp của bạn" })
+        @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger"  })
     </div><!-- /.field-row -->
     <div class="buttons-holder">
         <button type="submit" class="le-button huge" formmethod="post"><img src="~/images/icon/send.png" width="30"/> Gửi</button>

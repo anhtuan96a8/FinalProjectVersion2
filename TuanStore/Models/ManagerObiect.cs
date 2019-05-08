@@ -30,7 +30,8 @@ namespace TuanStore.Models
         public void LoadCartfromCookie(HttpRequestBase request)
         {
             HttpCookie cookie = request.Cookies["Cart"];
-            if(cookie == null)
+            cookie.Expires = DateTime.Now.AddHours(10);
+            if (cookie == null)
             {
                 giohang = new Giohang();
                 return;

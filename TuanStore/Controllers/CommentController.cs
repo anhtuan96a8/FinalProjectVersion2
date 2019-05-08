@@ -65,10 +65,16 @@ namespace TuanStore.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddComment(BinhLuan Comment)
         {
-            Comment.NgayDang = DateTime.Now;
-            Comment.MaKH = User.Identity.GetUserId();
-            Comment.DaTraLoi = "C";
             CommentModel cm = new CommentModel();
+            Comment.NgayDang = DateTime.Now;
+            if (User.Identity.GetUserId() != null)
+            {
+                Comment.MaKH = User.Identity.GetUserId();
+                Comment.HoTen = cm.GetUser(User.Identity.GetUserId()).HoTen.ToString();
+                Comment.Email = cm.GetUser(User.Identity.GetUserId()).Email.ToString();
+
+            }
+            Comment.DaTraLoi = "C";
             cm.AddComment(Comment);
 
             //Chatbot rep

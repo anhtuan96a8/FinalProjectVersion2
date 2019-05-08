@@ -23,7 +23,12 @@ namespace TuanStore.Controllers
         public ActionResult Index()
         {   
             
-            //Entities db = new Entities();
+            Entities db = new Entities();
+            ViewBag.SoBinhLuan = db.BinhLuans.Count<BinhLuan>();
+            DonhangKHModel donhangKH = new DonhangKHModel();
+            var s = donhangKH.ThongKeDoanhThu(null,null).ToList();
+            //ViewBag.DoanhThu = donhangKH.Sum(item => item.);
+            
             //ViewBag.SoNguoiDangKy = (from p in db.AspNetUsers 
             //                         join q in db.AspNetRoles on p.Id equals q. )
             return View();

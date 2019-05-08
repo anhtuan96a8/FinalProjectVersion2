@@ -20,12 +20,12 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                <td style="vertical-align:middle">
                     <input type="checkbox" name="lstdel" value="@item.HangSX" />
                 </td>
-                <td class="center">@item.TenHang</td>
-                <td class="center">@item.TruSoChinh</td>
-                <td class="center">@item.QuocGia</td>
+                <td class="center" style="vertical-align:middle">@item.TenHang</td>
+                <td class="center" style="vertical-align:middle">@item.TruSoChinh</td>
+                <td class="center" style="vertical-align:middle">@item.QuocGia</td>
                 <td class="center">
                     <a class="btn btn-info" href="@Url.Action("EditHangSX", "HangSX", new { id = item.HangSX })">
                         <i class="glyphicon glyphicon-edit icon-white"></i>

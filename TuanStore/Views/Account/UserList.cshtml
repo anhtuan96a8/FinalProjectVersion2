@@ -23,15 +23,15 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                <td style="vertical-align:middle">
                     <input type="checkbox" name="lstdel" value="@item.Id" />
                 </td>
                 <td><img src="@Url.Content("~/images/avatars/")@item.Avatar" width="70" height="70" /></td>
-                <td class="center">@item.UserName</td>
-                <td class="center">@item.HoTen</td>
-                <td class="center">@item.Email</td>
-                <td class="center">@item.PhoneNumber</td>
-                <td class="center">
+                <td class="center" style="vertical-align:middle">@item.UserName</td>
+                <td class="center" style="vertical-align:middle">@item.HoTen</td>
+                <td class="center" style="vertical-align:middle">@item.Email</td>
+                <td class="center" style="vertical-align:middle">@item.PhoneNumber</td>
+                <td class="center" style="vertical-align:middle">
                     @if (@item.AspNetRoles.First().Name.Equals("Khách hàng"))
                     {
                         <span class="label label-success">@item.AspNetRoles.First().Name</span>
@@ -53,7 +53,7 @@
                         <span class="label" style="background-color:#808080; text-decoration:line-through">@item.AspNetRoles.First().Name</span>
                     }
                 </td>
-                <td class="center">
+                <td class="center" style="vertical-align:middle">
 
                     <a class="btn btn-success" href='javascript:ChiTietItem("@Url.Action("UserDetail", "Account")","@item.Id")'>
                         <i class="glyphicon glyphicon-zoom-in icon-white"></i>

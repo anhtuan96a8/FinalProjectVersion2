@@ -18,7 +18,7 @@ namespace TuanStore.Models
             {
                 List<DonhangKHModel> listDh = new List<DonhangKHModel>();
                 db.DonHangKHs.AsNoTracking();
-                var danhsach = from p in db.DonHangKHs where p.MaKH == makh select p;
+                var danhsach = (from p in db.DonHangKHs where p.MaKH == makh select p).OrderByDescending(m=>m.NgayDatMua);
                 foreach (var temp in danhsach.ToList())
                 {
                     AspNetUser users = (from p in db.AspNetUsers where p.Id == makh select p).FirstOrDefault();

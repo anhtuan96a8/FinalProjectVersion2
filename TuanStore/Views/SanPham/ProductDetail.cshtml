@@ -38,11 +38,29 @@
                         scrollTop: $("#rate").offset().top
                     }, 500);
                 }
+            }).done(function (r) {
+                if ($('.star').length > 0) {
+                    $('.star').each(function () {
+                        var $star = $(this);
+                        $star.raty({
+                            readOnly: true,
+                            starOff: 'images/icon/star-none.png',
+                            starOn: 'images/icon/star.png',
+                            path: document.location.origin,
+                            space: false,
+                            score: function () {
+                                return $(this).attr('data-score');
+                            }
+                        });
+                    });
+                }
             });
             return false;
         });
     });
+    
 </script>
+
 
 <div id="single-product">
     <div class="container">

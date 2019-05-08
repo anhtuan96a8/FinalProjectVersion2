@@ -3,6 +3,18 @@
     ViewBag.Title = "Chỉnh sửa thông tin cá nhân";
     Layout = "~/Views/Shared/_LayoutFrontEnd.cshtml";
 }
+<script>
+    function loadIMG(input, id) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $(id)
+                    .attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 <main id="authentication" class="inner-bottom-md">
     <div class="container">
         <br />
@@ -15,36 +27,35 @@
                     <h5>@ViewBag.StatusMessage</h5>
                 }
             </div>
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("EditInfo", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
                 <div class="form-horizontal">
-                    @Html.ValidationSummary(true)
                     <div class="col-md-8">
                         <div class="form-group">
                             @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-3" })
-                            <div class="col-md-5">
-                                @Html.TextBoxFor(model => model.Email, new { @class = "le-input", disabled = "disabled", @readonly = "readonly" })
+                            <div class="col-md-6">
+                                @Html.TextBoxFor(model => model.Email, new { @class = "le-input", @*disabled = "disabled", @readonly = "readonly"*@ })
                                 @Html.ValidationMessageFor(model => model.Email)
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.DienThoai, new { @class = "control-label col-md-3" })
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                                 @Html.TextBoxFor(model => model.DienThoai, new { @class = "le-input" })
                                 @Html.ValidationMessageFor(model => model.DienThoai)
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.CMND, new { @class = "control-label col-md-3" })
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                                 @Html.TextBoxFor(model => model.CMND, new { @class = "le-input" })
                                 @Html.ValidationMessageFor(model => model.CMND)
                             </div>
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.HoTen, new { @class = "control-label col-md-3" })
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                                 @Html.TextBoxFor(model => model.HoTen, new { @class = "le-input" })
                                 @Html.ValidationMessageFor(model => model.HoTen)
                             </div>
@@ -69,34 +80,39 @@
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(model => model.DiaChi, new { @class = "control-label col-md-3" })
-                            <div class="col-md-8">
+                            <div class="col-md-6">
                                 @Html.TextBoxFor(model => model.DiaChi, new { @class = "le-input" })
                                 @Html.ValidationMessageFor(model => model.DiaChi)
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-offset-3 col-md-8">
-                                <button type="submit" class="le-button huge"><img src="~/images/icon/save.jpg" style="border-radius:50%;width:30px; height:30px;margin-right:5px" /> Lưu lại</button>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
-            }
-            @using (Html.BeginForm("EditAvatar", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
                 <div class="col-md-4">
-                    @Html.AntiForgeryToken()
                     @Html.LabelFor(model => model.Avatar, new { @class = "control-label" })
                     @*@Html.EditorFor(model => model.Avatar)
-                    @Html.ValidationMessageFor(model => model.Avatar)*@
-                    <div style="text-align:center; margin:20px">
-                        <img src="@Url.Content("~/images/avatars/")@Model.Avatar" style="width: 256px; height: 256px; -webkit-border-radius: 123px; /* Saf3+, Chrome */ border-radius: 123px; /* Opera 10.5, IE 9 */ /*-moz-border-radius: 30px;  Disabled for FF1+ */ ">
-                    </div>
+        @Html.ValidationMessageFor(model => model.Avatar)*@
+                    @if (Model.Avatar == null)
+                    {
+                        <div style="text-align:center; margin:20px">
+                            <img id="avatar-image" src="@Url.Content("~/images/avatars/")@ViewBag.Avatar" style="width: 230px; height: 230px; -webkit-border-radius: 123px; /* Saf3+, Chrome */ border-radius: 123px; /* Opera 10.5, IE 9 */ /*-moz-border-radius: 30px;  Disabled for FF1+ */ ">
+                        </div>
+                    }
+                    else
+                    {
+                        <div style="text-align:center; margin:20px">
+                            <img id="avatar-image" src="@Url.Content("~/images/avatars/")@Model.Avatar" style="width: 230px; height: 230px; -webkit-border-radius: 123px; /* Saf3+, Chrome */ border-radius: 123px; /* Opera 10.5, IE 9 */ /*-moz-border-radius: 30px;  Disabled for FF1+ */ ">
+                        </div>
+                    }
+
                     <div class="form-group">
-                        <input type="file" name="file" accept=".jpg" />
+                        <input type="file" name="ad" accept=".jpg" class="form-control" onchange="loadIMG(this, '#avatar-image');" />
                     </div>
-                    <div class="form-group">
-                        <button type="submit" class="le-button"><img src="~/images/icon/pushdata.png" style="border-radius:50%;width:30px; height:30px;margin-right:5px" /> Tải lên</button>
+
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-8">
+                        <button type="submit" class="le-button huge"><img src="~/images/icon/save.jpg" style="border-radius:50%;width:30px; height:30px;margin-right:5px" /> Lưu lại</button>
                     </div>
                 </div>
             }

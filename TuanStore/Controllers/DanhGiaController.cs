@@ -86,11 +86,16 @@ namespace TuanStore.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddDanhGia(DanhGiaSP danhGia)
         {
-            danhGia.Rate = 4;
+            DanhGiaModel dg = new DanhGiaModel();
             danhGia.NgayDang = DateTime.Now;
-            danhGia.MaKH = User.Identity.GetUserId();
-            DanhGiaModel cm = new DanhGiaModel();
-            cm.AddDanhGia(danhGia);
+            if (User.Identity.GetUserId() != null)
+            {
+                danhGia.MaKH = User.Identity.GetUserId();
+                danhGia.HoTen = dg.GetUser(User.Identity.GetUserId()).HoTen.ToString();
+                danhGia.Email = dg.GetUser(User.Identity.GetUserId()).Email.ToString();
+
+            }
+            dg.AddDanhGia(danhGia);
 
             return RedirectToAction("LoadDanhGia", new { masp = danhGia.MaSP });
         }

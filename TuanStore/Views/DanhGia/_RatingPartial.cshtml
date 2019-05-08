@@ -27,7 +27,7 @@
                             }
 
                         </div>
-                        <div class=" inline">
+                        @*<div class=" inline">
                             @for (int i = 1; i <= Model.Rate; i++)
                             {
                                 <img src="~/images/icon/star.png" width="30px" />
@@ -39,6 +39,9 @@
                                     <img src="~/images/icon/star-none.png" width="30px" />
                                 }
                             }
+                        </div>*@
+                        <div class="star-holder inline">
+                            <div class="star" data-score="@Model.Rate"></div>
                         </div>
                         <div class="date inline pull-right" style="padding-top:6px">
                             @Model.NgayDang

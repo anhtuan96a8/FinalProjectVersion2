@@ -8,13 +8,13 @@
         <div class="box-inner">
             <div class="box-header well" data-original-title="">
                 <h2><i class="glyphicon glyphicon-user"></i>@ViewBag.Title</h2>
-                <div class="box-icon">
+                @*<div class="box-icon">
                     <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
                     <a href="#" class="btn btn-minimize btn-round btn-default">
                         <i class="glyphicon glyphicon-chevron-up"></i>
                     </a>
                     <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
-                </div>
+                </div>*@
             </div>
             <div class="box-content">
                 <div class="alert alert-info" id="alert-info" style="display:none"></div>
@@ -22,7 +22,7 @@
                     <div class="input-group">
                         @Html.DropDownList("value", new SelectList(new List<object>
                         {
-                            new { value = "1" , text = "Dang duyệt"  },
+                            new { value = "1" , text = "Đang duyệt"  },
                             new { value = "2" , text = "Đang giao" },
                             new { value = "3" , text = "Đã giao" },
                             new { value = "4" , text = "Hủy" },

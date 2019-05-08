@@ -96,7 +96,8 @@ namespace TuanStore.Controllers
                 {
                    TempData["alert"] = "Bạn chưa có sản phẩm nào";
                    return RedirectToAction("Checkout", "Home");
-                } 
+                }
+                ManagerObiect.getIntance().giohang.removerCarts();
                 return RedirectToAction("Index", "Home");
             }
             else

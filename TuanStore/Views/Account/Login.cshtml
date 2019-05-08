@@ -15,15 +15,14 @@
 @using (Html.BeginForm("Login", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form cf-style-1", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary()
     <div class="field-row">
         @Html.LabelFor(m => m.UserName)
-        @Html.TextBoxFor(m => m.UserName, new { @class = "le-input" })
+        @Html.TextBoxFor(m => m.UserName, new { @class = "le-input" ,placeholder = "Nhập tên đăng nhập của bạn" })
         @Html.ValidationMessageFor(m => m.UserName)
     </div>
     <div class="field-row">
         @Html.LabelFor(m => m.Password)
-        @Html.PasswordFor(m => m.Password, new { @class = "le-input" })
+        @Html.PasswordFor(m => m.Password, new { @class = "le-input", placeholder = "Nhập mật khẩu của bạn ( tối thiểu 6 ký tự )" })
         @Html.ValidationMessageFor(m => m.Password)
     </div>
     <div class="field-row clearfix">

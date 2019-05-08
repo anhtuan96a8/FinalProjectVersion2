@@ -21,20 +21,20 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                <td style="vertical-align:middle">
                     <input type="checkbox" name="lstdel" value="@item.MaKM" />
                 </td>
-                <td class="center">@item.TenCT</td>
-                <td class="center">
+                <td class="center" style="vertical-align:middle">@item.TenCT</td>
+                <td class="center" style="vertical-align:middle">
                     @if (item.NgayBatDau != null)
                     {@item.NgayBatDau.Value.ToShortDateString()}
                 </td>
-                <td class="center">
+                <td class="center" style="vertical-align:middle">
                     @if (item.NgayKetThuc != null)
                     {@item.NgayKetThuc.Value.ToShortDateString()}
                 </td>
                 <td class="center"><img src="@Url.Content("~/images/khuyenmai/")@item.AnhCT" width="150" height="80" /></td>
-                <td class="center">
+                <td class="center" style="vertical-align:middle">
                     <a class="btn btn-success" href='javascript:ChiTietItem("@Url.Action("CTKhuyenMai", "KhuyenMai")","@item.MaKM")'>
                         <i class="glyphicon glyphicon-zoom-in icon-white"></i>
                         Chi tiết

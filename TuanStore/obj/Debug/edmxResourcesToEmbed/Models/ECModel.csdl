@@ -483,7 +483,6 @@
     <Property Name="NgayDang" Type="DateTime" Precision="3" />
     <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="AnhDaiDien" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Email" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

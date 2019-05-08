@@ -113,5 +113,10 @@ namespace TuanStore.Models
         {
             return db.BinhLuans.Where(m => m.Parent == mabl);
         }
+
+        internal AspNetUser GetUser(string id)
+        {
+            return db.AspNetUsers.Where(m => m.Id == id).FirstOrDefault();
+        }
     }
 }

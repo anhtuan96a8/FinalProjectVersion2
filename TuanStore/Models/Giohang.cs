@@ -30,6 +30,15 @@ namespace TuanStore.Models
             }
             catch (Exception e) { return false; }
         }
+        public bool removerCarts()
+        {
+            try
+            {
+                Cart.Clear();
+                return true;
+            }
+            catch (Exception e) { return false; }
+        }
         /// <summary>
         /// Tính tổng tiền của các sản phẩm trong giỏ hàng
         /// </summary>

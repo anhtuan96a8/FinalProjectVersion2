@@ -1,0 +1,14 @@
+﻿@using ManhStore.Models;
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<BinhLuan>
+<span class="bold">Gồm @Model.TotalItemCount đánh giá </span>
+@foreach (var item in Model)
+{
+    <hr />
+    @Html.Partial("_ReviewPartial", item)
+}
+<div id="nav-review">
+    @Html.PagedListPager(Model, page => Url.Action("LoadComment", "Comment", new { masp = ViewBag.masp, israte = true, page = page }))
+</div>
+

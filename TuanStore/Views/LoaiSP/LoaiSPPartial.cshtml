@@ -10,7 +10,7 @@
             <th>
                 <input type="checkbox" onclick="toggle(this)" />
             </th>
-            <th>@Html.DisplayNameFor(model => model.First().TenLoai)</th>
+            <th>Tên loại sản phẩm</th>
             <th>Hành động</th>
         </tr>
     </thead>
@@ -18,10 +18,10 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>
+                <td style="vertical-align:middle">
                     <input type="checkbox" name="lstdel" value="@item.MaLoai" />
                 </td>
-                <td class="center">@item.TenLoai</td>
+                <td class="center" style="vertical-align:middle">@item.TenLoai</td>
                 <td class="center">
                     <a class="btn btn-info" href="@Url.Action("EditLoaiSP", "LoaiSP", new { id = item.MaLoai })">
                         <i class="glyphicon glyphicon-edit icon-white"></i>

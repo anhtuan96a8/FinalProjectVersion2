@@ -8,11 +8,15 @@
     <hr />
     @Html.Partial("_RatingPartial", item)
 }
-<div id="nav_comment row">
-    <div class="col-sm-8 col-xs-12">
-        @Html.PagedListPager(Model, page => Url.Action("LoadDanhGia", "DanhGia", new { masp = ViewBag.masp, page = page }))
+    <div id="nav_comment row">
+        <div class="col-sm-8 col-xs-12">
+            @Html.PagedListPager(Model, page => Url.Action("LoadDanhGia", "DanhGia", new { masp = ViewBag.masp, page = page }))
+        </div>
+        @if (Model.TotalItemCount > 10)
+        {
+            <div class="col-sm-4 col-xs-12 text-right">
+                <p class="h4" style="margin:30px 0 0 0">Có tất cả @Model.TotalItemCount đánh giá </p>
+            </div>
+        }
+
     </div>
-    <div class="col-sm-4 col-xs-12 text-right">
-        <p class="h4" style="margin:30px 0 0 0">Có tất cả @Model.TotalItemCount đánh giá </p>
-    </div>
-</div>

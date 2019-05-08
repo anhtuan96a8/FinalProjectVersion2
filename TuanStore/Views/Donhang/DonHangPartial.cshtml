@@ -23,16 +23,16 @@
         {
         @*<tr onclick="ChiTietItem('@Url.Action("Chitietdonhang","Donhang")','@item.MaDH')">*@
         <tr>
-            <td rowspan="3">
+            <td rowspan="3" style="vertical-align:middle">
                 <input type="checkbox" name="lstdel" value="@item.MaDH" />
             </td>
-            <td class="center" rowspan="3">@item.MaDH</td>
+            <td class="center" rowspan="3" style="vertical-align:middle">@item.MaDH</td>
             <td class="center">
                 <span style="font-weight:600; color:#ff0000"> Họ tên:</span><span> @item.AspNetUser.HoTen</span>
             </td>
-            <td class="center" rowspan="3"> @string.Format("{0:0,0}", @item.Tongtien) VNĐ</td>
-            <td class="center" rowspan="3">@item.NgayDatMua</td>
-            <td class="center" rowspan="3">
+            <td class="center" rowspan="3" style="vertical-align:middle"> @string.Format("{0:0,0}", @item.Tongtien) VNĐ</td>
+            <td class="center" rowspan="3" style="vertical-align:middle">@item.NgayDatMua</td>
+            <td class="center" rowspan="3" style="vertical-align:middle">
                 @if (item.TinhTrangDH == 1)
                 {<span class="label" style="background-color:#808080;">Đang duyệt</span> }
                 else if (item.TinhTrangDH == 2)
@@ -42,7 +42,7 @@
                 else
                 {<span class="label label-danger">Hủy</span>}
             </td>
-            <td class="center" rowspan="3">
+            <td class="center" rowspan="3" style="vertical-align:middle">
                 <a class="btn btn-success" href='javascript:ChiTietItem("@Url.Action("Chitietdonhang", "Donhang")","@item.MaDH")'>
                     <i class="glyphicon glyphicon-zoom-in icon-white"></i>
                     Chi tiết

@@ -197,8 +197,7 @@
     <Property Name="NgayDang" Type="datetime" />
     <Property Name="MoTa" Type="ntext" />
     <Property Name="AnhDaiDien" Type="ntext" />
-    <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
-    <Property Name="Email" Type="nvarchar" MaxLength="128" />
+    <Property Name="NoiDung" Type="ntext" />
   </EntityType>
   <EntityType Name="Trackingaction">
     <Key>

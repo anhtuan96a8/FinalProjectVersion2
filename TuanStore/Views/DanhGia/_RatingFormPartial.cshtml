@@ -1,13 +1,61 @@
 ﻿@using Microsoft.AspNet.Identity
 @model TuanStore.Models.DanhGiaSP
-<script>function test1() {
+<script>function test1()
+    {
         $('html, body').animate({
             scrollTop: $("#rate").offset().top
         }, 500);
         $('#HoTenDanhGia').val('');
         $('#NoiDungDanhGia').val('');
-        $('#EmailDanhGia').val('')
-    }</script>
+        $('#EmailDanhGia').val('');
+        if ($('.star').length > 0) {
+            $('.star').each(function () {
+                var $star = $(this);
+                $star.raty({
+                    readOnly: true,
+                    starOff: 'images/icon/star-none.png',
+                    starOn: 'images/icon/star.png',
+                    path: document.location.origin,
+                    space: false,
+                    score: function () {
+                        return $(this).attr('data-score');
+                    }
+                });
+            });
+        }
+        if ($('.star-big').length > 0) {
+            $('.star-big').each(function () {
+                var $star = $(this);
+                $star.raty({
+                    readOnly: true,
+                    starOff: 'images/icon/star-none.png',
+                    starOn: 'images/icon/star.png',
+                    path: document.location.origin,
+                    space: false,
+                    score: function () {
+                        return $(this).attr('data-score');
+                    }
+                });
+            });
+        }
+    }
+    //$(document).ready(function () {
+    //    $(document).on("click", "#sendDG", function () {
+
+    //        $.ajax({
+    //            url: 'DanhGia/AddDanhGia',
+    //            type: 'POST',
+    //            cache: false,
+    //            data
+    //            success: function (result) {
+    //                test1()
+    //            }
+    //        });
+    //        return false;
+    //    });
+    //});
+    </script>
+    
 <h2>Viết đánh giá <img src="~/images/icon/writerate.png" width="25" alt="Alternate Text" /></h2>
 @using (Ajax.BeginForm("AddDanhGia", "DanhGia", null, new AjaxOptions { UpdateTargetId = "rates", OnSuccess = "test1" }, new { @id = "contact-form", @class = "contact-form" }))
 {
@@ -19,11 +67,11 @@
         {
             <div class="col-xs-12 col-sm-6">
                 @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @id = "HoTenDanhGia", @class = "le-input", placeholder = "Họ tên của bạn" } })
-                @Html.ValidationMessageFor(model => model.HoTen, "", new { @id = "HoTenDanhGia", @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.HoTen, "", new {  @class = "text-danger" })
             </div>
             <div class="col-xs-12 col-sm-6">
                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @id = "EmailDanhGia", @class = "le-input", placeholder = "Email của bạn" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @id = "EmailDanhGia", @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Email, "", new {  @class = "text-danger" })
             </div>
         }
         else
@@ -42,10 +90,16 @@
         </div>*@<!-- /.field-row -->
     <div class="field-row">
         <label>Đánh giá sản phẩm </label>
-        @Html.TextAreaFor(model => model.NoiDung, new { @id = "NoiDungDanhGia", @class = "le-input", @rows = "8" })
-        @Html.ValidationMessageFor(model => model.NoiDung, "", new { @id = "NoiDungDanhGia", @class = "text-danger" })
+        <p style="margin-bottom:10px">Đánh giá của bạn sẽ được tự đánh giá sao theo tiêu chuẩn đã được học từ trước khi bạn gõ . Nhưng nếu bạn muốn sửa đổi nó bạn có thể tích vào nó để chọn số sao của bạn.</p>
+        <div class="star-holder col-lg-9 no-padding">
+            <div class="star-big" data-score=""></div>
+        </div>
+        @Html.HiddenFor(model => model.Rate, new { @id = "RateDanhGia", @class = "le-input", @rows = "1"})
+
+        @Html.TextAreaFor(model => model.NoiDung, new { @id = "NoiDungDanhGia", @class = "le-input", @rows = "8", placeholder = "Nhập đánh giá sản phẩm " })
+        @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
     </div><!-- /.field-row -->
     <div class="buttons-holder">
-        <button type="submit" class="le-button huge" formmethod="post"><img src="~/images/icon/send.png" width="30" /> Gửi</button>
+        <button type="submit" class="le-button huge" formmethod="post"><img src="~/images/icon/send.png" width="30" id="sendDG"/> Gửi</button>
     </div><!-- /.buttons-holder -->
 }

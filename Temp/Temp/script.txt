@@ -1,0 +1,70 @@
+ $(document).ready(function () {
+        if ($('.star').length > 0) {
+            $('.star').each(function(){
+                    var $star = $(this);
+                    $star.raty({
+                        readOnly: true,
+                        starOff: 'template/assets/images/star-off.png',
+                        starOn: 'template/assets/images/star-on.png',
+                        path: document.location.origin,
+                        space: false,
+                        score: function () {
+                            return $(this).attr('data-score');
+                        }
+                    });
+            });
+        }
+        if ($('.star-big').length > 0) {
+            $('.star-big').each(function () {
+                var $star = $(this);
+                $star.raty({
+                    readOnly: true,
+                    starOff: 'template/assets/images/star-big-off.png',
+                    starOn: 'template/assets/images/star-big-on.png',
+                    path: document.location.origin,
+                    space: false,
+                    score: function () {
+                        return $(this).attr('data-score');
+                    }
+                });
+            });
+        }
+        $('#review-in').on('input', function (e) {
+            var comment = $('#review-in').val();
+            if (comment.length > 20) {
+                var index = comment.length - 1;
+                if (index != -1) {
+                    if ((comment.charAt(index) == ' ' || comment.charAt(index) == '.')) {
+                        $.ajax({
+                            url: "http://127.0.0.1:5000/sav",
+                            type: "post",
+                            dataType: 'text',
+                            data: {
+                                Comment: comment
+                            },
+                            success: function (result) {
+                                $('.star-big').raty({
+                                    starOff: 'template/assets/images/star-big-off.png',
+                                    starOn: 'template/assets/images/star-big-on.png',
+                                    starHalf: 'template/assets/images/star-big-half.png',
+                                    path: document.location.origin,
+                                    space: false,
+                                    score: result
+                                });
+                            }
+                        });
+                    }
+                }
+            }
+            else {
+                $('.star-big').raty({
+                    starOff: 'template/assets/images/star-big-off.png',
+                    starOn: 'template/assets/images/star-big-on.png',
+                    starHalf: 'template/assets/images/star-big-half.png',
+                    path: document.location.origin,
+                    space: false,
+                    score: 0
+                });
+            }
+        });
+    });

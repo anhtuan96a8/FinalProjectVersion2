@@ -23,6 +23,10 @@ namespace TuanStore.Models
             rep.NgayDang = DateTime.Now;
             rep.MaKH = "912a7a6d-b24d-40e7-bfed-726fb822b99d";
             rep.MaSP = bl.MaSP;
+            rep.HoTen = "Nguyễn Anh Tuấn";
+            rep.Email = "admin@gmail.com";
+
+           
 
             //
             CommentModel cm = new CommentModel();
@@ -36,7 +40,7 @@ namespace TuanStore.Models
                 var values = new NameValueCollection();
                 values["Question"] = question;
 
-                var response = client.UploadValues("http://127.0.0.1:5000/chatbot", values);
+                var response = client.UploadValues("http://localhost:9874/chatbot", values);
 
                 var responseString = Encoding.UTF8.GetString(response);
                 return responseString;

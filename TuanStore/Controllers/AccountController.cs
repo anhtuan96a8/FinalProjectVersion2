@@ -467,15 +467,36 @@ namespace TuanStore.Controllers
             EditInfoModel info = new EditInfoModel(user.FindById(User.Identity.GetUserId()));
             return View(info);
         }
+        public bool UploadAnh(HttpPostedFileBase file, string tenfile)
+        {
+            // Verify that the user selected a file
+            if (file != null && file.ContentLength > 0)
+            {
+                var name = Path.GetExtension(file.FileName);
+                // extract only the filename
+                if (!Path.GetExtension(file.FileName).Equals(".jpg"))
+                {
+                    return false;
+                }
+                // store the file inside ~/App_Data/uploads folder
+                var path = Path.Combine(Server.MapPath("~/images/avatars/"), tenfile);
+                file.SaveAs(path);
+                return true;
+            }
+            // redirect back to the index action to show the form once again
+            return false;
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditInfo([Bind(Include = "Email,DienThoai,CMND,HoTen,NgaySinh,GioiTinh,DiaChi")] EditInfoModel info)
+        public ActionResult EditInfo([Bind(Include = "Email,DienThoai,CMND,HoTen,NgaySinh,GioiTinh,DiaChi")] EditInfoModel info, HttpPostedFileBase ad)
         {
             if (ModelState.IsValid)
             {
                 UserModel user = new UserModel();
                 user.UpdateInfo(info, User.Identity.GetUserId());
-                info.Avatar = user.FindById(User.Identity.GetUserId()).Avatar;
+                user.FindById(User.Identity.GetUserId());
+                UploadAnh(ad, user.FindById(User.Identity.GetUserId()).Avatar);
+                ViewBag.Avatar = user.FindById(User.Identity.GetUserId()).Avatar;
                 ViewBag.StatusMessage = "Cập nhật thông tin thành công";
             }
             return View(info);

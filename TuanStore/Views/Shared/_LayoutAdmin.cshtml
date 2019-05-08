@@ -71,54 +71,54 @@
 
             <!-- left menu starts -->
             <div class="col-sm-2 col-lg-2">
-                <div class="sidebar-nav">
+                <div class="sidebar-nav" style="background-color:antiquewhite">
                     <div class="nav-canvas">
                         <div class="nav-sm nav nav-stacked">
                         </div>
                         <ul class="nav nav-pills nav-stacked main-menu">
                             <li>
-                                <a class="ajax-link" href="@Url.Action("Index","Admin")"><i class="glyphicon glyphicon-home red"></i><span style="font-weight: bold; color:#ff0000"> Dashboard</span></a>
+                                <a class="ajax-link" href="@Url.Action("Index","Admin")"><img src="~/images/icon/dashboard-admin.png" width="25" height="25" /><span style="font-weight: bold; color:#ff0000"> Dashboard</span></a>
                             </li>
                             <li>
-                                <a href="#"><i class="glyphicon glyphicon-gift red"></i><span style="font-weight: bold; color:#ff0000"> Khu vực sản phẩm</span></a>
+                                <a href="#" style="padding-right:0px"><img src="~/images/icon/product-admin.png" width="20" height="20" /></i><span style="font-weight: bold; color:#ff0000"> Khu vực sản phẩm</span></a>
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="@Url.Action("SanPham","Admin")">Quản lý sản phẩm</a></li>
-                                    <li><a href="@Url.Action("Index","LoaiSP")">Quản lý loại sản phẩm</a></li>
-                                    <li><a href="@Url.Action("Index","HangSX")">Quản lý hãng sản xuất</a></li>
-                                    <li><a href="@Url.Action("Index","KhuyenMai")">Quản lý khuyến mãi</a></li>
+                                    <li><a href="@Url.Action("SanPham","Admin")"style="padding-right:0px"><img src="~/images/icon/product-manage.png" width="20" height="20" />Quản lý sản phẩm</a></li>
+                                    <li><a href="@Url.Action("Index","LoaiSP")"style="padding-right:0px"><img src="~/images/icon/product-type.png" width="20" height="20" />Quản lý loại sản phẩm</a></li>
+                                    <li><a href="@Url.Action("Index","HangSX")"style="padding-right:0px"><img src="~/images/icon/producer-admin.png" width="20" height="20" />Quản lý hãng sản xuất</a></li>
+                                    <li><a href="@Url.Action("Index","KhuyenMai")"style="padding-right:0px"><img src="~/images/icon/discount-admin.png" width="20" height="20" />Quản lý khuyến mãi</a></li>
                                 </ul>
                             </li>
                             @if (User.IsInRole("Quản trị viên"))
                             {
                                 <li>
-                                    <a href="#"><i class="glyphicon glyphicon-user red"></i><span style="font-weight: bold; color: #ff0000;"> Khu vực thành viên</span></a>
+                                    <a href="#"style="padding-right:0px"><img src="~/images/icon/user-admin.png" width="20" height="20" /><span style="font-weight: bold; color: #ff0000;"> Khu vực thành viên</span></a>
                                     <ul class="nav nav-pills nav-stacked">
-                                        <li><a href="@Url.Action("Index", "Account")">Danh sách người dùng</a></li>
-                                        <li><a href="@Url.Action("Index", "Roles")">Danh sách chức vụ</a></li>
+                                        <li><a href="@Url.Action("Index", "Account")"style="padding-right:0px"><img src="~/images/icon/user-list2.png" width="20" height="20" />Danh sách người dùng</a></li>
+                                        <li><a href="@Url.Action("Index", "Roles")"style="padding-right:0px"><img src="~/images/icon/user-list.png" width="20" height="20" />Danh sách chức vụ</a></li>
                                     </ul>
                                 </li>
                             }
                             
                             <li>
-                                <a href="#"><i class="glyphicon glyphicon-briefcase red"></i><span style="font-weight: bold; color: #ff0000;">Đơn hàng - Hóa đơn</span></a>
+                                <a href="#"style="padding-right:0px"><img src="~/images/icon/order-admin.png" width="20" height="20" /><span style="font-weight: bold; color: #ff0000;">Đơn hàng - Hóa đơn</span></a>
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="@Url.Action("Index","Donhang")">Đơn hàng của khách</a></li>
+                                    <li><a href="@Url.Action("Index","Donhang")"style="padding-right:0px"><img src="~/images/icon/order-admin2.png" width="20" height="20" />Đơn hàng của khách</a></li>
                                 </ul>
                             </li>
 
                             <li>
-                                <a href="#"><i class="glyphicon glyphicon-heart red"></i><span style="font-weight: bold; color: #ff0000;">Chăm sóc khách hàng</span></a>
+                                <a href="#" style="padding-right:0px"><img src="~/images/icon/chamsoc-amdin.png" width="20" height="20" /><span style="font-weight: bold; color: #ff0000;">Chăm sóc khách hàng</span></a>
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="@Url.Action("Index", "Comment")">Hỏi đáp của khách</a></li>
-                                    <li><a href="@Url.Action("Index", "DanhGia")">Đánh giá của khách</a></li>
+                                    <li><a href="@Url.Action("Index", "Comment")"style="padding-right:0px"><img src="~/images/icon/QA-admin.png" width="20" height="20" />Hỏi đáp của khách</a></li>
+                                    <li><a href="@Url.Action("Index", "DanhGia")"style="padding-right:0px"><img src="~/images/icon/rate-admin.png" width="20" height="20" />Đánh giá của khách</a></li>
                                 </ul>
                             </li>
                         @if (User.IsInRole("Quản trị viên"))
                         {
                             <li>
-                                <a href="#"><i class="glyphicon glyphicon-list-alt red"></i><span style="font-weight: bold; color: #ff0000;"> Khu vực thống kê</span></a>
+                                <a href="#" style="padding-right:0px"><img src="~/images/icon/thongke-admin.png" width="20" height="20" /><span style="font-weight: bold; color: #ff0000;"> Khu vực thống kê</span></a>
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="@Url.Action("ThongKeDoanhThu", "ThongKe")">Doanh thu hàng tháng</a></li>
+                                    <li><a href="@Url.Action("ThongKeDoanhThu", "ThongKe")" style="padding-right:0px"><img src="~/images/icon/coin-admin.png" width="20" height="20" />Doanh thu hàng tháng</a></li>
                                 </ul>
                             </li>
                         }
