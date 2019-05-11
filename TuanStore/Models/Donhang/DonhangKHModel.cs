@@ -172,13 +172,15 @@ namespace TuanStore.Models
             }
         }
 
-        internal IQueryable<DonHangKH> TimDonHang(string key, string mobile, DateTime? date, int? status)
+        internal IQueryable<DonHangKH> TimDonHang(string key,string hoten, string mobile, DateTime? date, int? status)
         {
             Entities db = new Entities();
 
             IQueryable<DonHangKH> lst = db.DonHangKHs;
             if (!string.IsNullOrEmpty(key))
                 lst = lst.Where(m => m.MaDH.Contains(key));
+            if (!string.IsNullOrEmpty(hoten))
+                lst = lst.Where(m => m.AspNetUser.HoTen.ToLower().Contains(hoten.ToLower()));
             if (!string.IsNullOrEmpty(mobile))
                 lst = lst.Where(m => m.Dienthoai.Contains(mobile));
             if (status != null)

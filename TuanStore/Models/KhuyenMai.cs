@@ -16,6 +16,7 @@ using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 
     public partial class KhuyenMai
 {
@@ -31,12 +32,11 @@ using System;
 
     [DisplayName("Mã khuyễn mãi")]
     public string MaKM { get; set; }
-    [Required(ErrorMessage="Hãy chọn ngày bắt đầu")]
     [DisplayName("Ngày bắt đầu")]
     public Nullable<System.DateTime> NgayBatDau { get; set; }
-    [Required(ErrorMessage="Hãy chọn ngày kết thúc")]
     [DisplayName("Ngày kết thúc")]
     public Nullable<System.DateTime> NgayKetThuc { get; set; }
+    [AllowHtml]
     [DisplayName("Nội dung")]
     [Required(ErrorMessage="Hãy nhập nội dung")]
     public string NoiDung { get; set; }
@@ -44,7 +44,6 @@ using System;
     [Required(ErrorMessage="Hãy nhập tên chương trình")]
     public string TenCT { get; set; }
     [DisplayName("Ảnh chương trình")]
-    [Required(ErrorMessage="Hãy chọn ảnh chương trình")]
     public string AnhCT { get; set; }
 
 

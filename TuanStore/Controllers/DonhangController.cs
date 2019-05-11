@@ -18,14 +18,15 @@ namespace TuanStore.Controllers
             return View();
         }
 
-        public ActionResult TimDonHang(string key, string mobile, DateTime? date, int? status, int? page)
+        public ActionResult TimDonHang(string key,string hoten, string mobile, DateTime? date, int? status, int? page)
         {
             DonhangKHModel spm = new DonhangKHModel();
             ViewBag.key = key;
             ViewBag.date = date;
             ViewBag.status = status;
             ViewBag.mobile = mobile;
-            return PhanTrangDH(spm.TimDonHang(key, mobile, date, status), page, null);
+            ViewBag.hoten = hoten;
+            return PhanTrangDH(spm.TimDonHang(key,hoten, mobile, date, status), page, null);
         }
         public ActionResult DeleteDH(string id)
         {
@@ -35,7 +36,7 @@ namespace TuanStore.Controllers
             }
             DonhangKHModel donhang = new DonhangKHModel();
             donhang.DeleteDH(id);
-            return TimDonHang(null, null, null, null, null);
+            return TimDonHang(null, null, null, null, null,null);
         }
         [HttpPost]
         public ActionResult UpdateTinhTrangDH(string madh, int? tt)

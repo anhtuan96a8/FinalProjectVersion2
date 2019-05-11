@@ -40,11 +40,13 @@ namespace TuanStore.Controllers
         public ActionResult EditLoaiSP([Bind(Include = "MaLoai,TenLoai")] LoaiSP loai)
         {
             CategoryModel spm = new CategoryModel();
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && spm.KiemTraTen(loai.TenLoai))
             {
+                TempData["EditSuccess"] = "Oke";
                 spm.EditLoaiSP(loai);
                 return RedirectToAction("Index");
             }
+            TempData["ErrorEdit"] = "Lỗi";
             return View(loai);
         }
 
@@ -70,9 +72,11 @@ namespace TuanStore.Controllers
             CategoryModel spm = new CategoryModel();
             if (ModelState.IsValid && spm.KiemTraTen(loai.TenLoai))
             {
+                TempData["AddSuccess"] = "oke";
                 string maloai = spm.ThemLoaiSP(loai);
                 return View("Index");
             }
+            TempData["ErrorAdd"] = "Lỗi";
             return View("Index", loai);
         }
 

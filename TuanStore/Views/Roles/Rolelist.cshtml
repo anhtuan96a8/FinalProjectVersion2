@@ -14,10 +14,10 @@
                 <td class="center">
                     @if (item.Id != "dc481379-dfae-4d9e-93d8-dce55add3258")
                     {
-                        <a class="btn btn-info" href="@Url.Action("DeleteRole", "Roles", new { roleId = item.Id })">
-                            <i class="glyphicon glyphicon-trash icon-white" style="color:red"></i>
-                            Xóa
-                        </a>
+                    <a class="btn btn-info" href="@Url.Action("DeleteRole", "Roles", new { id = item.Id })">
+                        <img src="~/images/icon/delete2-admin.png" width="20" />
+                        Xóa
+                    </a>
                     }
 
                 </td>

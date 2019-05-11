@@ -41,11 +41,13 @@ namespace TuanStore.Controllers
         public ActionResult EditHangSX([Bind(Include = "HangSX,TenHang,TruSoChinh,QuocGia")] HangSanXuat loai)
         {
             HangSanXuatModel spm = new HangSanXuatModel();
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && spm.KiemTraTen(loai.TenHang))
             {
+                TempData["EditSuccess"] = "Oke";
                 spm.EditHangSX(loai);
                 return RedirectToAction("Index");
             }
+            TempData["ErrorEdit"] = "Lỗi";
             return View(loai);
         }
 
@@ -71,9 +73,11 @@ namespace TuanStore.Controllers
             HangSanXuatModel spm = new HangSanXuatModel();
             if (ModelState.IsValid && spm.KiemTraTen(loai.TenHang))
             {
+                TempData["AddSuccess"] = "oke";
                 string maloai = spm.ThemHangSX(loai);
                 return View("Index");
             }
+            TempData["ErrorAdd"] = "Lỗi"; 
             return View("Index", loai);
         }
 

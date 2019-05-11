@@ -23,7 +23,6 @@ using System;
     public string MaKM { get; set; }
 
     public string MaSP { get; set; }
-    [Required(ErrorMessage="Hãy nhập mô tả khuyến mãi")]
     [DisplayName("Mô tả")]
     public string MoTa { get; set; }
 

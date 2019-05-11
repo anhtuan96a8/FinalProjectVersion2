@@ -90,6 +90,12 @@ namespace TuanStore.Controllers
         {
             Comment.NgayDang = DateTime.Now;
             Comment.MaKH = User.Identity.GetUserId();
+            Comment.HoTen = User.Identity.Name;
+            if (User.IsInRole("Nhân viên"))
+            {
+                Comment.Email = "Nhân viên";
+            }
+            else Comment.Email = "Quản trị viên";
             CommentModel cm = new CommentModel();
             cm.AddComment(Comment);
             cm.UpdateComment(Comment);

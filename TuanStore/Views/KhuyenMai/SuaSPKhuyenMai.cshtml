@@ -7,31 +7,24 @@
     <div class="box col-md-12">
         <div class="box-inner">
             <div class="box-header well" data-original-title="">
-                <h2><i class="glyphicon glyphicon-user"></i>Danh sách sản phẩm chưa thêm vào khuyến mại</h2>
-                @*<div class="box-icon">
-                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
-                    <a href="#" class="btn btn-minimize btn-round btn-default">
-                        <i class="glyphicon glyphicon-chevron-up"></i>
-                    </a>
-                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
-                </div>*@
+                <h2><img src="~/images/icon/discount-admin.png" width="20" />@ViewBag.Title</h2>
+                
             </div>
             <div class="box-content">
                 <div class="alert alert-info" id="alert-info" style="display:none"></div>
-                <div class="form-inline" style="text-align: right; padding: 10px">
+                <div class="form-inline" style="text-align: right; padding: 10px;margin-right:25px">
 
                     <div class="input-group">
-                        @Html.DropDownList("maloai", (SelectList)@ViewBag.LoaiSP, String.Empty, new { @class = "form-control", id = "maloaisearch", onchange = "timkiemDSSanPham(\'"+ViewBag.makm+"\')" })
+                        @Html.DropDownList("maloai", (SelectList)@ViewBag.LoaiSP,"--Loại sản phẩm--", new { @class = "form-control", id = "maloaisearch", onchange = "timkiemDSSanPham(\'"+ViewBag.makm+"\')" , style="border-radius:5px" })
                     </div>
 
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-search red"></i></span>
+                        <span class="input-group-addon"><img src="~/images/icon/search-admin.png" width="14" /></span>
                         <input id="inputIcon" type="text" class="form-control" placeholder="Nhập tên sản phẩm" oninput="timkiemDSSanPham('@ViewBag.makm');">
                     </div>
                     <div class="input-group">
                         <a class="btn btn-info" href='javascript:multibleadd("@Url.Action("Multible", "KhuyenMai")")'>
-                            <i class="glyphicon glyphicon-plus icon-white"></i>
-                            Thêm vào danh sách khuyến mại
+                            <img src="~/images/icon/add-admin.png" width="20" />                            Thêm vào danh sách khuyến mại
                         </a>
                     </div>
                 </div>
@@ -50,31 +43,30 @@
     <div class="box col-md-12">
         <div class="box-inner">
             <div class="box-header well" data-original-title="">
-                <h2><i class="glyphicon glyphicon-user"></i>Danh sách sản phẩm khuyến mãi</h2>
+                <h2><img src="~/images/icon/discount-admin.png" width="20" />@ViewBag.Title</h2>
                 @*<div class="box-icon">
-                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
-                    <a href="#" class="btn btn-minimize btn-round btn-default">
-                        <i class="glyphicon glyphicon-chevron-up"></i>
-                    </a>
-                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
-                </div>*@
+            <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+            <a href="#" class="btn btn-minimize btn-round btn-default">
+                <i class="glyphicon glyphicon-chevron-up"></i>
+            </a>
+            <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+        </div>*@
             </div>
             <div class="box-content">
                 <div class="alert alert-info" id="alert-info" style="display:none"></div>
                 <div class="form-inline" style="text-align: right; padding: 10px">
 
                     <div class="input-group">
-                        @Html.DropDownList("maloai", (SelectList)@ViewBag.LoaiSP, String.Empty, new { @class = "form-control", id = "maloaisearch1", onchange = "timkiemDSSanPhamKhuyenMai(\'"+@ViewBag.makm+"\')" })
+                        @Html.DropDownList("maloai", (SelectList)@ViewBag.LoaiSP,"--Loại sản phẩm--", new { @class = "form-control", id = "maloaisearch1", onchange = "timkiemDSSanPhamKhuyenMai(\'"+@ViewBag.makm+"\')" ,style="border-radius:5px"})
                     </div>
 
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-search red"></i></span>
+                        <span class="input-group-addon"><img src="~/images/icon/search-admin.png" width="14" /></span>
                         <input id="inputIcon1" type="text" class="form-control" placeholder="Nhập tên sản phẩm" oninput="timkiemDSSanPhamKhuyenMai('@ViewBag.makm')">
                     </div>
                     <div class="input-group">
                         <a class="btn btn-danger" href='javascript:multibledel("@Url.Action("Multible", "KhuyenMai")")'>
-                            <i class="glyphicon glyphicon-trash icon-white"></i>
-                            Xóa khỏi danh sách
+                            <img src="~/images/icon/delete-admin.png" width="20" />                            Xóa khỏi danh sách
                         </a>
                     </div>
                 </div>

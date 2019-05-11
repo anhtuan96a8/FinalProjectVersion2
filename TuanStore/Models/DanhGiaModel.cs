@@ -32,7 +32,7 @@ namespace TuanStore.Models
         {
             IQueryable<DanhGiaSP> lst = db.DanhGiaSPs;
             if (!string.IsNullOrEmpty(key))
-                lst = lst.Where(m => m.SanPham.TenSP.Contains(key));
+                lst = lst.Where(m => m.SanPham.TenSP.ToLower().Contains(key.ToLower()));
             if (date != null)
             {
                 lst = lst.Where(m => m.NgayDang.Value.Year == date.Value.Year && m.NgayDang.Value.Month == date.Value.Month && m.NgayDang.Value.Day == date.Value.Day);
@@ -42,7 +42,7 @@ namespace TuanStore.Models
                 int x = Int32.Parse(rate);
                 lst = lst.Where(m => m.Rate == x);
             }
-
+            var b = lst.Count();
             return lst;
         }
         internal void DeleteDanhGia(int madg)

@@ -21,17 +21,9 @@ namespace TuanStore.Controllers
         [AuthLog(Roles = "Quản trị viên,Nhân viên")]
         // GET: Admin
         public ActionResult Index()
-        {   
-            
-            Entities db = new Entities();
-            ViewBag.SoBinhLuan = db.BinhLuans.Count<BinhLuan>();
-            DonhangKHModel donhangKH = new DonhangKHModel();
-            var s = donhangKH.ThongKeDoanhThu(null,null).ToList();
-            //ViewBag.DoanhThu = donhangKH.Sum(item => item.);
-            
-            //ViewBag.SoNguoiDangKy = (from p in db.AspNetUsers 
-            //                         join q in db.AspNetRoles on p.Id equals q. )
-            return View();
+        {
+            AdminIndexView admin = new AdminIndexView();
+            return View(admin);
         }
 
         [AuthLog(Roles = "Quản trị viên,Nhân viên")]
@@ -334,6 +326,13 @@ namespace TuanStore.Controllers
                 }
             }
             return RedirectToAction("SanPham");
+        }
+        public ActionResult kiemtra(string key)
+        {
+            SanPhamModel spm = new SanPhamModel();
+            if (spm.KiemTraTen(key))
+                return Json(true, JsonRequestBehavior.AllowGet);
+            return Json(false, JsonRequestBehavior.AllowGet);
         }
     }
 }

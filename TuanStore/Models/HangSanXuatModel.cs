@@ -39,7 +39,7 @@ namespace TuanStore.Models
 
         internal bool KiemTraTen(string p)
         {
-            var temp = db.HangSanXuats.Where(m => m.TenHang.Equals(p)).ToList();
+            var temp = db.HangSanXuats.Where(m => m.TenHang.ToLower().Equals(p.ToLower())).ToList();
             if (temp.Count == 0)
                 return true;
             return false;
@@ -81,7 +81,7 @@ namespace TuanStore.Models
         {
             if (string.IsNullOrEmpty(key))
                 return db.HangSanXuats;
-            return db.HangSanXuats.Where(u => u.TenHang.Contains(key));
+            return db.HangSanXuats.Where(u => u.TenHang.ToLower().Contains(key.ToLower()));
         }
 
     }

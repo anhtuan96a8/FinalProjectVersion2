@@ -216,7 +216,9 @@ namespace TuanStore.Controllers
             ViewBag.maloai = maloai;
             ViewBag.makm = makm;
             KhuyenMaiModel km = new KhuyenMaiModel();
-            IQueryable<SanPham> lst = km.DSSP(key, maloai, makm);
+
+            //IQueryable<SanPham> lst = km.DSSP(key, maloai, makm);
+            IQueryable<SanPham> lst = km.AllSPNotKM();
             if (lst.Any())
                 return PhanTrangSP(lst, "DSSanPham", page, null);
             return null;

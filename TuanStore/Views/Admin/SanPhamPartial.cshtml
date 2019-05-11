@@ -14,7 +14,7 @@
             <th>@Html.DisplayNameFor(model => model.First().TenSP)</th>
             <th>@Html.DisplayNameFor(model => model.First().LoaiSP1.TenLoai)</th>
             <th>@Html.DisplayNameFor(model => model.First().SoLuong)</th>
-            <th>@Html.DisplayNameFor(model => model.First().GiaTien)</th>
+            <th class="text-center">@Html.DisplayNameFor(model => model.First().GiaTien)</th>
             <th>Hành động</th>
         </tr>
     </thead>
@@ -32,15 +32,14 @@
                 <td class="text-center" style="vertical-align:middle">@string.Format("{0:0,0}", item.GiaTien) VNĐ</td>
                 <td class="center" style="vertical-align:middle">
                     <a class="btn btn-success" href='javascript:ChiTietItem("@Url.Action("SPDetail", "Admin")","@item.MaSP")'>
-                        <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                        <img src="~/images/icon/search.png" width="20px" />
                         Chi tiết
                     </a>
                     <a class="btn btn-info" href="@Url.Action("EditSP", "Admin", new { id = item.MaSP })">
-                        <i class="glyphicon glyphicon-edit icon-white"></i>
-                        Sửa
+                        <img src="~/images/icon/edit-admin.png" width="20px" />                        Sửa
                     </a>
                     <a class="btn btn-danger" href='javascript:XoaItem("@Url.Action("DeleteSP", "Admin")","@item.MaSP")'>
-                        <i class="glyphicon glyphicon-trash icon-white"></i>
+                        <img src="~/images/icon/delete2-admin.png" width="20px" />
                         Xóa
                     </a>
                 </td>
@@ -51,13 +50,13 @@
 
 <div class="pagination-holder">
     <div class="row">
-        <div class="col-xs-12 col-sm-6 text-left">
+        <div class="col-xs-12 col-sm-9 text-left">
             <div id="nav_grid">
                 @Html.PagedListPager(Model, page => Url.Action("TimSP", "Admin", new {key = @ViewBag.key, maloai = @ViewBag.maloai, page = page }))
             </div>
         </div>
-        <div class="col-xs-12 col-sm-6">
-            <div class="result-counter">
+        <div class="col-xs-12 col-sm-3">
+            <div class="result-counter h4" style="text-align: right;padding-top:32px;height: 83px;">
                 Có tất cả <span>@Model.TotalItemCount</span> dòng
             </div>
         </div>

@@ -12,8 +12,8 @@
             </th>
             <th>Mã đơn hàng</th>
             <th>Người mua</th>
-            <th>Tổng</th>
-            <th>Ngày mua</th>
+            <th class="text-center">Tổng</th>
+            <th class="text-center">Ngày mua</th>
             <th>Trạng thái</th>
             <th>Hoạt động</th>
         </tr>
@@ -30,9 +30,9 @@
             <td class="center">
                 <span style="font-weight:600; color:#ff0000"> Họ tên:</span><span> @item.AspNetUser.HoTen</span>
             </td>
-            <td class="center" rowspan="3" style="vertical-align:middle"> @string.Format("{0:0,0}", @item.Tongtien) VNĐ</td>
-            <td class="center" rowspan="3" style="vertical-align:middle">@item.NgayDatMua</td>
-            <td class="center" rowspan="3" style="vertical-align:middle">
+            <td class="text-center" rowspan="3" style="vertical-align:middle"> @string.Format("{0:0,0}", @item.Tongtien) VNĐ</td>
+            <td class="text-center" rowspan="3" style="vertical-align:middle"> @item.NgayDatMua.Value.ToString("dd/MM/yyyy  HH:mm:ss")</td>
+            <td class="text-center" rowspan="3" style="vertical-align:middle">
                 @if (item.TinhTrangDH == 1)
                 {<span class="label" style="background-color:#808080;">Đang duyệt</span> }
                 else if (item.TinhTrangDH == 2)
@@ -44,15 +44,15 @@
             </td>
             <td class="center" rowspan="3" style="vertical-align:middle">
                 <a class="btn btn-success" href='javascript:ChiTietItem("@Url.Action("Chitietdonhang", "Donhang")","@item.MaDH")'>
-                    <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                    <img src="~/images/icon/search.png" width="20" />
                     Chi tiết
                 </a>
                 @if (User.IsInRole("Quản trị viên"))
                 {
-                    <a class="btn btn-danger" href='javascript:XoaItem("@Url.Action("DeleteDH", "Donhang")","@item.MaDH")'>
-                        <i class="glyphicon glyphicon-trash icon-white"></i>
-                        Xóa
-                    </a>
+                <a class="btn btn-danger" href='javascript:XoaItem("@Url.Action("DeleteDH", "Donhang")","@item.MaDH")'>
+                    <img src="~/images/icon/delete2-admin.png" width="20" />
+                    Xóa
+                </a>
                 }
             </td>
         </tr>
@@ -64,14 +64,14 @@
 
 <div class="pagination-holder">
     <div class="row">
-        <div class="col-xs-12 col-sm-6 text-left">
+        <div class="col-xs-12 col-sm-9 text-left">
             <div id="nav_grid">
                 @Html.PagedListPager(Model, page => Url.Action("TimDonHang", "Donhang", new { key = @ViewBag.key, date = @ViewBag.date, status = @ViewBag.status, mobile = @ViewBag.mobile, page = page }))
             </div>
         </div>
-        <div class="col-xs-12 col-sm-6">
-            <div class="result-counter">
-                Có tât cả <span>@Model.TotalItemCount</span> dòng
+        <div class="col-xs-12 col-sm-3">
+            <div class="result-counter h4" style="text-align: right;padding-top:32px;height: 83px;">
+                Có tất cả <span>@Model.TotalItemCount</span> dòng
             </div>
         </div>
     </div><!-- /.row -->

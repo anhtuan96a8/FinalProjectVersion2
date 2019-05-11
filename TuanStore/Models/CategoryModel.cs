@@ -79,13 +79,13 @@ namespace TuanStore.Models
         {
             if (string.IsNullOrEmpty(key))
                 return db.LoaiSPs;
-            return db.LoaiSPs.Where(u => u.TenLoai.Contains(key));
+            return db.LoaiSPs.Where(u => u.TenLoai.ToLower().Contains(key.ToLower()));
         }
 
 
         internal bool KiemTraTen(string p)
         {
-            var temp = db.LoaiSPs.Where(m=>m.TenLoai.Equals(p)).ToList();
+            var temp = db.LoaiSPs.Where(m=>m.TenLoai.ToLower().Equals(p.ToLower())).ToList();
             if (temp.Count == 0)
                 return true;
             return false;

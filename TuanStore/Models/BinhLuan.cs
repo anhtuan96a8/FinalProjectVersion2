@@ -29,6 +29,7 @@ using System;
         [DisplayName("Nội dung")]
         [Required(ErrorMessage = "Hãy nhập nội dung bình luận")]
         public string NoiDung { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         [DisplayName("Ngày Đăng")]
         public Nullable<System.DateTime> NgayDang { get; set; }
         [DisplayName("Họ và tên")]

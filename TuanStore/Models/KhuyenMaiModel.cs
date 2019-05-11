@@ -14,7 +14,7 @@ namespace TuanStore.Models
         {
             return db.KhuyenMais.Find(id);
         }
-
+        
         internal void EditKhuyenMai(KhuyenMai loai)
         {
             KhuyenMai lsp = db.KhuyenMais.Find(loai.MaKM);
@@ -75,7 +75,7 @@ namespace TuanStore.Models
         {
             IQueryable<KhuyenMai> lst = db.KhuyenMais;
             if (!string.IsNullOrEmpty(key))
-                lst = db.KhuyenMais.Where(u => u.TenCT.Contains(key));
+                lst = db.KhuyenMais.Where(u => u.TenCT.ToLower().Contains(key.ToLower()));
             if (start != null)
                 lst = db.KhuyenMais.Where(u => u.NgayBatDau >= start);
             if (end != null)
@@ -85,7 +85,7 @@ namespace TuanStore.Models
 
         internal bool KiemTraTen(string key)
         {
-            var temp = db.KhuyenMais.Where(m => m.TenCT.Equals(key)).ToList();
+            var temp = db.KhuyenMais.Where(m => m.TenCT.ToLower().Equals(key.ToLower())).ToList();
             if (temp.Count == 0)
                 return true;
             return false;
@@ -117,23 +117,43 @@ namespace TuanStore.Models
         {
             return db.SanPhamKhuyenMais.Where(m => m.MaKM == MaKM);
         }
+        internal List<string> getALLIDKM()
+        {
+            List<string> idList = (from p in db.KhuyenMais select p.MaKM).ToList<string>();
+            return idList;
+        }
+        internal IQueryable<SanPham> AllSPNotKM()
+        {
+            var lst = db.SanPhamKhuyenMais.Select(m => m.MaSP);
+            List<string> idList = (from p in db.SanPhamKhuyenMais select p.MaSP).ToList<string>();
+            var lst1 = db.SanPhams.Where(m => !idList.Contains(m.MaSP));
+            //var allsp = db.SanPhams;
+            //foreach(string i in idList)
+            //{
+            //    var lst2 = db.SanPhams.Where(m => m.MaSP == i).FirstOrDefault();
+            //    allsp.Remove(lst2);
+            //    var c = allsp.Count();
 
+            //}
+            //var x = allsp.Count();
+            return lst1;
+        }
         internal IQueryable<SanPham> DSSP(string key, string maloai, string makm)
         {
             var lst = db.SanPhamKhuyenMais.Where(m => m.MaKM == makm).Select(m => m.MaSP);
             var lst1 = db.SanPhams.Where(m => !lst.Contains(m.MaSP));
             if (!string.IsNullOrEmpty(key))
-                lst1 = lst1.Where(m => m.TenSP.Contains(key));
+                lst1 = lst1.Where(m => m.TenSP.ToLower().Contains(key.ToLower()));
             if (!string.IsNullOrEmpty(maloai))
                 lst1 = lst1.Where(m => m.LoaiSP.Equals(maloai));
             return lst1;
         }
-
+       
         internal IQueryable<SanPham> DSSanPhamKhuyenMai(string key, string maloai, string makm)
         {
             var lst = db.SanPhamKhuyenMais.Where(m => m.MaKM == makm).Select(m => m.SanPham);
             if (!string.IsNullOrEmpty(key))
-                lst = lst.Where(m => m.TenSP.Contains(key));
+                lst = lst.Where(m => m.TenSP.ToLower().Contains(key.ToLower()));
             if (!string.IsNullOrEmpty(maloai))
                 lst = lst.Where(m => m.LoaiSP.Equals(maloai));
             return lst;

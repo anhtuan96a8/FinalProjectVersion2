@@ -27,11 +27,11 @@
                     <input type="checkbox" name="lstdel" value="@item.Id" />
                 </td>
                 <td><img src="@Url.Content("~/images/avatars/")@item.Avatar" width="70" height="70" /></td>
-                <td class="center" style="vertical-align:middle">@item.UserName</td>
-                <td class="center" style="vertical-align:middle">@item.HoTen</td>
-                <td class="center" style="vertical-align:middle">@item.Email</td>
-                <td class="center" style="vertical-align:middle">@item.PhoneNumber</td>
-                <td class="center" style="vertical-align:middle">
+                <td class="text-center" style="vertical-align:middle">@item.UserName</td>
+                <td class="" style="vertical-align:middle">@item.HoTen</td>
+                <td class="" style="vertical-align:middle">@item.Email</td>
+                <td class="text-center" style="vertical-align:middle">@item.PhoneNumber</td>
+                <td class="text-center" style="vertical-align:middle">
                     @if (@item.AspNetRoles.First().Name.Equals("Khách hàng"))
                     {
                         <span class="label label-success">@item.AspNetRoles.First().Name</span>
@@ -56,14 +56,12 @@
                 <td class="center" style="vertical-align:middle">
 
                     <a class="btn btn-success" href='javascript:ChiTietItem("@Url.Action("UserDetail", "Account")","@item.Id")'>
-                        <i class="glyphicon glyphicon-zoom-in icon-white"></i>
-                        Chi tiết
+                        <img src="~/images/icon/detail-admin.png" width="20" />                        Chi tiết
                     </a>
                     @if (User.IsInRole("Quản trị viên"))
                     {
                         <a class="btn btn-danger" href='javascript:XoaItem("@Url.Action("DeleteUser", "Account")","@item.Id")'>
-                            <i class="glyphicon glyphicon-trash icon-white"></i>
-                            Xóa
+                            <img src="~/images/icon/delete2-admin.png" width="20" />                            Xóa
                         </a>
                     }
                 </td>
@@ -74,14 +72,14 @@
 
 <div class="pagination-holder">
     <div class="row">
-        <div class="col-xs-12 col-sm-6 text-left">
+        <div class="col-xs-12 col-sm-9 text-left">
             <div id="nav_grid">
                 @Html.PagedListPager(Model, page => Url.Action("TimUser", "Account", new { key = @ViewBag.key, email = @ViewBag.email, hoten = @ViewBag.hoten, phone = @ViewBag.phone, quyen = @ViewBag.quyen, page = page }))
             </div>
         </div>
-        <div class="col-xs-12 col-sm-6">
-            <div class="result-counter">
-                Có tât cả <span>@Model.TotalItemCount</span> dòng
+        <div class="col-xs-12 col-sm-3">
+            <div class="result-counter h4" style="text-align: right;padding-top:32px;height: 83px;">
+                Có tất cả <span>@Model.TotalItemCount</span> dòng
             </div>
         </div>
     </div><!-- /.row -->

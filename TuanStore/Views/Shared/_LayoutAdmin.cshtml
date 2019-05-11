@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-   
+
     <meta charset="utf-8">
     <title>@ViewBag.Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,7 +26,6 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/jqueryval")
     <script src="@Url.Content("~/js/themxoasuaajax.js")"></script>
-    <script src="~/js/B2BAdmin.js"></script>
 
     <!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -44,31 +43,31 @@
                 <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#34495E;color:red;font-weight:bold;border: 2px solid black">
                     <span class="hidden-sm hidden-xs">
                         @if (Session["Avatar"] != null)
-                                    {
-                                        <img src="@Url.Content("~/images/avatars/")@Session["Avatar"].ToString()" alt="avatar" style="border-radius:50%;width:20px; height:20px" /> 
-                                        @Session["Name"]
-                                    }
-                                    else { <img src="~/images/avatars/noavatar.jpg" style="border-radius:50%;width:20px; height:22px" /><span class="hidden-sm hidden-xs"> @User.Identity.Name </span>}
+                        {
+                            <img src="@Url.Content("~/images/avatars/")@Session["Avatar"].ToString()" alt="avatar" style="border-radius:50%;width:20px; height:20px" />
+                            @Session["Name"]
+                        }
+                        else
+                        { <img src="~/images/avatars/noavatar.jpg" style="border-radius:50%;width:20px; height:22px" /><span class="hidden-sm hidden-xs"> @User.Identity.Name </span>}
                     </span>
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
                     <li><a href="@Url.Action("EditInfo", "Account")"> <img src="~/images/icon/profile.png" width="20" height="20" />Hồ sơ cá nhân</a></li>
                     <li class="divider"></li>
-                    <li><a href="@Url.Action("LogOut", "Account")"> <img src="~/images/icon/exit.png" width="20" height="20"  />Đăng xuất</a></li>
+                    <li><a href="@Url.Action("LogOut", "Account")"> <img src="~/images/icon/exit.png" width="20" height="20" />Đăng xuất</a></li>
                 </ul>
             </div>
             <!-- user dropdown ends -->
             <ul class="collapse navbar-collapse nav navbar-nav top-menu" style="margin-top:7px">
-                <li><a class="btn btn-default" href="@Url.Action("Index", "Home")" style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#34495E;color:red;font-weight:bold;border: 2px solid black"><img src="~/images/icon/logo.svg" width="20" height="20"  /> Về trang chủ</a></li>
-                
+                <li><a class="btn btn-default" href="@Url.Action("Index", "Home")" style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#34495E;color:red;font-weight:bold;border: 2px solid black"><img src="~/images/icon/logo.svg" width="20" height="20" /> Về trang chủ</a></li>
+
             </ul>
         </div>
     </div>
     <!-- topbar ends -->
     <div class="ch-container">
         <div class="row">
-
             <!-- left menu starts -->
             <div class="col-sm-2 col-lg-2">
                 <div class="sidebar-nav" style="background-color:antiquewhite">
@@ -82,53 +81,51 @@
                             <li>
                                 <a href="#" style="padding-right:0px"><img src="~/images/icon/product-admin.png" width="20" height="20" /></i><span style="font-weight: bold; color:#ff0000"> Khu vực sản phẩm</span></a>
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="@Url.Action("SanPham","Admin")"style="padding-right:0px"><img src="~/images/icon/product-manage.png" width="20" height="20" />Quản lý sản phẩm</a></li>
-                                    <li><a href="@Url.Action("Index","LoaiSP")"style="padding-right:0px"><img src="~/images/icon/product-type.png" width="20" height="20" />Quản lý loại sản phẩm</a></li>
-                                    <li><a href="@Url.Action("Index","HangSX")"style="padding-right:0px"><img src="~/images/icon/producer-admin.png" width="20" height="20" />Quản lý hãng sản xuất</a></li>
-                                    <li><a href="@Url.Action("Index","KhuyenMai")"style="padding-right:0px"><img src="~/images/icon/discount-admin.png" width="20" height="20" />Quản lý khuyến mãi</a></li>
+                                    <li><a href="@Url.Action("SanPham","Admin")" style="padding-right:0px"><img src="~/images/icon/product-manage.png" width="20" height="20" />Quản lý sản phẩm</a></li>
+                                    <li><a href="@Url.Action("Index","LoaiSP")" style="padding-right:0px"><img src="~/images/icon/product-type.png" width="20" height="20" />Quản lý loại sản phẩm</a></li>
+                                    <li><a href="@Url.Action("Index","HangSX")" style="padding-right:0px"><img src="~/images/icon/producer-admin.png" width="20" height="20" />Quản lý hãng sản xuất</a></li>
+                                    <li><a href="@Url.Action("Index","KhuyenMai")" style="padding-right:0px"><img src="~/images/icon/discount-admin.png" width="20" height="20" />Quản lý khuyến mãi</a></li>
                                 </ul>
                             </li>
                             @if (User.IsInRole("Quản trị viên"))
                             {
                                 <li>
-                                    <a href="#"style="padding-right:0px"><img src="~/images/icon/user-admin.png" width="20" height="20" /><span style="font-weight: bold; color: #ff0000;"> Khu vực thành viên</span></a>
+                                    <a href="#" style="padding-right:0px"><img src="~/images/icon/user-admin.png" width="20" height="20" /><span style="font-weight: bold; color: #ff0000;"> Khu vực thành viên</span></a>
                                     <ul class="nav nav-pills nav-stacked">
-                                        <li><a href="@Url.Action("Index", "Account")"style="padding-right:0px"><img src="~/images/icon/user-list2.png" width="20" height="20" />Danh sách người dùng</a></li>
-                                        <li><a href="@Url.Action("Index", "Roles")"style="padding-right:0px"><img src="~/images/icon/user-list.png" width="20" height="20" />Danh sách chức vụ</a></li>
+                                        <li><a href="@Url.Action("Index", "Account")" style="padding-right:0px"><img src="~/images/icon/user-list2.png" width="20" height="20" />Danh sách người dùng</a></li>
+                                        <li><a href="@Url.Action("Index", "Roles")" style="padding-right:0px"><img src="~/images/icon/user-list.png" width="20" height="20" />Danh sách chức vụ</a></li>
                                     </ul>
                                 </li>
                             }
-                            
+
                             <li>
-                                <a href="#"style="padding-right:0px"><img src="~/images/icon/order-admin.png" width="20" height="20" /><span style="font-weight: bold; color: #ff0000;">Đơn hàng - Hóa đơn</span></a>
+                                <a href="#" style="padding-right:0px"><img src="~/images/icon/order-admin.png" width="20" height="20" /><span style="font-weight: bold; color: #ff0000;">Đơn hàng - Hóa đơn</span></a>
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="@Url.Action("Index","Donhang")"style="padding-right:0px"><img src="~/images/icon/order-admin2.png" width="20" height="20" />Đơn hàng của khách</a></li>
+                                    <li><a href="@Url.Action("Index","Donhang")" style="padding-right:0px"><img src="~/images/icon/order-admin2.png" width="20" height="20" />Đơn hàng của khách</a></li>
                                 </ul>
                             </li>
-
                             <li>
                                 <a href="#" style="padding-right:0px"><img src="~/images/icon/chamsoc-amdin.png" width="20" height="20" /><span style="font-weight: bold; color: #ff0000;">Chăm sóc khách hàng</span></a>
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="@Url.Action("Index", "Comment")"style="padding-right:0px"><img src="~/images/icon/QA-admin.png" width="20" height="20" />Hỏi đáp của khách</a></li>
-                                    <li><a href="@Url.Action("Index", "DanhGia")"style="padding-right:0px"><img src="~/images/icon/rate-admin.png" width="20" height="20" />Đánh giá của khách</a></li>
+                                    <li><a href="@Url.Action("Index", "Comment")" style="padding-right:0px"><img src="~/images/icon/QA-admin.png" width="20" height="20" />Hỏi đáp của khách</a></li>
+                                    <li><a href="@Url.Action("Index", "DanhGia")" style="padding-right:0px"><img src="~/images/icon/rate-admin.png" width="20" height="20" />Đánh giá của khách</a></li>
                                 </ul>
                             </li>
-                        @if (User.IsInRole("Quản trị viên"))
-                        {
-                            <li>
-                                <a href="#" style="padding-right:0px"><img src="~/images/icon/thongke-admin.png" width="20" height="20" /><span style="font-weight: bold; color: #ff0000;"> Khu vực thống kê</span></a>
-                                <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="@Url.Action("ThongKeDoanhThu", "ThongKe")" style="padding-right:0px"><img src="~/images/icon/coin-admin.png" width="20" height="20" />Doanh thu hàng tháng</a></li>
-                                </ul>
-                            </li>
-                        }
-                                @*<li>
+                            @if (User.IsInRole("Quản trị viên"))
+                            {
+                                <li>
+                                    <a href="#" style="padding-right:0px"><img src="~/images/icon/thongke-admin.png" width="20" height="20" /><span style="font-weight: bold; color: #ff0000;"> Khu vực thống kê</span></a>
+                                    <ul class="nav nav-pills nav-stacked">
+                                        <li><a href="@Url.Action("ThongKeDoanhThu", "ThongKe")" style="padding-right:0px"><img src="~/images/icon/coin-admin.png" width="20" height="20" />Doanh thu hàng tháng</a></li>
+                                    </ul>
+                                </li>
+                            }
+                            @*<li>
                                     <a href="#"><i class="glyphicon glyphicon-cog red"></i><span style="font-weight: bold; color: #ff0000;">Cài đặt</span></a>
                                     <ul class="nav nav-pills nav-stacked">
                                         <li><a href="@Url.Action("General","GiaoDien")">Cài đặt thông tin web</a></li>
                                     </ul>
                                 </li>*@
-
                         </ul>
                     </div>
                 </div>
@@ -191,6 +188,6 @@
             </p>
         </footer>
     </div><!--/.fluid-container-->
-
+   
 </body>
 </html>

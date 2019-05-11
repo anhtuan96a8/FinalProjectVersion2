@@ -23,7 +23,7 @@ namespace TuanStore.Controllers
         }
         public ActionResult SearchByName(string tensp)
         {
-            var splist = db.SanPhams.Where(u => u.TenSP.Contains(tensp));
+            var splist = db.SanPhams.Where(u => u.TenSP.ToLower().Contains(tensp.ToLower()));
             ViewBag.CurrentFilter = tensp;
             splist = splist.OrderByDescending(u => u.TenSP);
             return View(splist);

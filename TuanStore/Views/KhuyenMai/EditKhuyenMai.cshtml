@@ -1,6 +1,6 @@
 ﻿@model TuanStore.Models.KhuyenMai
 @{
-    ViewBag.Title = "Sửa thông tin hãng sản xuất";
+    ViewBag.Title = "Sửa thông tin khuyến mãi";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 <script src="~/ckeditor/ckeditor.js"></script>
@@ -8,14 +8,14 @@
     <div class="box col-md-12">
         <div class="box-inner">
             <div class="box-header well" data-original-title="">
-                <h2><i class="glyphicon glyphicon-user"></i>@ViewBag.Title</h2>
+                <h2><img src="~/images/icon/discount-admin.png" width="20px" />@ViewBag.Title</h2>
                 @*<div class="box-icon">
-                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
-                    <a href="#" class="btn btn-minimize btn-round btn-default">
-                        <i class="glyphicon glyphicon-chevron-up"></i>
-                    </a>
-                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
-                </div>*@
+            <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+            <a href="#" class="btn btn-minimize btn-round btn-default">
+                <i class="glyphicon glyphicon-chevron-up"></i>
+            </a>
+            <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+        </div>*@
             </div>
             <div class="box-content">
                 @using (Html.BeginForm("EditKhuyenMai", "KhuyenMai", FormMethod.Post, new { id = "sualoaisp", autocomplete = "off", enctype = "multipart/form-data" }))
@@ -40,7 +40,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.NgayBatDau, new { @class = "control-label col-md-2" })
                             <div class="col-md-3">
-                                @Html.EditorFor(model => model.NgayBatDau, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.NgayBatDau, new { htmlAttributes = new { @class = "form-control" , @value = Model.NgayBatDau.Value, @placehoder = Model.NgayBatDau} })
                                 @Html.ValidationMessageFor(model => model.NgayBatDau)
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.NgayKetThuc, new { @class = "control-label col-md-2" })
                             <div class="col-md-3">
-                                @Html.EditorFor(model => model.NgayKetThuc, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.NgayKetThuc, new { htmlAttributes = new { @class = "form-control", @value = Model.NgayKetThuc } })
                                 @Html.ValidationMessageFor(model => model.NgayKetThuc)
                             </div>
                         </div>
@@ -74,13 +74,12 @@
 
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                <a class="btn btn-danger" href="@Url.Action("SuaCTKhuyenMai", "KhuyenMai", new { MaKM = Model.MaKM })">
-                                    <i class="glyphicon glyphicon-wrench icon-white"></i>
-                                    Sửa danh sách sản phẩm
-                                </a>
+
                                 <a class="btn btn-info" href='javascript: submitform("sualoaisp")'>
-                                    <i class="glyphicon glyphicon-wrench icon-white"></i>
                                     Cập nhật
+                                </a>
+                                <a class="btn btn-danger" href="@Url.Action("SuaCTKhuyenMai", "KhuyenMai", new { MaKM = Model.MaKM })">
+                                    Sửa danh sách sản phẩm
                                 </a>
                             </div>
                         </div>

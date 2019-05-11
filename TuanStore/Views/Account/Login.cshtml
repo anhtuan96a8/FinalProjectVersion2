@@ -2,19 +2,18 @@
 
 <h2 class="bordered">Đăng nhập</h2>
 
-@*<div class="social-auth-buttons">
-    <div class="row">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new { Action = "ExternalLogin", ReturnUrl = ViewBag.ReturnUrl })
-        </section>
 
-        
-    </div>
-</div>*@
 
 @using (Html.BeginForm("Login", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "login-form cf-style-1", role = "form" }))
 {
     @Html.AntiForgeryToken()
+    if(TempData["ErrorLogin"] != null)
+    {
+        <span class="alert-danger h4 bold" id="alert-info">@TempData["ErrorLogin"]</span>
+        <script>
+            $('#alert-info').fadeOut(8000);
+        </script>
+    }
     <div class="field-row">
         @Html.LabelFor(m => m.UserName)
         @Html.TextBoxFor(m => m.UserName, new { @class = "le-input" ,placeholder = "Nhập tên đăng nhập của bạn" })

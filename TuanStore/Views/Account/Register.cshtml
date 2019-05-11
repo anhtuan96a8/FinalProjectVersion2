@@ -1,23 +1,54 @@
 ﻿@model TuanStore.Models.RegisterViewModel
-
 <h2 class="bordered">Đăng ký</h2>
 <p>Bạn hãy đăng ký tài khoản để mua hàng</p>
+<script>
+    function kiemgiatritrung(value, Url, id) {
+    if (value)
+        $.ajax({
+            url: Url,
+            data: { key: value },
+            success: function (result) {
+                var s = $(id).parent();
+                if (result) {
+                    $('#kiemtratrung').html("Ok");
+                    s.find("input").css({ "border": "2px solid green" });
+                    $('.alert-info').fadeOut(500);
+                }
+                else {
+                    $('#kiemtratrung').html("Đã được sử dụng");
+                    s.find("input").css({ "border": "2px solid red" });
+                    $('.alert-info').fadeIn(500);
+                }
 
+            },
+        });
+    else {
+        var s = $(id).parent();
+        $('#kiemtratrung').html("Không được để trống");
+        s.find("input").css({ "border": "2px solid red" });
+        $('.alert-info').fadeIn(500);
+    }
+}
+</script>
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "register-form cf-style-1", role = "form" }))
 {
+<div class="alert alert-info" style="display:none">
     @Html.AntiForgeryToken()
-
+    <span id="kiemtratrung"></span>
+</div>
     <div class="field-row">
         @Html.LabelFor(m => m.Email)
-        @Html.TextBoxFor(m => m.Email, new { @class = "le-input" })
-        @Html.ValidationMessageFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email, new { @class = "le-input" ,@id="check-email", oninput = "kiemgiatritrung(this.value,\"" + @Url.Action("KiemTraEmail", "Account") + "\",\"#loaiisok\")" })
+        @Html.ValidationMessageFor(m => m.Email,"",new {@class ="text-danger" })
+        <span id="loaiisok"></span>
 
     </div>
 
     <div class="field-row">
         @Html.LabelFor(m => m.UserName)
-        @Html.TextBoxFor(m => m.UserName, new { @class = "le-input" })
+        @Html.TextBoxFor(m => m.UserName, new { @class = "le-input", oninput = "kiemgiatritrung(this.value,\"" + @Url.Action("KiemTraTen", "Account") + "\",\"#checkname\")" })
         @Html.ValidationMessageFor(m => m.UserName)
+        <span id="checkname"></span>
     </div>
     <div class="field-row">
         @Html.LabelFor(m => m.HoTen)
@@ -30,7 +61,7 @@
         @Html.TextBoxFor(m => m.DienThoai, new { @class = "le-input" })
         @Html.ValidationMessageFor(m => m.DienThoai)
     </div>
-    
+
     <div class="field-row">
         @Html.LabelFor(m => m.DiaChi)
         @Html.TextBoxFor(m => m.DiaChi, new { @class = "le-input" })
@@ -51,9 +82,7 @@
         <button type="submit" class="le-button huge"><img src="~/images/icon/sig-up.png" style="border-radius:50%;width:30px; height:30px;margin-right:5px" /> Đăng ký</button>
     </div>
 }
-
 <h2 class="semi-bold">Đăng ký để được :</h2>
-
 <ul class="list-unstyled list-benefits">
     <li><i class="fa fa-check primary-color"></i> Thanh toán khi mua hàng nhanh nhất</li>
     <li><i class="fa fa-check primary-color"></i> Quản lý đơn hàng của bạn dễ dàng</li>

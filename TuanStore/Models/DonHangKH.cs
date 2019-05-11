@@ -36,6 +36,7 @@ using System;
     public Nullable<decimal> PhiVanChuyen { get; set; }
 
     public string PTGiaoDich { get; set; }
+    [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
     [DisplayName("Ngày đặt mua")]
     public Nullable<System.DateTime> NgayDatMua { get; set; }
     [DisplayName("Tình trạng đơn hàng")]

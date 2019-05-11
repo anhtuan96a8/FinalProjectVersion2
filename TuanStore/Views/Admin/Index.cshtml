@@ -1,4 +1,4 @@
-﻿
+﻿@model TuanStore.Models.AdminIndexView
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
@@ -6,32 +6,32 @@
 
 <div class=" row">
     <div class="col-md-3 col-sm-3 col-xs-6">
-        <a data-toggle="tooltip" class="well top-block" href="#">
-            <i class="glyphicon glyphicon-user blue"></i>
+        <a data-toggle="tooltip" title="@Model.numOfUser khách hàng" class="well top-block" href="@Url.Action("Index","Account")">
+            <img src="~/images/icon/number-user.png" width="30" />
             <div>Số khách hàng đã đăng ký</div>
-            <div>50</div>
+            <div  style="color:maroon">@Model.numOfUser</div>
         </a>
     </div>
     <div class="col-md-3 col-sm-3 col-xs-6">
-        <a data-toggle="tooltip" title="4 new pro members." class="well top-block" href="#">
-            <i class="glyphicon glyphicon-star green"></i>
+        <a data-toggle="tooltip" title="@Model.numOfSuccesfulOrder đơn hàng thành công" class="well top-block" href="@Url.Action("Index","DonHang")">
+            <img src="~/images/icon/success-order.png" width="30" />
             <div>Số đơn đặt hàng thành công</div>
-            <div>228</div>
-            
+            <div style="color:maroon">@Model.numOfSuccesfulOrder</div>
+
         </a>
     </div>
     <div class="col-md-3 col-sm-3 col-xs-6">
-        <a data-toggle="tooltip" title="$34 new sales." class="well top-block" href="#">
-            <i class="glyphicon glyphicon-shopping-cart yellow"></i>
+        <a data-toggle="tooltip" title="@string.Format("{0:0,0}",@Model.numOfRevenue) VNĐ" class="well top-block" href="@Url.Action("ThongKeDoanhThu","ThongKe")">
+            <img src="~/images/icon/total-money.png" width="30" />
             <div>Doanh thu </div>
-            <div>ViewBag.DoanhThu VND</div>
+            <div  style="color:maroon">@string.Format("{0:0,0}", @Model.numOfRevenue) VNĐ</div>
         </a>
     </div>
     <div class="col-md-3 col-sm-3 col-xs-6">
-        <a data-toggle="tooltip" title="12 new messages." class="well top-block" href="#">
-            <i class="glyphicon glyphicon-envelope red"></i>
+        <a data-toggle="tooltip" title="@Model.numOfComment bình luận" class="well top-block" href="@Url.Action("Index","Comment")">
+            <img src="~/images/icon/comment2.png" width="30" />
             <div>Số bình luận</div>
-            <div>@ViewBag.SoBinhLuan</div>
+            <div  style="color:maroon">@Model.numOfComment</div>
         </a>
     </div>
 </div>

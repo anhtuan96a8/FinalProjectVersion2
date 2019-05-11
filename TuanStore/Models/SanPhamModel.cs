@@ -12,7 +12,7 @@ namespace TuanStore.Models
         public IQueryable<SanPham> SearchByName(string term)
         {
             IQueryable<SanPham> lst;
-            lst = db.SanPhams.Where(u => u.TenSP.Contains(term));
+            lst = db.SanPhams.Where(u => u.TenSP.ToLower().Contains(term.ToLower()));
             return lst ;
         }
 
@@ -169,6 +169,13 @@ namespace TuanStore.Models
                     return true;
                 return false;
             }
+        }
+        internal bool KiemTraTen(string p)
+        {
+            var temp = db.SanPhams.Where(m => m.TenSP.ToLower().Equals(p.ToLower())).ToList();
+            if (temp.Count == 0)
+                return true;
+            return false;
         }
         public SanPham getSanPham(string id)
         {

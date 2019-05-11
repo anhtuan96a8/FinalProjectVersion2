@@ -257,10 +257,11 @@ function timkiemdh() {
     var date = $('#dhday').val();
     var status = $('#trangthai').val();
     var mobile = $('#mobile').val();
+    var hoten = $('#hoten').val()
     $.ajax({
         url: "/Donhang/TimDonHang",
         type: 'GET',
-        data: { key: key, mobile: mobile, date: date, status: status },
+        data: { key: key, mobile: mobile, date: date, status: status, hoten: hoten },
         success: function (result) {
             $('.Ajax-Table').html(result);
         },
@@ -449,6 +450,17 @@ function XoaSPKhuyenMai(Url, value1, value2) {
     }
 
 
+}
+function editSPKhuyenMai(Url, value1, value2) {
+    $.ajax({
+        url: Url,
+        type: 'GET',
+        data: { makm: value1, masp: value2 },
+        success: function (result) {
+            $('.Ajax-Table').html(result);
+            timkiemDSSanPhamKhuyenMai(value1);
+        },
+    });
 }
 //End SanPhamKhuyenMai
 

@@ -70,10 +70,7 @@ namespace TuanStore.Controllers
                     avatar = (from p in db.AspNetUsers where p.UserName == model.UserName select p.Avatar).Single().ToString();
                     Session["Avatar"] = avatar;
                     Session["Name"]=(from p in db.AspNetUsers where p.UserName == model.UserName select p.HoTen).Single().ToString();
-                    if (Session["Avatar"] != null)
-                    {
-                        string b = Session["Avatar"].ToString();
-                    }
+                    
                     return RedirectToLocal(returnUrl);
                 }
                 else
@@ -83,7 +80,8 @@ namespace TuanStore.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            TempData["ErrorLogin"] = "Sai tên tài khoản hoặc mật khẩu"; 
+            return RedirectToAction("Authentication", "Account");
         }
 
         //
@@ -93,13 +91,6 @@ namespace TuanStore.Controllers
         {
             return PartialView("Register");
         }
-
-        [AllowAnonymous]
-        public ActionResult RegisterB2B()
-        {
-            return View();
-        }
-
      
         //
         // POST: /Account/Register
@@ -116,7 +107,6 @@ namespace TuanStore.Controllers
                 if (result.Succeeded)
                 {
                     UserManager.AddToRole(user.Id, "Khách hàng");
-                    //UserManager.AddToRole(user.Id, "Nhà cung cấp");
                     await SignInAsync(user, isPersistent: false);
                     ManagerObiect.getIntance().userName = model.UserName;
                     SendMailConfirm(user.Id);
@@ -129,7 +119,7 @@ namespace TuanStore.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return RedirectToAction("Authentication", "Account");
         }
 
         private void SendMailConfirm(string p)
@@ -558,6 +548,11 @@ namespace TuanStore.Controllers
         [HttpPost]
         public ActionResult PhanQuyen(List<string> lstu, string quyen)
         {
+            if(lstu == null)
+            {
+                TempData["ErrorRole"] = "oke";
+                return TimUser(null, null, null, null, null, null);
+            }
             UserModel u = new UserModel();
             foreach (var item in lstu)
             {
@@ -619,6 +614,22 @@ namespace TuanStore.Controllers
             int pageSize = (pagesize ?? 10);
             int pageNumber = (page ?? 1);
             return PartialView("UserList", lst.OrderBy(m => m.HoTen).ToPagedList(pageNumber, pageSize));
+        }
+        [AllowAnonymous]
+        public ActionResult KiemTraEmail(string key)
+        {
+            UserModel userModel = new UserModel();
+            if (userModel.Kiemtraemail (key))
+                return Json(true, JsonRequestBehavior.AllowGet);
+            return Json(false, JsonRequestBehavior.AllowGet);
+        }
+        [AllowAnonymous]
+        public ActionResult KiemTraTen(string key)
+        {
+            UserModel userModel = new UserModel();
+            if (userModel.Kiemtraten(key))
+                return Json(true, JsonRequestBehavior.AllowGet);
+            return Json(false, JsonRequestBehavior.AllowGet);
         }
 
     }

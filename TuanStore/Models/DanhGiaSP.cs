@@ -30,7 +30,7 @@ using System;
     [Required(ErrorMessage="Hãy nhập nội dung đánh giá")]
     [DisplayName("Mã khách hàng")]
     public string NoiDung { get; set; }
-
+    [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
     public Nullable<System.DateTime> NgayDang { get; set; }
     [DisplayName("Họ và tên")]
     [Required(ErrorMessage = "Hãy nhập Họ tên")]

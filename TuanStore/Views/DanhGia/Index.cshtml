@@ -7,14 +7,14 @@
     <div class="box col-md-12">
         <div class="box-inner">
             <div class="box-header well" data-original-title="">
-                <h2><i class="glyphicon glyphicon-user"></i>@ViewBag.Title</h2>
+                <h2><img src="~/images/icon/rate-admin.png" width="20px" />@ViewBag.Title</h2>
                 @*<div class="box-icon">
-                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
-                    <a href="#" class="btn btn-minimize btn-round btn-default">
-                        <i class="glyphicon glyphicon-chevron-up"></i>
-                    </a>
-                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
-                </div>*@
+            <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+            <a href="#" class="btn btn-minimize btn-round btn-default">
+                <i class="glyphicon glyphicon-chevron-up"></i>
+            </a>
+            <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+        </div>*@
             </div>
             <div class="box-content">
                 <div class="alert alert-info" id="alert-info" style="display:none"></div>
@@ -27,7 +27,7 @@
                             new { value = "3" , text = "Đánh giá 3 sao" },
                             new { value = "2" , text = "Đánh giá 2 sao"  },
                             new { value = "1" , text = "Đánh giá 1 sao" },
-                        }, "value", "text"), "--Số sao--", new { @class = "form-control", id = "sosao", onchange = "timkiemDanhGia()" })
+                        }, "value", "text"), "-----Số sao-----", new { @class = "form-control", id = "sosao", onchange = "timkiemDanhGia()" , style="border-radius: 5px" })
                     </div>
 
                     <div class="input-group">
@@ -36,12 +36,12 @@
                     </div>
 
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-search red"></i></span>
+                        <span class="input-group-addon"><img src="~/images/icon/search-admin.png" width="14" /></span>
                         <input id="inputSPDG" type="text" class="form-control" placeholder="Nhập tên sản phẩm" oninput="timkiemDanhGia()">
                     </div>
                     <div class="input-group">
                         <a class="btn btn-danger" href='javascript:multibledel("@Url.Action("MultibleDel", "DanhGia")")'>
-                            <i class="glyphicon glyphicon-trash icon-white"></i>
+                            <img src="~/images/icon/delete-admin.png" width="20" />
                             Xóa các đánh giá đã chọn
                         </a>
                     </div>

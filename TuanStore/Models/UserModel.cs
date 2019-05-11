@@ -55,11 +55,11 @@ namespace TuanStore.Models
         {
             IQueryable<AspNetUser> lst = db.AspNetUsers;
             if (!string.IsNullOrEmpty(key))
-                lst = lst.Where(m => m.UserName.Contains(key));
+                lst = lst.Where(m => m.UserName.ToLower().Contains(key.ToLower()));
             if (!string.IsNullOrEmpty(email))
-                lst = lst.Where(m => m.Email.Contains(email));
+                lst = lst.Where(m => m.Email.ToLower().Contains(email.ToLower()));
             if (!string.IsNullOrEmpty(hoten))
-                lst = lst.Where(m => m.HoTen.Contains(hoten));
+                lst = lst.Where(m => m.HoTen.ToLower().Contains(hoten.ToLower()));
             if (!string.IsNullOrEmpty(phone))
                 lst = lst.Where(m => m.PhoneNumber.Contains(phone));
             if (!string.IsNullOrEmpty(quyen))
@@ -120,6 +120,20 @@ namespace TuanStore.Models
                 sendmail.SendMail(new EmailModel(mail, sub, bo));
             }
 
+        }
+        internal bool Kiemtraten(string key)
+        {
+            var temp = db.AspNetUsers.Where(m => m.UserName.Equals(key)).ToList();
+            if (temp.Count == 0)
+                return true;
+            return false;
+        }
+        internal bool Kiemtraemail(string key)
+        {
+            var temp = db.AspNetUsers.Where(m => m.Email.Equals(key)).ToList();
+            if (temp.Count == 0)
+                return true;
+            return false;
         }
     }
 }

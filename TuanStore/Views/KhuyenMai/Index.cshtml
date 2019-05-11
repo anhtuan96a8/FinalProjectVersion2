@@ -8,14 +8,14 @@
     <div class="box col-md-12">
         <div class="box-inner">
             <div class="box-header well" data-original-title="">
-                <h2><i class="glyphicon glyphicon-user"></i>@ViewBag.Title</h2>
+                <h2><img src="~/images/icon/discount-admin.png" width="20px" />@ViewBag.Title</h2>
                 @*<div class="box-icon">
-                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
-                    <a href="#" class="btn btn-minimize btn-round btn-default">
-                        <i class="glyphicon glyphicon-chevron-up"></i>
-                    </a>
-                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
-                </div>*@
+            <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
+            <a href="#" class="btn btn-minimize btn-round btn-default">
+                <i class="glyphicon glyphicon-chevron-up"></i>
+            </a>
+            <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
+        </div>*@
             </div>
             <div class="box-content">
                 <div class="alert alert-info" id="alert-info" style="display:none"></div>
@@ -31,12 +31,12 @@
                     </div>
 
                     <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-search red"></i></span>
+                        <span class="input-group-addon"><img src="~/images/icon/search-admin.png" width="14px" /></span>
                         <input id="inputIcon" type="text" class="form-control" placeholder="Nhập tên chương trình" oninput="timkiemKhuyenMai()">
                     </div>
                     <div class="input-group">
                         <a class="btn btn-danger" href='javascript:multibledel("@Url.Action("MultibleDel", "KhuyenMai")")'>
-                            <i class="glyphicon glyphicon-trash icon-white"></i>
+                            <img src="~/images/icon/delete-admin.png" width="20px" />
                             Xóa chương trình đã chọn
                         </a>
                     </div>
@@ -56,14 +56,8 @@
     <div class="box col-md-12">
         <div class="box-inner">
             <div class="box-header well" data-original-title="">
-                <h2><i class="glyphicon glyphicon-user"></i>Thêm @ViewBag.Title</h2>
-                @*<div class="box-icon">
-                    <a href="#" class="btn btn-setting btn-round btn-default"><i class="glyphicon glyphicon-cog"></i></a>
-                    <a href="#" class="btn btn-minimize btn-round btn-default">
-                        <i class="glyphicon glyphicon-chevron-up"></i>
-                    </a>
-                    <a href="#" class="btn btn-close btn-round btn-default"><i class="glyphicon glyphicon-remove"></i></a>
-                </div>*@
+                <h2><img src="~/images/icon/discount-admin.png" width="20px" />Thêm @ViewBag.Title</h2>
+               
             </div>
             <div class="box-content">
 
@@ -71,7 +65,7 @@
                 {
 
                     <div class="form-horizontal">
-                        <div class="alert alert-info" style="display:none">
+                        <div class="alert alert-info" id="alert-info" style="display:none">
                             @Html.AntiForgeryToken()
                             @Html.ValidationSummary()
                             <span id="kiemtratrung"></span>
@@ -80,7 +74,7 @@
                             @Html.LabelFor(model => model.TenCT, new { @class = "control-label col-md-2" })
                             <div class="col-md-4">
                                 @Html.TextBoxFor(model => model.TenCT, new { @class = "form-control", oninput = "kiemgiatritrung(this.value,\"" + @Url.Action("kiemtra", "KhuyenMai") + "\",\"#loaiisok\")" })
-                                @Html.ValidationMessageFor(model => model.TenCT)
+                                @Html.ValidationMessageFor(model => model.TenCT,"",new { @class = "text-danger"})
                                 <span id="loaiisok"></span>
                             </div>
                         </div>
@@ -88,16 +82,16 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.NgayBatDau, new { @class = "control-label col-md-2" })
                             <div class="col-md-3">
-                                @Html.EditorFor(model => model.NgayBatDau, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.NgayBatDau)
+                                @Html.EditorFor(model => model.NgayBatDau, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                                @Html.ValidationMessageFor(model => model.NgayBatDau, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.NgayKetThuc, new { @class = "control-label col-md-2" })
                             <div class="col-md-3">
-                                @Html.EditorFor(model => model.NgayKetThuc, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.NgayKetThuc)
+                                @Html.EditorFor(model => model.NgayKetThuc, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                                @Html.ValidationMessageFor(model => model.NgayKetThuc, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
@@ -113,7 +107,7 @@
                             @Html.LabelFor(model => model.NoiDung, new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @Html.TextAreaFor(model => model.NoiDung, new { @class = "form-control"  })
-                                @Html.ValidationMessageFor(model => model.NoiDung)
+                                @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
                                 <script>
                                     CKEDITOR.replace('NoiDung');
                                 </script>
@@ -122,7 +116,7 @@
 
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Thêm mới" class="btn btn-default" />
+                                <input type="submit" value="Thêm mới" class="btn btn-danger" />
                             </div>
                         </div>
                     </div>
