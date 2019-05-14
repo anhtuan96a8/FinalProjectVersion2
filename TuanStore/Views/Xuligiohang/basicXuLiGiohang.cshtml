@@ -24,7 +24,7 @@
                         <div class="le-quantity">
                             <form>
                                 <a class="minus" href="#reduce" onclick="changequality(@i,'G')"></a>
-                                <input name="quantity" class="quantity1" id="quantity+@i" readonly="readonly" type="text" value="@Model.getGiohang()[i].Soluong" />
+                                <input name="quantity" class="quantity1" id="quantity+@i" readonly="readonly" type="text" value="@Model.getGiohang()[i].Soluong" min="1"/>
                                 <a class="plus" href="#add" onclick="changequality(@i,'T')"></a>
                             </form>
                         </div>
@@ -66,7 +66,7 @@
                     </li>
                 </ul>
                 <div class="buttons-holder">
-                    <a class="le-button big" href='@Url.Action("Checkout", "Home")'>Chấp thuận</a>
+                    <a class="le-button big" href='@Url.Action("Checkout", "Home")'>Đặt hàng</a>
                     <a class="simple-link block" href='@Url.Action("Index","Home")'>Tiếp tục mua hàng</a>
                 </div>
             </div>

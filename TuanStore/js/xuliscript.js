@@ -66,7 +66,7 @@ $(document).ready(function () {
 
         var id = "quantity+" + value;
         temp = document.getElementById(id).value;
-        if (temp > 0 && tt == 'G')
+        if (temp > 1 && tt == 'G')
             temp--;
         if (tt == 'T')
             temp++;
