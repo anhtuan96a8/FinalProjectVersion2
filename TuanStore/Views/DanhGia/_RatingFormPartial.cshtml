@@ -57,7 +57,7 @@
     </script>
     
 <h2>Viết đánh giá <img src="~/images/icon/writerate.png" width="25" alt="Alternate Text" /></h2>
-@using (Ajax.BeginForm("AddDanhGia", "DanhGia", null, new AjaxOptions { UpdateTargetId = "rates", OnSuccess = "test1" }, new { @id = "contact-form", @class = "contact-form" }))
+@using (Ajax.BeginForm("AddDanhGia", "DanhGia", null, new AjaxOptions { OnBegin = "checkValid", UpdateTargetId = "rates", OnSuccess = "test1" }, new { @id = "contact-form", @class = "contact-form" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })

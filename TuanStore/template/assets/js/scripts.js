@@ -1,4 +1,4 @@
-(function($) {
+﻿(function($) {
     "use strict";
 
     /*===================================================================================*/
@@ -344,6 +344,37 @@
             }
         });
     });
+
+
+    // Filter đánh giá
+    function checkValid() {
+        var comment = $('#NoiDungDanhGia').val();
+        if (comment.length < 50) {
+            $('#text-valid').text('Ðánh giá phải có ít nhất 50 ký tự!');
+            $('#text-valid').show();
+            return false;
+        }
+        else {
+            var isvalid = true;
+            $.ajax({
+                async: false,
+                url: "http://127.0.0.1:5000/approval",
+                type: "post",
+                dataType: 'text',
+                data: {
+                    Comment: comment
+                },
+                success: function (result) {
+                    if (result == 0) {
+                        $('#text-valid').text('Ðánh giá của bạn không hợp lệ!');
+                        $('#text-valid').show();
+                        isvalid = false;
+                    }
+                }
+            });
+            return isvalid;
+        }
+    }
     /*===================================================================================*/
     /*  SHARE THIS BUTTONS
     /*===================================================================================*/
