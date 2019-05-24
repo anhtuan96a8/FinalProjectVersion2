@@ -54,6 +54,39 @@
     //        return false;
     //    });
     //});
+    function checkValid() {
+        var comment = $('#NoiDungDanhGia').val();
+        if (comment.length < 20) {
+            $('#text-valid').text('Ðánh giá phải có ít nhất 20 ký tự!');
+            $('#text-valid').show();
+            return false;
+        }
+        else {
+            var isvalid = true;
+            $.ajax({
+                async: false,
+                url: "http://localhost:9874/approval",
+                type: "post",
+                dataType: 'text',
+                data: {
+                    Comment: comment
+                },
+                success: function (result) {
+                    if (result == 0) {
+                        $('#text-valid').text('Ðánh giá của bạn không hợp lệ!');
+                        $('#text-valid').show();
+                        isvalid = false;
+                    }
+                }
+            });
+            return isvalid;
+        }
+    }
+    $(document).ready(function () {
+        $('#NoiDungDanhGia').on('input', function () {
+            $('#text-valid').hide();
+        });
+    })
     </script>
     
 <h2>Viết đánh giá <img src="~/images/icon/writerate.png" width="25" alt="Alternate Text" /></h2>
@@ -98,6 +131,7 @@
 
         @Html.TextAreaFor(model => model.NoiDung, new { @id = "NoiDungDanhGia", @class = "le-input", @rows = "8", placeholder = "Nhập đánh giá sản phẩm " })
         @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
+        <p class="text-danger" id="text-valid"></p>
     </div><!-- /.field-row -->
     <div class="buttons-holder">
         <button type="submit" class="le-button huge" formmethod="post"><img src="~/images/icon/send.png" width="30" id="sendDG"/> Gửi</button>

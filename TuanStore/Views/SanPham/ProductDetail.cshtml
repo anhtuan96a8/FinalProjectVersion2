@@ -123,7 +123,7 @@
                     else
                     {<span class="not-available">Hết hàng</span>}
                 </div>
-                <div class="title animated fadeInRightBig "><a href="#">@Model.TenSP</a></div>
+                <div class="title "><a href="#">@Model.TenSP</a></div>
                 <div class="brand"></div>
             
                 <div class="text-capitalize" style="font-size: large ">@Html.Raw(@Model.GioiThieu)</div>
@@ -132,7 +132,7 @@
                     @if (Model.GiaGoc != Model.GiaTien)
                     {
                         <div class="brand"></div>
-                        <h3 class="text-center animated infinite tada delay-5s" style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#67B824;color:white;font-weight:bold; width:250px">Giảm giá @ViewBag.Giamgia%</h3>
+                        <h3 class="text-center" style="padding: 8px 22px 8px 22px;border-radius:50px;background-color:#67B824;color:white;font-weight:bold; width:250px">Giảm giá @ViewBag.Giamgia%</h3>
                     }
                     @if (Model.GiaTien > 500000)
                     {

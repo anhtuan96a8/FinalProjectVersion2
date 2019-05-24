@@ -98,7 +98,7 @@ namespace TuanStore.Controllers
                    return RedirectToAction("Checkout", "Home");
                 }
                 ManagerObiect.getIntance().giohang.removerCarts();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Xemdonhang", "Home",new { maKH = User.Identity.GetUserId()});
             }
             else
             {
