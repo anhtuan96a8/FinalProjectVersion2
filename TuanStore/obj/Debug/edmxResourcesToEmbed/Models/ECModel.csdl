@@ -157,7 +157,7 @@
       <PropertyRef Name="MaSP" />
     </Key>
     <Property Name="MaSP" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
-    <Property Name="TenSP" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="TenSP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="LoaiSP" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />
     <Property Name="SoLuotXemSP" Type="Int32" />
     <Property Name="HangSX" Type="String" MaxLength="5" FixedLength="true" Unicode="true" Nullable="false" />

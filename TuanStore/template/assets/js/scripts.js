@@ -327,6 +327,18 @@
                                     score: result
                                 });
                                 $('#RateDanhGia').val(result);
+                                if (result == 1) {
+                                    $('#name_rate').html('Không tốt')
+                                }
+                                else if (result == 2) {
+                                    $('#name_rate').html('Trung Bình Khá')
+                                } else if (result == 3) {
+                                    $('#name_rate').html('Trung Bình')
+                                } else if (result == 4) {
+                                    $('#name_rate').html('Tốt')
+                                } else if (result == 5) {
+                                    $('#name_rate').html('Rất tốt')
+                                }
                             }
                         });
                     }
