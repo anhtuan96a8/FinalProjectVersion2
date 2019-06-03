@@ -13,11 +13,5 @@ namespace TuanStore.Models
         {
             return db.GiaoDiens;
         }
-
-        internal IQueryable<Link> GetSlideShow()
-        {
-            return db.Links.Where(m => m.Group.Contains("SlideShow"));
-        }
-        
     }
 }

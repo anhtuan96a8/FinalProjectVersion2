@@ -134,16 +134,6 @@
     <Property Name="AnhCT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="SanPhamKhuyenMais" Relationship="Self.FK_SanPhamKhuyenMai_KhuyenMai" FromRole="KhuyenMai" ToRole="SanPhamKhuyenMai" />
   </EntityType>
-  <EntityType Name="Link">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="Text" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Group" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-  </EntityType>
   <EntityType Name="LoaiSP">
     <Key>
       <PropertyRef Name="MaLoai" />
@@ -366,7 +356,6 @@
     <EntitySet Name="GiaoDiens" EntityType="Self.GiaoDien" />
     <EntitySet Name="HangSanXuats" EntityType="Self.HangSanXuat" />
     <EntitySet Name="KhuyenMais" EntityType="Self.KhuyenMai" />
-    <EntitySet Name="Links" EntityType="Self.Link" />
     <EntitySet Name="LoaiSPs" EntityType="Self.LoaiSP" />
     <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
     <EntitySet Name="SanPhamKhuyenMais" EntityType="Self.SanPhamKhuyenMai" />
@@ -428,7 +417,6 @@
       <End Role="SanPham" EntitySet="SanPhams" />
       <End Role="DanhGiaSP" EntitySet="DanhGiaSPs" />
     </AssociationSet>
-    <EntitySet Name="TinTucs" EntityType="Model.TinTuc" />
   </EntityContainer>
   <EntityType Name="DanhGiaSP">
     <Key>
@@ -473,16 +461,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="TinTuc">
-    <Key>
-      <PropertyRef Name="MaTT" />
-    </Key>
-    <Property Name="MaTT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ChuDe" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="TieuDe" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="NgayDang" Type="DateTime" Precision="3" />
-    <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="AnhDaiDien" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-  </EntityType>
 </Schema>

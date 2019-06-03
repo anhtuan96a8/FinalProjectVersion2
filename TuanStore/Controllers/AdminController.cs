@@ -71,6 +71,51 @@ namespace TuanStore.Controllers
             ViewBag.LoaiSP = new SelectList(spm.GetAllLoaiSP(), "MaLoai", "TenLoai", sanpham.LoaiSP);            
             return View(sanpham);
         }
+        // edit tên sản phẩm lỗi
+        public ActionResult EditNameSP()
+        {
+            SanPhamModel spm = new SanPhamModel();
+            using (TextFieldParser parser = new TextFieldParser(Server.MapPath("~/data/findmasp.csv")))
+            {
+                parser.TextFieldType = FieldType.Delimited;
+                parser.SetDelimiters(",");
+                while (!parser.EndOfData)
+                {
+                    var MaSP = "";
+                    string[] values = parser.ReadFields();
+                    if (values[0].Contains("socot")) continue;
+                    //Xu ly hang san xuat
+                    if(values[1].Length == 2)
+                    {
+                        MaSP = "000" + values[1];
+                    }
+                    else if (values[1].Length == 3)
+                    {
+                        MaSP = "00" + values[1];
+                    }
+                    else if (values[1].Length == 3)
+                    {
+                        MaSP = "00" + values[1];
+                    }
+                    else if (values[1].Length == 4)
+                    {
+                        MaSP = "0" + values[1];
+                    }
+                    else if (values[1].Length == 5)
+                    {
+                        MaSP = values[1];
+                    }
+                    //Create SanPham
+                    SanPham sp = new SanPham();
+                    sp.MaSP = MaSP;
+                    sp.TenSP = values[2];
+
+                    spm.EditNameSP(sp);
+                }
+            }
+                return RedirectToAction("SanPham");
+
+        }
 
         [AuthLog(Roles = "Quản trị viên")]
         public ActionResult DeleteSP(string id)

@@ -109,7 +109,6 @@ namespace TuanStore.Controllers
                     UserManager.AddToRole(user.Id, "Khách hàng");
                     await SignInAsync(user, isPersistent: false);
                     ManagerObiect.getIntance().userName = model.UserName;
-                    SendMailConfirm(user.Id);
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -118,17 +117,8 @@ namespace TuanStore.Controllers
                 }
             }
 
-            // If we got this far, something failed, redisplay form
             return RedirectToAction("Authentication", "Account");
         }
-
-        private void SendMailConfirm(string p)
-        {
-            UserModel us = new UserModel();
-            us.SendMailConfirm(p, Url.Action("ConfirmMail", "Account", new { id = p }, this.Request.Url.Scheme));
-            ////http://account/ConfirmMail/dbaf5ac1-9ac3-4fbb-a5a0-891ea80cd0e7
-        }
-
         //
         // POST: /Account/Disassociate
         [HttpPost]

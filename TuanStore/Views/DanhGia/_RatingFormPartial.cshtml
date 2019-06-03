@@ -8,6 +8,8 @@
         $('#HoTenDanhGia').val('');
         $('#NoiDungDanhGia').val('');
         $('#EmailDanhGia').val('');
+        $('#name_rate').text('');
+        // load star in list rate when send rating
         if ($('.star').length > 0) {
             $('.star').each(function () {
                 var $star = $(this);
@@ -23,6 +25,7 @@
                 });
             });
         }
+        // remove star when send rating
         if ($('.star-big').length > 0) {
             $('.star-big').each(function () {
                 var $star = $(this);
@@ -39,25 +42,11 @@
             });
         }
     }
-    //$(document).ready(function () {
-    //    $(document).on("click", "#sendDG", function () {
-
-    //        $.ajax({
-    //            url: 'DanhGia/AddDanhGia',
-    //            type: 'POST',
-    //            cache: false,
-    //            data
-    //            success: function (result) {
-    //                test1()
-    //            }
-    //        });
-    //        return false;
-    //    });
-    //});
+    
     function checkValid() {
         var comment = $('#NoiDungDanhGia').val();
         if (comment.length < 10) {
-            $('#text-valid').text('Ðánh giá phải có ít nhất 20 ký tự!');
+            $('#text-valid').text('Ðánh giá phải có ít nhất 10 ký tự!');
             $('#text-valid').show();
             return false;
         }
@@ -84,23 +73,32 @@
     }
     $(document).ready(function () {
         $('#NoiDungDanhGia').on('input', function () {
+            if ($('#NoiDungDanhGia').val() == "") {
+                $('#name_rate').html('')
+            }
             $('#text-valid').hide();
-            var result = $("input[name='score']").val();
-            if (result == 1) {
-                $('#name_rate').html('Không tốt')
-            }
-            else if (result == 2) {
-                $('#name_rate').html('Trung Bình Khá')
-            } else if (result == 3) {
-                $('#name_rate').html('Trung Bình')
-            } else if (result == 4) {
-                $('#name_rate').html('Tốt')
-            } else if (result == 5) {
-                $('#name_rate').html('Rất tốt')
-            }
-            else $('#name_rate').html('')
+            var comment = $('#NoiDungDanhGia').val();
+            if (comment.length > 3) {
+                var result = $("input[name='Rate']").val()
+                if (result == 1) {
+                    $('#name_rate').html('Không tốt')
+                }
+                else if (result == 2) {
+                    $('#name_rate').html('Trung Bình Khá')
+                } else if (result == 3) {
+                    $('#name_rate').html('Trung Bình')
+                } else if (result == 4) {
+                    $('#name_rate').html('Tốt')
+                } else if (result == 5) {
+                    $('#name_rate').html('Rất tốt')
+                }
+                else $('#name_rate').html('')
+            } else {
+                $('#name_rate').html('');
+            }    
         });
     })
+
     </script>
     
 <h2>Viết đánh giá <img src="~/images/icon/writerate.png" width="25" alt="Alternate Text" /></h2>
@@ -128,13 +126,7 @@
             </div>
         }
     </div>
-    @*rate bang star*@
-    @*<div class="field-row star-row">
-            <label>your rating</label>
-            <div class="star-holder">
-                <div class="star big" data-score="0"></div>
-            </div>
-        </div>*@<!-- /.field-row -->
+    
     <div class="field-row">
         <label>Đánh giá sản phẩm </label>
         <p style="margin-bottom:10px">Đánh giá của bạn sẽ được tự đánh giá sao theo tiêu chuẩn đã được học từ trước khi bạn gõ . Nhưng nếu bạn muốn sửa đổi nó bạn có thể tích vào nó để chọn số sao của bạn.</p>

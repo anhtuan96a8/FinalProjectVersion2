@@ -15,7 +15,6 @@
         <EntityTypeShape EntityType="Model.GiaoDien" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.HangSanXuat" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.KhuyenMai" Width="1.5" PointX="6" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Link" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.LoaiSP" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.SanPham" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.SanPhamKhuyenMai" Width="1.5" PointX="8.25" PointY="13.625" IsExpanded="true" />
@@ -35,7 +34,6 @@
         <EntityTypeShape EntityType="Model.DanhGiaSP" Width="1.5" PointX="6" PointY="2.125" />
         <AssociationConnector Association="Model.FK_DanhGia_AspNetUsers" />
         <AssociationConnector Association="Model.FK_DanhGia_SanPham" />
-        <EntityTypeShape EntityType="Model.TinTuc" Width="1.5" PointX="10.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

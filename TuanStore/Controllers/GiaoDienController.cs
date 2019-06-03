@@ -32,28 +32,5 @@ namespace TuanStore.Controllers
             KhuyenMaiModel km = new KhuyenMaiModel();
             return PartialView("SlideShowView", km.TimKhuyenMai(null, null, null).Where(m => m.NgayBatDau <= DateTime.Today && m.NgayKetThuc >= DateTime.Today));
         }
-
-        public ActionResult SlideShowSetting()
-        {
-            GiaoDienModel gd = new GiaoDienModel();
-            List<Link> linklist = gd.GetSlideShow().ToList();
-            return View(linklist);
-        }
-        //[HttpPost]
-        //public ActionResult EditThongtin(List<GiaoDien> giaoDiens)
-        //{
-        //        Entities db = new Entities();
-        //        GiaoDien gd = db.GiaoDiens.Find(giaoDiens[0].Id);
-        //        gd.GiaTri = giaoDiens[0].GiaTri;
-        //        db.SaveChanges();
-        //    return General();
-        //}
-        public ActionResult SlideShow()
-        {
-            Link link = new Link();
-            link.Group = "SlideShow";
-            return View(link);
-        }
-
     }
 }

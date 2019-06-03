@@ -9,10 +9,6 @@ namespace TuanStore.Models
     {
         private Entities db = new Entities();
 
-        public List<Link> GetMenuLink()
-        {
-            return db.Links.Where(m => m.Group.Equals("MainMenu")).ToList();
-        }
         public List<MenuItem> GetMenuList() 
         { 
             List<MenuItem> mnlist = new List<MenuItem>();

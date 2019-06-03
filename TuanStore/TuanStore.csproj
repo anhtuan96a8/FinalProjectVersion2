@@ -216,7 +216,6 @@
     <Compile Include="Controllers\SanPhamController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SideBarController.cs" />
-    <Compile Include="Controllers\TinTucController.cs" />
     <Compile Include="Controllers\XuligiohangController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -271,7 +270,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ECModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Models\GiaoDien.cs">
       <DependentUpon>ECModel.tt</DependentUpon>
     </Compile>
@@ -286,15 +284,11 @@
       <DependentUpon>ECModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\KhuyenMaiModel.cs" />
-    <Compile Include="Models\Link.cs">
-      <DependentUpon>ECModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\LoaiSP.cs">
       <DependentUpon>ECModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MainMenuModel.cs" />
     <Compile Include="Models\ManagerObiect.cs" />
-    <Compile Include="Models\NGANLUONG.cs" />
     <Compile Include="Models\SanPham.cs">
       <DependentUpon>ECModel.tt</DependentUpon>
     </Compile>
@@ -302,10 +296,6 @@
       <DependentUpon>ECModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SanPhamModel.cs" />
-    <Compile Include="Models\TinTuc.cs">
-      <DependentUpon>ECModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TinTucModel.cs" />
     <Compile Include="Models\Trackingaction.cs">
       <DependentUpon>ECModel.tt</DependentUpon>
     </Compile>
@@ -1842,7 +1832,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Comment\_CommentPartial.cshtml" />
     <Content Include="Views\_LoginPartial.cshtml" />
-    <Content Include="Views\_ViewStart - Copy.cshtml" />
     <Content Include="Views\Comment\_CommentListPartial.cshtml" />
     <Content Include="Views\Comment\_CommentFormPartial.cshtml" />
     <Content Include="Views\Shared\_LayoutFrontEnd.cshtml" />
@@ -2214,8 +2203,6 @@
     <Content Include="Views\Search\_GetHangSanXuatPartial.cshtml" />
     <Content Include="Views\Search\_ListProductAjaxPartial.cshtml" />
     <Content Include="Views\Shared\_ChatBot.cshtml" />
-    <Content Include="Views\TinTuc\Index.cshtml" />
-    <Content Include="Views\TinTuc\InderForUser.cshtml" />
     <Content Include="Views\SideBar\_SanPhamGiamGiaRowPartial.cshtml" />
     <Content Include="Views\SideBar\_GiamGiaBanChayRowPartial.cshtml" />
     <Content Include="Views\DanhGia\Index.cshtml" />

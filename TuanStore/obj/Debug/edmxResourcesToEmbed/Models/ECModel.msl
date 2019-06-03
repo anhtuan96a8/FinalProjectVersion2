@@ -125,17 +125,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Links">
-      <EntityTypeMapping TypeName="Model.Link">
-        <MappingFragment StoreEntitySet="Link">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="Url" ColumnName="Url" />
-          <ScalarProperty Name="Image" ColumnName="Image" />
-          <ScalarProperty Name="Text" ColumnName="Text" />
-          <ScalarProperty Name="Group" ColumnName="Group" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="LoaiSPs">
       <EntityTypeMapping TypeName="Model.LoaiSP">
         <MappingFragment StoreEntitySet="LoaiSP">
@@ -208,19 +197,6 @@
           <ScalarProperty Name="Rate" ColumnName="Rate" />
           <ScalarProperty Name="MaSP" ColumnName="MaSP" />
           <ScalarProperty Name="MaDG" ColumnName="MaDG" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="TinTucs">
-      <EntityTypeMapping TypeName="Model.TinTuc">
-        <MappingFragment StoreEntitySet="TinTuc">
-          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-          <ScalarProperty Name="AnhDaiDien" ColumnName="AnhDaiDien" />
-          <ScalarProperty Name="MoTa" ColumnName="MoTa" />
-          <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
-          <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
-          <ScalarProperty Name="ChuDe" ColumnName="ChuDe" />
-          <ScalarProperty Name="MaTT" ColumnName="MaTT" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

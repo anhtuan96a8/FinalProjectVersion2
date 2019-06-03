@@ -89,6 +89,13 @@ namespace TuanStore.Models
         {
             return db.LoaiSPs;
         }
+        internal void EditNameSP(SanPham sanpham)
+        {
+            //MaSP,TenSP,LoaiSP,HangSX,XuatXu,GiaTien,MoTa,SoLuong,isnew,ishot
+            SanPham sp = db.SanPhams.Find(sanpham.MaSP);
+            sp.TenSP = sanpham.TenSP;
+            db.SaveChanges();
+        }
 
         internal void EditSP(SanPham sanpham)
         {

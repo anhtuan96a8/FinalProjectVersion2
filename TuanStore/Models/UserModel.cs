@@ -32,13 +32,7 @@ namespace TuanStore.Models
                 db.SaveChanges();
             }
         }
-        //internal int TotalUser()
-        //{
-        //    int total = from p in db.AspNetUsers
-        //                where p.AspNetRoles.ToString() =="Khách hàng"
-        //                select p.MaNV.Count();
-        //    return total;
-        //}
+        
         internal void UpdateImage(string p)
         {
             AspNetUser user = new AspNetUser();
@@ -103,24 +97,7 @@ namespace TuanStore.Models
             db.SaveChanges();
         }
 
-        internal void SendMailConfirm(string p,string url)
-        {
-            EmailTool sendmail = new EmailTool();
-            AspNetUser us = db.AspNetUsers.Find(p);
-            if(us != null)
-            {
-                string mail = us.Email;
-                string sub = "[Xác nhận email] Xác nhận đăng ký tại TMDT_J shop";
-                string bo = "";
-                bo += "Xin chào " + us.HoTen + ",<br>";
-                bo += "Cảm ơn bạn đã đăng ký tịa TMDT_Shop, đây là link xác nhận email của bạn <br>";
-                bo += "Click vào link bên dưới để xác nhận:<br>";
-                bo += "<a href=\""+ url +"\">" + url + "</a><br>";
-                bo += "Xin cảm ơn.";
-                sendmail.SendMail(new EmailModel(mail, sub, bo));
-            }
-
-        }
+        
         internal bool Kiemtraten(string key)
         {
             var temp = db.AspNetUsers.Where(m => m.UserName.Equals(key)).ToList();

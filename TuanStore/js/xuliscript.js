@@ -93,16 +93,5 @@ $(document).ready(function () {
             }
         });
     }
-    function DangkiSPCM() {
-        var url = "/Auction/RegisterProduct";
-        $.ajax({
-            url: url,
-            type: 'POST',
-            cache: false,
-            data: { a: $(".form-horizontal").serialize() },
-            success: function (result) {
-                alert("Đăng kí thành công");
-            }
-        });
-    }
+    
    

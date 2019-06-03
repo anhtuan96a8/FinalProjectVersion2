@@ -1,17 +1,14 @@
 ﻿(function($) {
     "use strict";
 
-    /*===================================================================================*/
-    /*  WOW 
-    /*===================================================================================*/
+    
+    /*  WOW */
 
     $(document).ready(function () {
         new WOW().init();
     });
     
-    /*===================================================================================*/
-    /*  OWL CAROUSEL
-    /*===================================================================================*/
+    /*  OWL CAROUSEL*/
 
     $(document).ready(function () {
         
@@ -240,38 +237,7 @@
         
     });
 
-    /*===================================================================================*/
-    /*  STAR RATING
-    /*===================================================================================*/
-
-    //$(document).ready(function () {
-
-    //    if ($('.star').length > 0) {
-    //        $('.star').each(function(){
-    //                var $star = $(this);
-                    
-    //                if($star.hasClass('big')){
-    //                    $star.raty({
-    //                        starOff: '~/images/icon/star-none.png',
-    //                        starOn: '~/images/icon/star.png',
-    //                        space: false,
-    //                        score: function() {
-    //                            return $(this).attr('data-score');
-    //                        }
-    //                    });
-    //                }else{
-    //                 $star.raty({
-    //                     starOff: '~/images/icon/star-none.png',
-    //                     starOn: '~/images/icon/star.png',
-    //                    space: false,
-    //                    score: function() {
-    //                        return $(this).attr('data-score');
-    //                    }
-    //                });
-    //            }
-    //        });
-    //    }
-    //});
+    
     $(document).ready(function () {
         if ($('.star').length > 0) {
             $('.star').each(function () {
@@ -303,9 +269,22 @@
                 });
             });
         }
+        $('.star-big').raty({
+            starOff: 'images/icon/star-none.png',
+            starOn: 'images/icon/star.png',
+            path: document.location.origin,
+            space: false,
+            score: function () {
+                return $(this).attr('data-score');
+            },
+            click: function (score, evt) {
+                $('#RateDanhGia').val(score);
+            }
+        });
         $('#NoiDungDanhGia').on('input', function (e) {
             var comment = $('#NoiDungDanhGia').val();
-            if (comment.length > 1) {
+
+            if (comment.length > 3) {
                 var index = comment.length - 1;
                 if (index != -1) {
                     if ((comment.charAt(index) == ' ' || comment.charAt(index) == '.')) {
@@ -321,10 +300,24 @@
                                     showCancel: true,
                                     starOff: 'images/icon/star-none.png',
                                     starOn: 'images/icon/star.png',
-                                    starHalf: 'template/assets/images/star-big-half.png',
                                     path: document.location.origin,
                                     space: false,
-                                    score: result
+                                    score: result,
+                                    click: function (score, evt) {
+                                        $('#RateDanhGia').val(score);
+                                        if (score == 1) {
+                                            $('#name_rate').html('Không tốt')
+                                        }
+                                        else if (score == 2) {
+                                            $('#name_rate').html('Trung Bình Khá')
+                                        } else if (score == 3) {
+                                            $('#name_rate').html('Trung Bình')
+                                        } else if (score == 4) {
+                                            $('#name_rate').html('Tốt')
+                                        } else if (score == 5) {
+                                            $('#name_rate').html('Rất tốt')
+                                        }
+                                    }
                                 });
                                 $('#RateDanhGia').val(result);
                                 if (result == 1) {
@@ -339,6 +332,7 @@
                                 } else if (result == 5) {
                                     $('#name_rate').html('Rất tốt')
                                 }
+                                else $('#name_rate').html('')
                             }
                         });
                     }
@@ -348,7 +342,6 @@
                 $('.star-big').raty({
                     starOff: 'images/icon/star-none.png',
                     starOn: 'images/icon/star.png',
-                    starHalf: 'template/assets/images/star-big-half.png',
                     path: document.location.origin,
                     space: false,
                     score: 0
@@ -357,12 +350,8 @@
         });
     });
 
-
-    // Filter đánh giá
     
-    /*===================================================================================*/
-    /*  SHARE THIS BUTTONS
-    /*===================================================================================*/
+    /*  SHARE THIS BUTTONS*/
 
     $(document).ready(function () {
         if($('.social-row').length > 0){
@@ -370,21 +359,11 @@
         }
     });
 
-    /*===================================================================================*/
-    /*  CUSTOM CONTROLS
-    /*===================================================================================*/
+    
+    /*  CUSTOM CONTROLS*/
 
     $(document).ready(function () {
-        //$(".checkuncheck").click(function () {
-        //    if ($(".le-select:checked").length > 0) {
-        //        $(".le-select").prop("checked", false);
-        //    }
-        //});
-        //$(document).on('dblclick', '.le-select', function () {
-        //    if (this.checked) {
-        //        $(this).prop('checked', false);
-        //    }
-        //});
+        
         // Select Dropdown
         if($('.le-select').length > 0){
             $('.le-select select').customSelect({customClass:'le-select-in'});
@@ -405,19 +384,7 @@
             e.preventDefault();
         });
 
-        // Quantity Spinner
-        //$('.le-quantity a').click(function(e){
-        //    //e.preventDefault();
-        //    var currentQty = $(this).parent().parent().find('input').val();
-        //    if( $(this).hasClass('minus') && currentQty>0){
-        //        $(this).parent().parent().find('input').val(parseInt(currentQty, 10) - 1);
-        //    }else{
-        //        if( $(this).hasClass('plus')){
-        //            $(this).parent().parent().find('input').val(parseInt(currentQty, 10) + 1);
-        //        }
-        //    }
-        //});
-
+        
         // Price Slider
         if ($('.price-slider').length > 0) {
             $('.price-slider').slider({
@@ -477,9 +444,7 @@
         });
     });
 
-    /*===================================================================================*/
-    /*  LAZY LOAD IMAGES USING ECHO
-    /*===================================================================================*/
+    /*  LAZY LOAD IMAGES USING ECHO*/
     $(document).ready(function(){
         echo.init({
             offset: 100,
@@ -488,141 +453,6 @@
         });
     });
 
-    /*===================================================================================*/
-    /*  GMAP ACTIVATOR
-    /*===================================================================================*/
-
-    $(document).ready(function(){
-        var zoom = 16;
-        var latitude = 51.539075;
-        var longitude = -0.152424;
-        var mapIsNotActive = true;
-        setupCustomMap();
-
-        function setupCustomMap() {
-            if ($('.map-holder').length > 0 && mapIsNotActive) {
-
-                var styles = [
-                    {
-                        "featureType": "landscape",
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "visibility": "simplified"
-                            },
-                            {
-                                "color": "#E6E6E6"
-                            }
-                        ]
-                    }, {
-                        "featureType": "administrative",
-                        "stylers": [
-                            {
-                                "visibility": "simplified"
-                            }
-                        ]
-                    }, {
-                        "featureType": "road",
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "visibility": "on"
-                            },
-                            {
-                                "saturation": -100
-                            }
-                        ]
-                    }, {
-                        "featureType": "road.highway",
-                        "elementType": "geometry.fill",
-                        "stylers": [
-                            {
-                                "color": "#808080"
-                            },
-                            {
-                                "visibility": "on"
-                            }
-                        ]
-                    }, {
-                        "featureType": "water",
-                        "stylers": [
-                            {
-                                "color": "#CECECE"
-                            },
-                            {
-                                "visibility": "on"
-                            }
-                        ]
-                    }, {
-                        "featureType": "poi",
-                        "stylers": [
-                            {
-                                "visibility": "on"
-                            }
-                        ]
-                    }, {
-                        "featureType": "poi",
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "color": "#E5E5E5"
-                            },
-                            {
-                                "visibility": "on"
-                            }
-                        ]
-                    }, {
-                        "featureType": "road.local",
-                        "elementType": "geometry",
-                        "stylers": [
-                            {
-                                "color": "#ffffff"
-                            },
-                            {
-                                "visibility": "on"
-                            }
-                        ]
-                    }, {}
-                ];
-                
-                var lt, ld;
-                if ($('.map').hasClass('center')) {
-                    lt = (latitude);
-                    ld = (longitude);
-                } else {
-                    lt = (latitude + 0.0027);
-                    ld = (longitude - 0.010);
-                }
-
-                var options = {
-                    mapTypeControlOptions: {
-                        mapTypeIds: ['Styled']
-                    },
-                    center: new google.maps.LatLng(lt, ld),
-                    zoom: zoom,
-                    disableDefaultUI: true,
-                    scrollwheel: false,
-                    mapTypeId: 'Styled'
-                };
-                var div = document.getElementById('map');
-
-                var map = new google.maps.Map(div, options);
-
-                var styledMapType = new google.maps.StyledMapType(styles, {
-                    name: 'Styled'
-                });
-
-                var marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(latitude, longitude),
-                    map: map
-                });
-                
-                map.mapTypes.set('Styled', styledMapType);
-
-                mapIsNotActive = false;
-            }
-
-        }
-    });
-
+   
+    
 })(jQuery);

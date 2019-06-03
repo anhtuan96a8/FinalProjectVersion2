@@ -52,8 +52,6 @@ public partial class Entities : DbContext
 
     public virtual DbSet<KhuyenMai> KhuyenMais { get; set; }
 
-    public virtual DbSet<Link> Links { get; set; }
-
     public virtual DbSet<LoaiSP> LoaiSPs { get; set; }
 
     public virtual DbSet<SanPham> SanPhams { get; set; }
@@ -63,8 +61,6 @@ public partial class Entities : DbContext
     public virtual DbSet<Trackingaction> Trackingactions { get; set; }
 
     public virtual DbSet<DanhGiaSP> DanhGiaSPs { get; set; }
-
-    public virtual DbSet<TinTuc> TinTucs { get; set; }
 
 }
 

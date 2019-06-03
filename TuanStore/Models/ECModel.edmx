@@ -143,16 +143,6 @@
           <Property Name="TenCT" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="AnhCT" Type="text" />
         </EntityType>
-        <EntityType Name="Link">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="Url" Type="text" />
-          <Property Name="Image" Type="text" />
-          <Property Name="Text" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="Group" Type="nvarchar" MaxLength="50" />
-        </EntityType>
         <EntityType Name="LoaiSP">
           <Key>
             <PropertyRef Name="MaLoai" />
@@ -191,18 +181,6 @@
           <Property Name="MaSP" Type="nchar" MaxLength="5" Nullable="false" />
           <Property Name="MoTa" Type="ntext" />
           <Property Name="GiamGia" Type="int" />
-        </EntityType>
-        <EntityType Name="TinTuc">
-          <Key>
-            <PropertyRef Name="MaTT" />
-          </Key>
-          <Property Name="MaTT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ChuDe" Type="nvarchar" MaxLength="100" />
-          <Property Name="TieuDe" Type="nvarchar" MaxLength="100" />
-          <Property Name="NgayDang" Type="datetime" />
-          <Property Name="MoTa" Type="ntext" />
-          <Property Name="AnhDaiDien" Type="ntext" />
-          <Property Name="NoiDung" Type="ntext" />
         </EntityType>
         <EntityType Name="Trackingaction">
           <Key>
@@ -432,11 +410,9 @@
           <EntitySet Name="GiaoDien" EntityType="Self.GiaoDien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HangSanXuat" EntityType="Self.HangSanXuat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KhuyenMai" EntityType="Self.KhuyenMai" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Link" EntityType="Self.Link" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoaiSP" EntityType="Self.LoaiSP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SanPhamKhuyenMai" EntityType="Self.SanPhamKhuyenMai" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TinTuc" EntityType="Self.TinTuc" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Trackingaction" EntityType="Self.Trackingaction" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_BinhLuan_AspNetUsers" Association="Self.FK_BinhLuan_AspNetUsers">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -636,16 +612,6 @@
           <Property Name="TenCT" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="AnhCT" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SanPhamKhuyenMais" Relationship="Self.FK_SanPhamKhuyenMai_KhuyenMai" FromRole="KhuyenMai" ToRole="SanPhamKhuyenMai" />
-        </EntityType>
-        <EntityType Name="Link">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Text" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Group" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="LoaiSP">
           <Key>
@@ -869,7 +835,6 @@
           <EntitySet Name="GiaoDiens" EntityType="Self.GiaoDien" />
           <EntitySet Name="HangSanXuats" EntityType="Self.HangSanXuat" />
           <EntitySet Name="KhuyenMais" EntityType="Self.KhuyenMai" />
-          <EntitySet Name="Links" EntityType="Self.Link" />
           <EntitySet Name="LoaiSPs" EntityType="Self.LoaiSP" />
           <EntitySet Name="SanPhams" EntityType="Self.SanPham" />
           <EntitySet Name="SanPhamKhuyenMais" EntityType="Self.SanPhamKhuyenMai" />
@@ -931,7 +896,6 @@
             <End Role="SanPham" EntitySet="SanPhams" />
             <End Role="DanhGiaSP" EntitySet="DanhGiaSPs" />
           </AssociationSet>
-          <EntitySet Name="TinTucs" EntityType="Model.TinTuc" />
         </EntityContainer>
         <EntityType Name="DanhGiaSP">
           <Key>
@@ -976,18 +940,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="TinTuc">
-          <Key>
-            <PropertyRef Name="MaTT" />
-          </Key>
-          <Property Name="MaTT" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ChuDe" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="TieuDe" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="NgayDang" Type="DateTime" Precision="3" />
-          <Property Name="MoTa" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="AnhDaiDien" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="NoiDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1118,17 +1070,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Links">
-            <EntityTypeMapping TypeName="Model.Link">
-              <MappingFragment StoreEntitySet="Link">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="Url" ColumnName="Url" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Text" ColumnName="Text" />
-                <ScalarProperty Name="Group" ColumnName="Group" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="LoaiSPs">
             <EntityTypeMapping TypeName="Model.LoaiSP">
               <MappingFragment StoreEntitySet="LoaiSP">
@@ -1201,19 +1142,6 @@
                 <ScalarProperty Name="Rate" ColumnName="Rate" />
                 <ScalarProperty Name="MaSP" ColumnName="MaSP" />
                 <ScalarProperty Name="MaDG" ColumnName="MaDG" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TinTucs">
-            <EntityTypeMapping TypeName="Model.TinTuc">
-              <MappingFragment StoreEntitySet="TinTuc">
-                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
-                <ScalarProperty Name="AnhDaiDien" ColumnName="AnhDaiDien" />
-                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
-                <ScalarProperty Name="NgayDang" ColumnName="NgayDang" />
-                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
-                <ScalarProperty Name="ChuDe" ColumnName="ChuDe" />
-                <ScalarProperty Name="MaTT" ColumnName="MaTT" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

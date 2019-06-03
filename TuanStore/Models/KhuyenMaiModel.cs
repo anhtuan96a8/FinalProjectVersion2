@@ -127,15 +127,7 @@ namespace TuanStore.Models
             var lst = db.SanPhamKhuyenMais.Select(m => m.MaSP);
             List<string> idList = (from p in db.SanPhamKhuyenMais select p.MaSP).ToList<string>();
             var lst1 = db.SanPhams.Where(m => !idList.Contains(m.MaSP));
-            //var allsp = db.SanPhams;
-            //foreach(string i in idList)
-            //{
-            //    var lst2 = db.SanPhams.Where(m => m.MaSP == i).FirstOrDefault();
-            //    allsp.Remove(lst2);
-            //    var c = allsp.Count();
-
-            //}
-            //var x = allsp.Count();
+           
             return lst1;
         }
         internal IQueryable<SanPham> DSSP(string key, string maloai, string makm)

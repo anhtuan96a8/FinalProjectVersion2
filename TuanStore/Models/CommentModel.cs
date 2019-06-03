@@ -31,36 +31,9 @@ namespace TuanStore.Models
             cm.DaTraLoi = "N";
             db.Entry(cm).State = EntityState.Modified;
             db.SaveChanges();
-            EmailTool sendmail = new EmailTool();
-            sendmail.SendMail(GetParent(Comment));
         }
 
-        private EmailModel GetParent(BinhLuan Comment)
-        {
-            var par = db.BinhLuans.Find(Comment.Parent);
-            string sub = "Bình luận sản phẩm " + par.SanPham.TenSP + " của bạn đã được phản hồi";
-            string bo = "";
-            if (!string.IsNullOrEmpty(par.MaKH))
-            {
-                bo += "Xin chào " + par.AspNetUser.UserName + ",\n";
-                bo += "Bình luận sản phẩm " + par.SanPham.TenSP + " đã được phản hồi.\n";
-                bo += "Bình luận của bạn: \"" + par.NoiDung + "\"\n";
-                bo += "Phản hồi của chúng tôi: \"" + Comment.NoiDung + "\"\n";
-                bo += "Xin cảm ơn.";
-                EmailModel email = new EmailModel(par.AspNetUser.Email, sub, bo);
-                return email;
-            }
-            bo += "Xin chào " + par.HoTen + ",\n";
-            bo += "Bình luận sản phẩm " + par.SanPham.TenSP + " đã được phản hồi.\n";
-            bo += "Bình luận của bạn: \"" + par.NoiDung + "\"\n";
-            bo += "Phản hồi của chúng tôi: \"" + Comment.NoiDung + "\"\n";
-            bo += "Xin cảm ơn.";
-            EmailModel mail = new EmailModel(par.Email, sub, bo);
-            return mail;
-
-        }
-
-
+        
         internal IQueryable<BinhLuan> TimBinhLuan(string key, DateTime? date, string status)
         {
             IQueryable<BinhLuan> lst = db.BinhLuans;
