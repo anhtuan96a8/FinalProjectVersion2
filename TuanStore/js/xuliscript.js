@@ -1,19 +1,4 @@
 ﻿
-$(document).ready(function () {
-    //window.onbeforeunload = function (e) {
-    //    var message = "Your confirmation message goes here.",
-    //    e = e || window.event;
-    //    // For IE and Firefox
-    //    if (e) {
-    //        e.returnValue = message;
-    //    }
-    //    //alert("thoat");
-    //    // For Safari
-    //    return message;
-    //};
-    
-
-});
     function Addcart(value, sl) {
         if (sl == 0) {
             alert("Xác nhận");
@@ -34,7 +19,6 @@ $(document).ready(function () {
             }
         });
     }
-
 
     function Huydonhang(value) {
         var url = "/Home/Huydonhang";
