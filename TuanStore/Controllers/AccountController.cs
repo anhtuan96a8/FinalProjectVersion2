@@ -482,30 +482,30 @@ namespace TuanStore.Controllers
             return View(info);
         }
 
-        // This action handles the form POST and the upload
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult EditAvatar(HttpPostedFileBase file)
-        {
-            // Verify that the user selected a file
-            if (file != null && file.ContentLength > 0)
-            {
-                var name = Path.GetExtension(file.FileName);
-                // extract only the filename
-                if (!Path.GetExtension(file.FileName).Equals(".jpg"))
-                {
-                    HttpStatusCodeResult status = new HttpStatusCodeResult(400);
-                    return status;
-                }
-                // store the file inside ~/App_Data/uploads folder
-                var path = Path.Combine(Server.MapPath("~/images/avatars"), User.Identity.GetUserId() + ".jpg");
-                file.SaveAs(path);
-                UserModel user = new UserModel();
-                user.UpdateImage(User.Identity.GetUserId());
-            }
-            // redirect back to the index action to show the form once again
-            return RedirectToAction("EditInfo");
-        }
+        //// This action handles the form POST and the upload
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult EditAvatar(HttpPostedFileBase file)
+        //{
+        //    // Verify that the user selected a file
+        //    if (file != null && file.ContentLength > 0)
+        //    {
+        //        var name = Path.GetExtension(file.FileName);
+        //        // extract only the filename
+        //        if (!Path.GetExtension(file.FileName).Equals(".jpg"))
+        //        {
+        //            HttpStatusCodeResult status = new HttpStatusCodeResult(400);
+        //            return status;
+        //        }
+        //        // store the file inside ~/App_Data/uploads folder
+        //        var path = Path.Combine(Server.MapPath("~/images/avatars"), User.Identity.GetUserId() + ".jpg");
+        //        file.SaveAs(path);
+        //        UserModel user = new UserModel();
+        //        user.UpdateImage(User.Identity.GetUserId());
+        //    }
+        //    // redirect back to the index action to show the form once again
+        //    return RedirectToAction("EditInfo");
+        //}
 
         [AllowAnonymous]
         public ActionResult ConfirmMail(string id)

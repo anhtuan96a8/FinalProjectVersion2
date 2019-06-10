@@ -218,7 +218,7 @@ namespace TuanStore.Controllers
             KhuyenMaiModel km = new KhuyenMaiModel();
 
             //IQueryable<SanPham> lst = km.DSSP(key, maloai, makm);
-            IQueryable<SanPham> lst = km.AllSPNotKM();
+            IQueryable<SanPham> lst = km.AllSPNotKM(key,maloai,makm);
             if (lst.Any())
                 return PhanTrangSP(lst, "DSSanPham", page, null);
             return null;

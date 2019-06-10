@@ -212,46 +212,6 @@ function timkiemhopdong() {
     });
 }
 
-function timkiemhopdong1() {
-    var key = $('#mahd').val();
-    var tensp = $('#tensp').val();
-    var loaihd = $('#loaihd').val();
-    var tt = $('#ttrang').val();
-    $.ajax({
-        url: "/HopDong/TTGiaoHang",
-        type: 'get',
-        data: { key: key, tensp: tensp, loaihd: loaihd, tt:tt },
-        success: function (result) {
-            $('.Ajax-Table').html(result);
-        },
-    });
-}
-
-function timkiemspcm() {
-    var key = $('#tensp').val();
-    $.ajax({
-        url: "/SanPhamCanMua/TimSPCM",
-        type: 'GET',
-        data: { key: key },
-        success: function (result) {
-            $('.Ajax-Table').html(result);
-        },
-    });
-}
-
-function timkiemdsdk() {
-    var tensp = $('#tensp').val();
-    var tenncc = $('#tenncc').val();
-    $.ajax({
-        url: "/DanhSachDK/TimDS",
-        type: 'GET',
-        data: { tensp: tensp, tenncc: tenncc },
-        success: function (result) {
-            $('.Ajax-Table').html(result);
-        },
-    });
-}
-
 function timkiemdh() {
     var key = $('#madh').val();
     var date = $('#dhday').val();
@@ -268,33 +228,6 @@ function timkiemdh() {
     });
 }
 
-function timkiemncc() {
-    var key = $('#inputIcon').val();
-    $.ajax({
-        url: "/NhaCungCap/TimNCC",
-        type: 'GET',
-        data: { key: key},
-        success: function (result) {
-            $('.Ajax-Table').html(result);
-        },
-    });
-}
-
-function timkiemdhncc() {
-    var key = $('#madh').val();
-    var ncc = $('#nccname').val();
-    var ngaylap = $('#ngaylap').val();
-    var status = $('#trangthai').val();
-    var ngaytt = $('#ngaytt').val();
-    $.ajax({
-        url: "/DonHangNCC/TimDonHang",
-        type: 'GET',
-        data: { key: key, ncc: ncc, ngaylap: ngaylap, ngaytt:ngaytt, status: status },
-        success: function (result) {
-            $('.Ajax-Table').html(result);
-        },
-    });
-}
 
 function timkiemDSSanPhamKhuyenMai(value) {
     var key = $('#inputIcon1').val();
@@ -531,27 +464,3 @@ function SetStatus(Url) {
 }
 //END UPDATE DON HANG STATUS
 
-function thanhtoanB2B(param) {
-    $.ajax({
-        url: "/HopDong/Xacnhanthanhtoan",
-        type: "GET",
-        data: { MaHD: param },
-        success: function (result) {
-            if (result == "success")
-                $('.tt_' + param).html("<span class=\"label label-info\">Đã thanh toán</span>");
-        }
-    });
-}
-function timkiemhopdongB2B() {
-    var key = $('#mahd').val();
-    var tensp = $('#tensp').val();
-    var loaihd = $('#loaihd').val();
-    $.ajax({
-        url: "/HopDong/TimHopDongB2B",
-        type: 'GET',
-        data: { key: key, tensp: tensp, loaihd: loaihd },
-        success: function (result) {
-            $('.Ajax-Table').html(result);
-        },
-    });
-}

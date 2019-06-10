@@ -23,7 +23,7 @@ namespace TuanStore.Models
             rep.NgayDang = DateTime.Now;
             rep.MaKH = "912a7a6d-b24d-40e7-bfed-726fb822b99d";
             rep.MaSP = bl.MaSP;
-            rep.HoTen = "Nguyễn Anh Tuấn";
+            rep.HoTen = "ADMIN";
             rep.Email = "admin@gmail.com";
 
            

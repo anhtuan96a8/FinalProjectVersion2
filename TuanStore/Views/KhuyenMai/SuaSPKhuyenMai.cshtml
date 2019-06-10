@@ -15,7 +15,7 @@
                 <div class="form-inline" style="text-align: right; padding: 10px;margin-right:25px">
 
                     <div class="input-group">
-                        @Html.DropDownList("maloai", (SelectList)@ViewBag.LoaiSP,"--Loại sản phẩm--", new { @class = "form-control", id = "maloaisearch", onchange = "timkiemDSSanPham(\'"+ViewBag.makm+"\')" , style="border-radius:5px" })
+                        @Html.DropDownList("maloai", (SelectList)@ViewBag.LoaiSP,"--Loại sản phẩm--", new { @class = "form-control", id = "maloaisearch", onchange = "timkiemDSSanPham(\'" + ViewBag.makm+"\')" , style="border-radius:5px" })
                     </div>
 
                     <div class="input-group">

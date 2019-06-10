@@ -455,7 +455,7 @@ label.error {
   color: #fff;
 }
 .green.ribbon {
-  background-color: transparent;
+  /*background-color: transparent;*/
 }
 .green.ribbon:after {
   border-top-color: #59B210;
@@ -465,7 +465,7 @@ label.error {
   color: #fff;
 }
 .red.ribbon {
-  background-color: transparent;
+  /*background-color: transparent;*/
 }
 .red.ribbon:after {
   border-top-color: #F8484A;
@@ -475,7 +475,7 @@ label.error {
   color: #fff;
 }
 .blue.ribbon {
-  background-color: transparent;
+  /*background-color: transparent;*/
 }
 .blue.ribbon:after {
   border-top-color: #407AC5;

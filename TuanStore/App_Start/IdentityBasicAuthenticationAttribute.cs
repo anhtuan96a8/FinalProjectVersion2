@@ -57,11 +57,6 @@ namespace System.Web.Http
 
                 Thread.CurrentPrincipal = principal;
 
-                // inside of ASP.NET this is required
-                //if (HttpContext.Current != null)
-                //    HttpContext.Current.User = principal;
-
-                //base.OnAuthorization(actionContext);
             }
         }
     }

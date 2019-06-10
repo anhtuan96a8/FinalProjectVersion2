@@ -306,7 +306,7 @@
                                     click: function (score, evt) {
                                         $('#RateDanhGia').val(score);
                                         if (score == 1) {
-                                            $('#name_rate').html('Không tốt')
+                                            $('#name_rate').html('Không Tốt')
                                         }
                                         else if (score == 2) {
                                             $('#name_rate').html('Trung Bình Khá')
@@ -315,13 +315,13 @@
                                         } else if (score == 4) {
                                             $('#name_rate').html('Tốt')
                                         } else if (score == 5) {
-                                            $('#name_rate').html('Rất tốt')
+                                            $('#name_rate').html('Rất Tốt')
                                         }
                                     }
                                 });
                                 $('#RateDanhGia').val(result);
                                 if (result == 1) {
-                                    $('#name_rate').html('Không tốt')
+                                    $('#name_rate').html('Không Tốt')
                                 }
                                 else if (result == 2) {
                                     $('#name_rate').html('Trung Bình Khá')
@@ -330,7 +330,7 @@
                                 } else if (result == 4) {
                                     $('#name_rate').html('Tốt')
                                 } else if (result == 5) {
-                                    $('#name_rate').html('Rất tốt')
+                                    $('#name_rate').html('Rất Tốt')
                                 }
                                 else $('#name_rate').html('')
                             }

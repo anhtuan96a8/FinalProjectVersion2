@@ -122,12 +122,15 @@ namespace TuanStore.Models
             List<string> idList = (from p in db.KhuyenMais select p.MaKM).ToList<string>();
             return idList;
         }
-        internal IQueryable<SanPham> AllSPNotKM()
+        internal IQueryable<SanPham> AllSPNotKM(string key, string maloai, string makm)
         {
             var lst = db.SanPhamKhuyenMais.Select(m => m.MaSP);
             List<string> idList = (from p in db.SanPhamKhuyenMais select p.MaSP).ToList<string>();
             var lst1 = db.SanPhams.Where(m => !idList.Contains(m.MaSP));
-           
+            if (!string.IsNullOrEmpty(key))
+                lst1 = lst1.Where(m => m.TenSP.ToLower().Contains(key.ToLower()));
+            if (!string.IsNullOrEmpty(maloai))
+                lst1 = lst1.Where(m => m.LoaiSP.Equals(maloai));
             return lst1;
         }
         internal IQueryable<SanPham> DSSP(string key, string maloai, string makm)
